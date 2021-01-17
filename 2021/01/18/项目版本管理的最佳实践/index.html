@@ -22,9 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>DO、DTO、BO、VO、POJO的定义 - YiDan の dada</title>
+  <title>项目版本管理的最佳实践 - YiDan の dada</title>
   
-    <meta name="keywords" content="代码规范">
+    <meta name="keywords" content="maven">
   
 
   
@@ -389,7 +389,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        DO、DTO、BO、VO、POJO的定义
+        项目版本管理的最佳实践
       </h1>
       <div class='new-meta-box'>
         
@@ -406,13 +406,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a>
-    </a>
-  </div>
-
 
           
         
@@ -420,7 +413,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jan 17, 2021</p>
+    <p>发布于：2021年1月18日</p>
   </a>
 </div>
 
@@ -431,7 +424,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="DO、DTO、BO、VO、POJO的定义" data-path="/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/">
+      <div id="lc-pv" data-title="项目版本管理的最佳实践" data-path="/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -449,8 +442,133 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h1 id="DO、DTO、BO、VO、POJO的定义"><a href="#DO、DTO、BO、VO、POJO的定义" class="headerlink" title="DO、DTO、BO、VO、POJO的定义"></a>DO、DTO、BO、VO、POJO的定义</h1><h2 id="分层领域模型规约"><a href="#分层领域模型规约" class="headerlink" title="分层领域模型规约"></a>分层领域模型规约</h2><p>DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。<br>DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。<br>BO（ Business Object）：业务对象。 由Service层输出的封装业务逻辑的对象。<br>AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。<br>VO（ View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。<br>POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter/getter/toString的简单类，包括DO/DTO/BO/VO等。<br>Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。  </p>
-<h2 id="领域模型命名规约"><a href="#领域模型命名规约" class="headerlink" title="领域模型命名规约"></a>领域模型命名规约</h2><p>数据对象：xxxDO，xxx即为数据表名。<br>数据传输对象：xxxDTO，xxx为业务领域相关的名称。<br>展示对象：xxxVO，xxx一般为网页名称。<br>POJO: 专指只有 setter / getter / toString的简单类，包括DO/DTO/BO/VO等,禁止命名成 xxxPOJO</p>
+  <h1 id="项目版本管理的最佳实践"><a href="#项目版本管理的最佳实践" class="headerlink" title="项目版本管理的最佳实践"></a>项目版本管理的最佳实践</h1><h2 id="一、Git设置"><a href="#一、Git设置" class="headerlink" title="一、Git设置"></a>一、Git设置</h2><p>1、添加公钥</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">打开 git bash (mac 下直接打开终端即可)</span><br><span class="line"><span class="comment">#: ssh-keygen -t rsa -C &quot;邮箱&quot;</span></span><br><span class="line"><span class="comment">#: cat ~/.ssh/id_rsa.pub</span></span><br><span class="line">会生成：以ssh-rsa 开头的字符串，复制，贴到git公钥管理里面</span><br><span class="line"></span><br><span class="line">测试是否可以通过公钥，免密拉取上传代码</span><br><span class="line"><span class="comment">#: ssh -T git@gitee.com （我这里用的gitee，对应的域名请自行切换）</span></span><br><span class="line"></span><br><span class="line">成功：</span><br><span class="line">Hi 柴梧炫 (DeployKey)! You<span class="string">&#x27;ve successfully authenticated, but GITEE.COM does not provide shell access.</span></span><br><span class="line"><span class="string">Note: Perhaps the current use is DeployKey.</span></span><br><span class="line"><span class="string">Note: DeployKey only supports pull/fetch operations</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">失败：</span></span><br><span class="line"><span class="string">The authenticity of host &#x27;</span>gitlab.com (172.65.251.78)<span class="string">&#x27; can&#x27;</span>t be established.</span><br><span class="line">ECDSA key fingerprint is SHA256:HbW3g8zUjNSksFbqTiUWPWg2Bq1x8xdGUrliXFzSnUw.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521122520622.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521122520622.png" srcset="data:image/png;base64,666" alt="git中的配置"></p>
+<h2 id="二、项目版本"><a href="#二、项目版本" class="headerlink" title="二、项目版本"></a>二、项目版本</h2><p>在web开发的过程中，maven 除了作为项目的依赖管理之外，还处理着项目的版本控制</p>
+<h2 id="1、maven-的多项目的标准结构"><a href="#1、maven-的多项目的标准结构" class="headerlink" title="1、maven 的多项目的标准结构"></a>1、maven 的多项目的标准结构</h2><h3 id="1-1、如何组织项目"><a href="#1-1、如何组织项目" class="headerlink" title="1.1、如何组织项目"></a>1.1、如何组织项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[MavenMultiProject]</span><br><span class="line"> ├── module-1</span><br><span class="line"> │   ├── pom.xml</span><br><span class="line"> │   └── src</span><br><span class="line"> ├── module-2</span><br><span class="line"> │   ├── pom.xml</span><br><span class="line"> │   └── src</span><br><span class="line"> ├── module-3</span><br><span class="line"> │   ├── pom.xml</span><br><span class="line"> │   ├── module-3-1</span><br><span class="line"> │       ├── pom.xml</span><br><span class="line"> │       └── src</span><br><span class="line"> │   ├── module-3-2</span><br><span class="line"> │       ├── pom.xml</span><br><span class="line"> │       └── src</span><br><span class="line"> ├── pom.xml</span><br><span class="line"> ├── README.en.md</span><br><span class="line"> ├── README.md</span><br></pre></td></tr></table></figure>
+<p>其中子模块也可以有其子模块</p>
+<h3 id="1-2、POM文件中的内容"><a href="#1-2、POM文件中的内容" class="headerlink" title="1.2、POM文件中的内容"></a>1.2、POM文件中的内容</h3><h4 id="1-2-1、parent-pom-xml"><a href="#1-2-1、parent-pom-xml" class="headerlink" title="1.2.1、parent pom.xml"></a>1.2.1、parent pom.xml</h4><p>父模块的pom文件一般存放公用的信息，以及定义标准，打包的格式：pom</p>
+<p>除了上述的信息，一般不要引入其他的元素，因为一旦引入，子模块就会继承这些依赖，导致子模块的依赖被污染</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 属性定义--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">  ....</span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 仓库的定义 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">id</span>&gt;</span>local nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>local nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/repository/maven-releases/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>local nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>local nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/repository/maven-snapshots/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 软件配置管理（项目git地址信息）如果git需要权限，则需要加入公钥，免密访问--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scm</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">connection</span>&gt;</span></span><br><span class="line">            scm:git:https://gitee.com/wuxuanchai_admin/m-v.git</span><br><span class="line">   <span class="tag">&lt;/<span class="name">connection</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">developerConnection</span>&gt;</span></span><br><span class="line">            scm:git:https://gitee.com/wuxuanchai_admin/m-v.git</span><br><span class="line">   <span class="tag">&lt;/<span class="name">developerConnection</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">            https://gitee.com/liang.liang/version-mangement-best-practices</span><br><span class="line">   <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tag</span>&gt;</span>HEAD<span class="tag">&lt;/<span class="name">tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scm</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--开发者--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">developers</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">developer</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>wuxuan.chai<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">email</span>&gt;</span>wuxuan.chai@gmail.com<span class="tag">&lt;/<span class="name">email</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">organizationUrl</span>&gt;</span>www.shuyun.com<span class="tag">&lt;/<span class="name">organizationUrl</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">developer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">developers</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--模块定义--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">moudles</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">moudle</span>&gt;</span>../moudle1<span class="tag">&lt;/<span class="name">moudle</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">moudles</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--插件定义--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">  	</span><br><span class="line">  <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--依赖定义--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>pom文件中可被继承的元素：</p>
+<ul>
+<li>可继承的POM元素如下：<ul>
+<li>groupId：项目组ID，项目坐标的核心元素</li>
+<li>version：项目版本，项目坐标的核心因素</li>
+<li>description：项目的描述信息</li>
+<li>organization：项目的组织信息</li>
+<li>inceptionYear：项目的创始年份</li>
+<li>url：项目的URL地址</li>
+<li>developers：项目的开发者信息</li>
+<li>contributors：项目的贡献者信息</li>
+<li>distributionManagement：项目的部署配置</li>
+<li>issueManagement：项目的缺陷跟踪系统信息</li>
+<li>ciManagement：项目的持续集成系统信息</li>
+<li>scm：项目的版本控制系统西溪</li>
+<li>malilingLists：项目的邮件列表信息</li>
+<li>properties：自定义的Maven属性</li>
+<li>dependencies：项目的依赖配置</li>
+<li>dependencyManagement：项目的依赖管理配置</li>
+<li>repositories：项目的仓库配置</li>
+<li>build：包括项目的源码目录配置、输出目录配置、插件配置、插件管理配置等</li>
+<li>reporting：包括项目的报告输出目录配置、报告插件配置等</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-2、子模块"><a href="#1-2-2、子模块" class="headerlink" title="1.2.2、子模块"></a>1.2.2、子模块</h4><p>子模块是具体依赖的配置，一般以jar包的格式提供服务（使用springboot后，war包格式会被打成jar）</p>
+<p>在子模块中，所有的version都不应该存在，要放在parent.pom 中进行统一管理</p>
+<ul>
+<li>模块本身：version 继承父模块的versoin</li>
+<li>所有依赖version，在父模块的dependencyManagement 元素中进行定义</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父模块的坐标--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 当前模块的坐标，不需要写版本信息，会继承父模块的版本号--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 模块描述--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">description</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 模块依赖列表--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 模块的构建所需要的插件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3、语义化的版本号（Semantic-Versioning）"><a href="#1-3、语义化的版本号（Semantic-Versioning）" class="headerlink" title="1.3、语义化的版本号（Semantic Versioning）"></a>1.3、语义化的版本号（Semantic Versioning）</h3><h4 id="1-3-1、版本号的格式"><a href="#1-3-1、版本号的格式" class="headerlink" title="1.3.1、版本号的格式"></a>1.3.1、版本号的格式</h4><p>版本号的格式： 主版本号.次版本号.修订号        </p>
+<p>版本号的递增的规则：</p>
+<p>1、主版本号：当你做了不兼容的API修改</p>
+<p>2、次版本号：当你做了向下兼容的功能性新增</p>
+<p>3、修订号：当你做了向下兼容的问题修正</p>
+<p>先行版本号及版本编译元数据可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+<p>也就是说可以支持这种版本号：</p>
+<p>4.7.5.202005</p>
+<ul>
+<li>4 主版本号</li>
+<li>7 次版本号</li>
+<li>5 修订号</li>
+<li>202005 编译元数据-编译日期</li>
+</ul>
+<p>其他的语义描述：</p>
+<ul>
+<li>Alpha：内测版</li>
+<li>Beta：公测版</li>
+<li>Gamma：比较成熟的测试版，与即将发行的正式版相差无几</li>
+<li>RC：是 Release Candidate 的缩写，意思是发布倒计时，候选版本</li>
+<li>Stable：稳定版</li>
+</ul>
+<h3 id="1-4、版本性质：-Snapshot-与Release"><a href="#1-4、版本性质：-Snapshot-与Release" class="headerlink" title="1.4、版本性质： Snapshot 与Release"></a>1.4、版本性质： Snapshot 与Release</h3><h4 id="1-4-1、概念"><a href="#1-4-1、概念" class="headerlink" title="1.4.1、概念"></a>1.4.1、概念</h4><p>Snapshot：快照，他是一个不稳定的版本，处于开发中的，经常变化的版本</p>
+<p>Release：发行版，功能稳定的版本，将停止代码的更新，用于发行到生产环境</p>
+<h4 id="1-4-2、理想的流程"><a href="#1-4-2、理想的流程" class="headerlink" title="1.4.2、理想的流程"></a>1.4.2、理想的流程</h4><h5 id="日常的开发"><a href="#日常的开发" class="headerlink" title="日常的开发"></a>日常的开发</h5><p>基于Snapshot的版本进行开发，snapshot版本会有一些特性</p>
+<ul>
+<li>执行 mvn complie 时会去仓库中尝试拉最新打包，因为他可以被多次构建，使用时必须保证最新</li>
+<li>可以被重复构建</li>
+</ul>
+<h5 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h5><p>在发布版本的时候，我们需要做以下的几件事：</p>
+<p>1、创建Tag分支，tag/v版本号（例如：tag/v0.0.1）</p>
+<p>2、在仓库中构建发布包（release 的jar）</p>
+<p>3、创建新的开发分支，升级本地pom文件版本，根据实际的需求提升版本号</p>
+<ul>
+<li>如果hotfix发布，则：x.y.z -&gt; x.y.z+1            例如：4.7.5 &gt; 4.7.6</li>
+<li>次版本发布， 则： x.y.z -&gt; x.y+1.0                例如：4.7.5 &gt; 4.8.0</li>
+<li>大版本更新，则：x.y.z -&gt; x+1.0.0                  例如：4.7.5 &gt; 5.0.0</li>
+</ul>
+<p>4、非hotfix版本发布，还需要创建hotfix分支，用于以后修复</p>
+<h5 id="现有的项目如何做？"><a href="#现有的项目如何做？" class="headerlink" title="现有的项目如何做？"></a>现有的项目如何做？</h5><p>插件管理：maven-release-plugin</p>
+<p>插件地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/maven-release/maven-release-plugin/">http://maven.apache.org/maven-release/maven-release-plugin/</a></p>
+<p>parent pom配置文件配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scm</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- git项目地址可以用SSH  也可以用 HTTPS的--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">connection</span>&gt;</span>scm:git:https://gitee.com/wuxuanchai_admin/m-v.git<span class="tag">&lt;/<span class="name">connection</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">&lt;!-- #git项目地址可以用SSH  也可以用 HTTPS的--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">developerConnection</span>&gt;</span>scm:git:https://gitee.com/wuxuanchai_admin/m-v.git<span class="tag">&lt;/<span class="name">developerConnection</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- #git项目浏览器里的地址--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://gitee.com/liang.liang/version-mangement-best-practices<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tag</span>&gt;</span>HEAD<span class="tag">&lt;/<span class="name">tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scm</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-release-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">								<span class="comment">&lt;!-- tag分支的名称，project.version只包含版本，不包含SNAPSHOT后缀 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tagNameFormat</span>&gt;</span>v@&#123;project.version&#125;<span class="tag">&lt;/<span class="name">tagNameFormat</span>&gt;</span></span><br><span class="line">								<span class="comment">&lt;!-- 升级子模块 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">autoVersionSubmodules</span>&gt;</span>true<span class="tag">&lt;/<span class="name">autoVersionSubmodules</span>&gt;</span></span><br><span class="line">								<span class="comment">&lt;!-- 跳过单元测试 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">arguments</span>&gt;</span>-DskipTests<span class="tag">&lt;/<span class="name">arguments</span>&gt;</span></span><br><span class="line">								<span class="comment">&lt;!-- 执行目标，此句可省 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goals</span>&gt;</span>-f pom.xml deploy<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="如何使用？？"><a href="#如何使用？？" class="headerlink" title="如何使用？？"></a>如何使用？？</h5><h6 id="1-release-branch（创建分支-）"><a href="#1-release-branch（创建分支-）" class="headerlink" title="1) release:branch（创建分支 ）"></a>1) release:branch（创建分支 ）</h6><p>创建的分支是用于hotfix修复的基础分支，在第一次创建次要版本是，要一并创建，以后的修改都基于此分支，后续如果有需要的hotfix来修复问题，则基于此分支创建一个新的分支hotfix-xxx，然后提交代码后，将release一个hotfix的版本：x.y.z+1(z表示当前的修订号)</p>
+<p>命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn release:branch -DbranchName=0.2.x -DupdateBranchVersions=<span class="literal">true</span> -DupdateWorkingCopyVersions=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>命令含义：</p>
+<ul>
+<li>-DbranchName=0.2.x：创建一个叫 0.2.x 的分支</li>
+<li>-DupdateBranchVersions=true ：分支会升级版本号，如果当前的版本号为0.0.1-snapshot，则新的分支版本号为： 0.0.2-snapshot</li>
+<li>DupdateWorkingCopyVersions=false 当前工作空间的pom文件不做更改，方便后面的release操作</li>
+</ul>
+<h6 id="2-release-prepare-预处理，升级pom-version"><a href="#2-release-prepare-预处理，升级pom-version" class="headerlink" title="2)  release:prepare(预处理，升级pom-version)"></a>2)  release:prepare(预处理，升级pom-version)</h6><p>预处理阶段，release插件会：</p>
+<ul>
+<li>执行一次打包过程</li>
+<li>在git仓库里面创建好Tag分支</li>
+<li>升级pom文件版本，并提交到本地仓库（此处不会更改远程仓库的分支）</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn release:prepare</span><br></pre></td></tr></table></figure>
+<p>在默认的情况下，他是一个交互式的命令，有如下问题需要确认：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">What is the release version for &quot;mvc-test&quot;? (com.fruits.mvc:mvc-test) 0.1.15: :</span><br><span class="line">What is SCM release tag or label for &quot;mvc-test&quot;? (com.fruits.mvc:mvc-test) v0.1.15: :</span><br><span class="line">What is the new development version for &quot;mvc-test&quot;? (com.fruits.mvc:mvc-test) 0.1.16-SNAPSHOT: :</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;要发布的版本是哪一个？默认当前版本</span><br><span class="line">&#x2F;&#x2F;要打的tag叫什么？现在的样子 </span><br><span class="line">&#x2F;&#x2F;创建一个新的开发版本吗？默认当前版本+1 修订（此处我们可以手工改成 子版本号更新）</span><br></pre></td></tr></table></figure>
+<p>执行了 release:prepare命令后，在git仓库中，我们可以看到一个叫：v0.1.15的tag被创建，这操作是可以回滚的，插件在项目里面创建了一个，pom.xml.releaseBackup的文件，用于回滚pom.xml，同时还会生成：release.properties 里面会记录release版本的属性</p>
+<h6 id="3-release-rollback-回滚"><a href="#3-release-rollback-回滚" class="headerlink" title="3) release:rollback(回滚)"></a>3) release:rollback(回滚)</h6><p>Release:prepare 阶段都是进行了本地的提交，因此可以进行回滚，但tag分支必须手工删除，插件不能帮你删除已经创建好的本地Tag</p>
+<p>除此之外，可以还行发布预览：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn release:prepare -DdryRun=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>干跑会生成预览文件：</p>
+<p>pom.xml.next<br>pom.xml.releaseBackup<br>pom.xml.tag<br>release.properties</p>
+<p>但是不会提交。</p>
+<h6 id="4-release-perform-执行"><a href="#4-release-perform-执行" class="headerlink" title="4) release:perform (执行)"></a>4) release:perform (执行)</h6><p>执行命令，会在release仓库里面构建发布包</p>
+<h5 id="可能碰到的问题"><a href="#可能碰到的问题" class="headerlink" title="可能碰到的问题"></a>可能碰到的问题</h5><ul>
+<li><p>release:rollback不会回滚git的tag，需要手动删除tag</p>
+</li>
+<li><p>maven配置的优先级(idea下)    pom.xml&gt;.m2/setting.xml&gt;setting.xml</p>
+</li>
+<li><p>pom.xml 发生改变，无法执行release:prepare</p>
+</li>
+<li><p>私服的设置和maven的配置文件如果配置不正确，无法执行命令</p>
+</li>
+</ul>
+<h5 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h5><p>私服中release的jar：</p>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521143731682.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521143731682.png" srcset="data:image/png;base64,666" alt="image-20200521143731682"></p>
+<p>私服中的snapshot的jar：</p>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521144447952.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521144447952.png" srcset="data:image/png;base64,666" alt="image-20200521144447952"></p>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521144515512.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521144515512.png" srcset="data:image/png;base64,666" alt="image-20200521144515512"></p>
+<p>git中的tag：发布release后创建的tag分支</p>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521144553460.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521144553460.png" srcset="data:image/png;base64,666" alt="image-20200521144553460"></p>
 
   
   
@@ -459,6 +577,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
       
         
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/dist/2021/01/18/maven相关命令/" title="Maven常用命令" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">Maven常用命令</span></a><a class="item" href="/dist/2021/01/18/Apache SkyWalking 单机版测试/" title="Apache SkyWalking 单机版测试" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-skywalking-01.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-skywalking-01.png" srcset="data:image/png;base64,666" /><span class="title">Apache SkyWalking 单机版测试</span></a></div></section></div>
       
       
         <div class='copyright'>
@@ -470,7 +594,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/>https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/</a></p>
+                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/>https://cha1yi.github.io/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</a></p>
               
             
           </blockquote>
@@ -497,10 +621,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T00:16:10+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T00:09:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 18, 2021</p>
+    <p>更新于：2021年1月18日</p>
   </a>
 </div>
 
@@ -509,7 +633,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>代码规范</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/maven/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>maven</p></a></div>
 
 
         
@@ -522,7 +646,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/&title=项目版本管理的最佳实践 - YiDan の dada&summary="
           
           >
           
@@ -534,7 +658,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/&title=项目版本管理的最佳实践 - YiDan の dada&summary="
           
           >
           
@@ -546,7 +670,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/&title=项目版本管理的最佳实践 - YiDan の dada&summary="
           
           >
           
@@ -568,13 +692,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         
           
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a>
-    </a>
-  </div>
-
 
         
       
@@ -583,7 +700,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="DO、DTO、BO、VO、POJO的定义" data-path="/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/">
+      <div id="lc-pv" data-title="项目版本管理的最佳实践" data-path="/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -599,13 +716,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>287 words</p>
+      <p>字数：2.6k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>时长：11分钟</p>
     </a>
   </div>
 
@@ -622,15 +739,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/dist/2021/01/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B----%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>设计模式之----工厂模式</p>
-          <p class='content'>设计模式之—-工厂模式工厂模式（Factory Pattern）是java中最常用的设计模式之一，这种类型设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象是不...</p>
+        <a class='prev' href='/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Maven常用命令</p>
+          <p class='content'>maven常用命令一、上传包到maven中央仓库命令：
+1mvn deploy:deploy-file -DgroupId=com.aliyun -DartifactId=taobao-sdk-...</p>
         </a>
       
       
-        <a class='next' href='/dist/2020/05/24/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/'>
-          <p class='title'>Mac的VM中设置虚拟机静态ip<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Mac的VM中设置虚拟机静态ip闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。...</p>
+        <a class='next' href='/dist/2021/01/17/Arthas%E8%AF%8A%E6%96%AD%E7%A5%9E%E5%99%A8/'>
+          <p class='title'>Arthas诊断神器<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>一、快速入门1.1、Arthas简介Arthas 是Alibaba开源的Java诊断工具。可以安装在系统所在服务器，也可以远程诊断其他服务器的服务。可以帮助开发人员或者运维人员查找问题，分析性能...</p>
         </a>
       
     </div>
@@ -673,7 +791,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">分层领域模型规约</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6"><span class="toc-number">2.</span> <span class="toc-text">领域模型命名规约</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">一、Git设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">二、项目版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81maven-%E7%9A%84%E5%A4%9A%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%A0%87%E5%87%86%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">1、maven 的多项目的标准结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E3%80%81%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.1.</span> <span class="toc-text">1.1、如何组织项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E3%80%81POM%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">3.2.</span> <span class="toc-text">1.2、POM文件中的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1%E3%80%81parent-pom-xml"><span class="toc-number">3.2.1.</span> <span class="toc-text">1.2.1、parent pom.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2%E3%80%81%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="toc-number">3.2.2.</span> <span class="toc-text">1.2.2、子模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E3%80%81%E8%AF%AD%E4%B9%89%E5%8C%96%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7%EF%BC%88Semantic-Versioning%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">1.3、语义化的版本号（Semantic Versioning）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1%E3%80%81%E7%89%88%E6%9C%AC%E5%8F%B7%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.3.1.</span> <span class="toc-text">1.3.1、版本号的格式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4%E3%80%81%E7%89%88%E6%9C%AC%E6%80%A7%E8%B4%A8%EF%BC%9A-Snapshot-%E4%B8%8ERelease"><span class="toc-number">3.4.</span> <span class="toc-text">1.4、版本性质： Snapshot 与Release</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1%E3%80%81%E6%A6%82%E5%BF%B5"><span class="toc-number">3.4.1.</span> <span class="toc-text">1.4.1、概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2%E3%80%81%E7%90%86%E6%83%B3%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">3.4.2.</span> <span class="toc-text">1.4.2、理想的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E7%9A%84%E5%BC%80%E5%8F%91"><span class="toc-number">3.4.2.1.</span> <span class="toc-text">日常的开发</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83"><span class="toc-number">3.4.2.2.</span> <span class="toc-text">版本发布</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%81%9A%EF%BC%9F"><span class="toc-number">3.4.2.3.</span> <span class="toc-text">现有的项目如何做？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F%EF%BC%9F"><span class="toc-number">3.4.2.4.</span> <span class="toc-text">如何使用？？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.4.2.5.</span> <span class="toc-text">可能碰到的问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">3.4.2.6.</span> <span class="toc-text">效果</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -692,7 +810,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="DO、DTO、BO、VO、POJO的定义";
+  pdata.postTitle="项目版本管理的最佳实践";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
@@ -961,12 +1079,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       

@@ -22,9 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>DO、DTO、BO、VO、POJO的定义 - YiDan の dada</title>
+  <title>Maven常用命令 - YiDan の dada</title>
   
-    <meta name="keywords" content="代码规范">
+    <meta name="keywords" content="maven">
   
 
   
@@ -389,7 +389,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        DO、DTO、BO、VO、POJO的定义
+        Maven常用命令
       </h1>
       <div class='new-meta-box'>
         
@@ -406,13 +406,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a>
-    </a>
-  </div>
-
 
           
         
@@ -420,7 +413,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jan 17, 2021</p>
+    <p>发布于：2021年1月18日</p>
   </a>
 </div>
 
@@ -431,7 +424,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="DO、DTO、BO、VO、POJO的定义" data-path="/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/">
+      <div id="lc-pv" data-title="Maven常用命令" data-path="/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -449,8 +442,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h1 id="DO、DTO、BO、VO、POJO的定义"><a href="#DO、DTO、BO、VO、POJO的定义" class="headerlink" title="DO、DTO、BO、VO、POJO的定义"></a>DO、DTO、BO、VO、POJO的定义</h1><h2 id="分层领域模型规约"><a href="#分层领域模型规约" class="headerlink" title="分层领域模型规约"></a>分层领域模型规约</h2><p>DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。<br>DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。<br>BO（ Business Object）：业务对象。 由Service层输出的封装业务逻辑的对象。<br>AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。<br>VO（ View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。<br>POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter/getter/toString的简单类，包括DO/DTO/BO/VO等。<br>Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。  </p>
-<h2 id="领域模型命名规约"><a href="#领域模型命名规约" class="headerlink" title="领域模型命名规约"></a>领域模型命名规约</h2><p>数据对象：xxxDO，xxx即为数据表名。<br>数据传输对象：xxxDTO，xxx为业务领域相关的名称。<br>展示对象：xxxVO，xxx一般为网页名称。<br>POJO: 专指只有 setter / getter / toString的简单类，包括DO/DTO/BO/VO等,禁止命名成 xxxPOJO</p>
+  <h2 id="maven常用命令"><a href="#maven常用命令" class="headerlink" title="maven常用命令"></a>maven常用命令</h2><h3 id="一、上传包到maven中央仓库"><a href="#一、上传包到maven中央仓库" class="headerlink" title="一、上传包到maven中央仓库"></a>一、上传包到maven中央仓库</h3><p>命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn deploy:deploy-file -DgroupId=com.aliyun -DartifactId=taobao-sdk-java-auto -Dversion=202011-release -Dpackaging=jar -Dfile=/Users/wuxuan.chai/Downloads/dingtalk-sdk-java/taobao-sdk-java-auto_1479188381469-20201126.jar -Durl=http://ci.yunat.com:8091/nexus/content/repositories/thirdparty/ -DrepositoryId=nexus</span><br></pre></td></tr></table></figure>
+<p>参数解释:<br>deploy:deploy-file：发布，发布文件到远程，和install的区别在于，install的意思是将jar安装到本地maven仓库<br>groupId、artifactId、version：表示maven的坐标<br>file：发布的文件的本地地址<br>url：远程仓库的地址<br>repositoryId：本地maven配置文件的仓库id，配置这个的话他会去找配置文件中的对应仓库的访问鉴权所需的账户和密码</p>
 
   
   
@@ -459,6 +453,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
       
         
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/dist/2021/01/18/项目版本管理的最佳实践/" title="项目版本管理的最佳实践" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521122520622.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20200521122520622.png" srcset="data:image/png;base64,666" /><span class="title">项目版本管理的最佳实践</span></a><a class="item" href="/dist/2021/01/18/Apache SkyWalking 单机版测试/" title="Apache SkyWalking 单机版测试" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-skywalking-01.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-skywalking-01.png" srcset="data:image/png;base64,666" /><span class="title">Apache SkyWalking 单机版测试</span></a></div></section></div>
       
       
         <div class='copyright'>
@@ -470,7 +470,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/>https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/</a></p>
+                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/>https://cha1yi.github.io/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</a></p>
               
             
           </blockquote>
@@ -500,7 +500,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T00:16:10+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 18, 2021</p>
+    <p>更新于：2021年1月18日</p>
   </a>
 </div>
 
@@ -509,7 +509,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>代码规范</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/maven/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>maven</p></a></div>
 
 
         
@@ -522,7 +522,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/&title=Maven常用命令 - YiDan の dada&summary="
           
           >
           
@@ -534,7 +534,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/&title=Maven常用命令 - YiDan の dada&summary="
           
           >
           
@@ -546,7 +546,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/&title=Maven常用命令 - YiDan の dada&summary="
           
           >
           
@@ -568,13 +568,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         
           
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a>
-    </a>
-  </div>
-
 
         
       
@@ -583,7 +576,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="DO、DTO、BO、VO、POJO的定义" data-path="/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/">
+      <div id="lc-pv" data-title="Maven常用命令" data-path="/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -599,13 +592,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>287 words</p>
+      <p>字数：166字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
+      <p>时长：1分钟</p>
     </a>
   </div>
 
@@ -622,15 +615,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/dist/2021/01/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B----%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>设计模式之----工厂模式</p>
-          <p class='content'>设计模式之—-工厂模式工厂模式（Factory Pattern）是java中最常用的设计模式之一，这种类型设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象是不...</p>
+        <a class='prev' href='/dist/2021/01/18/Apache%20SkyWalking%20%E5%8D%95%E6%9C%BA%E7%89%88%E6%B5%8B%E8%AF%95/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Apache SkyWalking 单机版测试</p>
+          <p class='content'>Apache SkyWalking 单机版测试一、部署SkyWalking学习之前，最好先浏览一下SkyWalking的设计原理：分布式追踪 &amp; APM 系统 SkyWalking 源码...</p>
         </a>
       
       
-        <a class='next' href='/dist/2020/05/24/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/'>
-          <p class='title'>Mac的VM中设置虚拟机静态ip<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Mac的VM中设置虚拟机静态ip闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。...</p>
+        <a class='next' href='/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/'>
+          <p class='title'>项目版本管理的最佳实践<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>项目版本管理的最佳实践一、Git设置1、添加公钥
+1234567891011121314151617打开 git bash (mac 下直接打开终端即可)#: ssh-keygen -t rsa...</p>
         </a>
       
     </div>
@@ -673,7 +667,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">分层领域模型规约</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6"><span class="toc-number">2.</span> <span class="toc-text">领域模型命名规约</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#maven%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">maven常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%8A%E4%BC%A0%E5%8C%85%E5%88%B0maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">一、上传包到maven中央仓库</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -692,7 +686,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="DO、DTO、BO、VO、POJO的定义";
+  pdata.postTitle="Maven常用命令";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
@@ -961,12 +955,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       

@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -22,9 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>DO、DTO、BO、VO、POJO的定义 - YiDan の dada</title>
-  
-    <meta name="keywords" content="代码规范">
+  <title>Tag: CentOS - YiDan の dada</title>
   
 
   
@@ -343,7 +343,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper post dock' style="display: none;">
+        <div id="full" class='cover-wrapper  dock' style="display: none;">
           
             <div id='cover-backstretch'></div>
           
@@ -378,282 +378,78 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
+
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-
-
-  
-  <div class="article-meta" id="top">
     
-    
-    
-      <h1 class="title">
-        DO、DTO、BO、VO、POJO的定义
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
-    <img no-lazy src="">
-    <p>wuxuan</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jan 17, 2021</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="DO、DTO、BO、VO、POJO的定义" data-path="/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
+  <section class="post-list">
+    
+      
+        
           
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/dist/2020/05/24/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/">
+        Mac的VM中设置虚拟机静态ip
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Mac的VM中设置虚拟机静态ip闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。
+准备过程FinalShell 一款国产的mac上可用的shell命令工具VMware Fusion  mac上用来安装虚拟机的工具centos7 的最简版镜像
+设置VMware Fusion第一步：...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' href='/'><img src=''></a>
+        
+        <time>2020-05-24</time>
         
       </div>
-    
-  </div>
-
-
-  
-  
-  <h1 id="DO、DTO、BO、VO、POJO的定义"><a href="#DO、DTO、BO、VO、POJO的定义" class="headerlink" title="DO、DTO、BO、VO、POJO的定义"></a>DO、DTO、BO、VO、POJO的定义</h1><h2 id="分层领域模型规约"><a href="#分层领域模型规约" class="headerlink" title="分层领域模型规约"></a>分层领域模型规约</h2><p>DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。<br>DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。<br>BO（ Business Object）：业务对象。 由Service层输出的封装业务逻辑的对象。<br>AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。<br>VO（ View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。<br>POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter/getter/toString的简单类，包括DO/DTO/BO/VO等。<br>Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。  </p>
-<h2 id="领域模型命名规约"><a href="#领域模型命名规约" class="headerlink" title="领域模型命名规约"></a>领域模型命名规约</h2><p>数据对象：xxxDO，xxx即为数据表名。<br>数据传输对象：xxxDTO，xxx为业务领域相关的名称。<br>展示对象：xxxVO，xxx一般为网页名称。<br>POJO: 专指只有 setter / getter / toString的简单类，包括DO/DTO/BO/VO等,禁止命名成 xxxPOJO</p>
-
-  
-  
-    
-    <div class='footer'>
       
-      
-        
-      
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/>https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/</a></p>
-              
-            
-          </blockquote>
+        <div>
+          <a class='readmore' href='/dist/2020/05/24/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/'>
+            Read More
+          </a>
         </div>
       
-      
-        <div class='donate'>
-          <div class='imgs'>
-            
-              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
-            
-              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
-            
+    </div>
+  
+
+</div>
+
           </div>
-        </div>
-      
-    </div>
-  
-  
-    
-
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T00:16:10+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 18, 2021</p>
-  </a>
-</div>
-
-        
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>代码规范</p></a></div>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
-          
-        </a>
       
     
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/&title=DO、DTO、BO、VO、POJO的定义 - YiDan の dada&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-        
-          
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a>
-    </a>
-  </div>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
-      
-      <div id="lc-pv" data-title="DO、DTO、BO、VO、POJO的定义" data-path="/dist/2021/01/17/DO%E3%80%81DTO%E3%80%81BO%E3%80%81VO%E3%80%81POJO%E7%9A%84%E5%AE%9A%E4%B9%89/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>287 words</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>1 min</p>
-    </a>
-  </div>
-
-
-        
-      
-    </div>
-  </div>
-
-
+  </section>
   
+    
   
 
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/dist/2021/01/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B----%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>设计模式之----工厂模式</p>
-          <p class='content'>设计模式之—-工厂模式工厂模式（Factory Pattern）是java中最常用的设计模式之一，这种类型设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象是不...</p>
-        </a>
-      
-      
-        <a class='next' href='/dist/2020/05/24/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/'>
-          <p class='title'>Mac的VM中设置虚拟机静态ip<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Mac的VM中设置虚拟机静态ip闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。...</p>
-        </a>
-      
-    </div>
-  
-</article>
 
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
-
-
-
-
-
+  
 </div>
 <aside class='l_side'>
   
@@ -661,28 +457,297 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/dist/about/'>
+          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">YiDan の dada</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/dist/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:wuxuan.chai@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/cha1Yi"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/dist/"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+  
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E8%A7%84%E7%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">分层领域模型规约</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6"><span class="toc-number">2.</span> <span class="toc-text">领域模型命名规约</span></a></li></ol>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"
+            id="distcategoriesE4BBA3E7A081E8A784E88C83"
+            ><div class='name'>代码规范</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
+            id="distcategoriesE695B0E68DAEE5BA93"
+            ><div class='name'>数据库</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/dist/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/dist/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+            id="distcategoriesE8AEBEE8AEA1E6A8A1E5BC8F"
+            ><div class='name'>设计模式</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" href="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/"
+            id="distcategoriesE8AFA6E7BB86E69599E7A88B"
+            ><div class='name'>详细教程</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
     </div>
   </section>
 
 
   
 
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/dist/tags/Arthas/" style="font-size: 14px; color: #999">Arthas</a> <a href="/dist/tags/CentOS/" style="font-size: 14px; color: #999">CentOS</a> <a href="/dist/tags/Java/" style="font-size: 14px; color: #999">Java</a> <a href="/dist/tags/SQL/" style="font-size: 14px; color: #999">SQL</a> <a href="/dist/tags/SkyWalking/" style="font-size: 14px; color: #999">SkyWalking</a> <a href="/dist/tags/VM/" style="font-size: 14px; color: #999">VM</a> <a href="/dist/tags/maven/" style="font-size: 24px; color: #555">maven</a> <a href="/dist/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 14px; color: #999">代码规范</a> <a href="/dist/tags/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/" style="font-size: 14px; color: #999">系统监控</a> <a href="/dist/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">设计模式</a>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+
+<section class="widget qrcode shadow desktop mobile">
+  
+  <header>
+    
+      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>感谢支持</span>
+    
+  </header>
+
+
+  <div class='content article-entry'>
+    
+      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
+      
+        height='150px'
+      />
+    
+      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
+      
+        height='150px'
+      />
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+
+<section class="widget shadow desktop">
+  
+  <header>
+    
+      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>9 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2021/01/17'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>29.1k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Mon Jan 18 2021 00:17:36 GMT+0800 (China Standard Time)</div>
+            <div id="last-update-show">2021-01-18 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2021-01-18 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
+
+  
+
 
 </aside>
-
 
 
 		  
@@ -691,8 +756,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=true;
-  pdata.postTitle="DO、DTO、BO、VO、POJO的定义";
+  pdata.ispage=false;
+  pdata.postTitle="";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2020/5 - YiDan の dada</title>
+  <title>Mac的VM中设置虚拟机静态ip - YiDan の dada</title>
+  
+    <meta name="keywords" content="VM,CentOS">
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -343,7 +343,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div id='cover-backstretch'></div>
           
@@ -379,74 +379,281 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/dist/2020/05/24/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/">
+      <h1 class="title">
         Mac的VM中设置虚拟机静态ip
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Mac的VM中设置虚拟机静态ip闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。
-准备过程FinalShell 一款国产的mac上可用的shell命令工具VMware Fusion  mac上用来安装虚拟机的工具centos7 的最简版镜像
-设置VMware Fusion第一步：...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+      </h1>
+      <div class='new-meta-box'>
         
           
-          <a class='avatar' href='/'><img src=''></a>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png">
+    <p>wuxuan.chai</p>
+  </a>
+</div>
+
+          
         
-        <time>2020-05-24</time>
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年1月18日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Mac的VM中设置虚拟机静态ip" data-path="/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="Mac的VM中设置虚拟机静态ip"><a href="#Mac的VM中设置虚拟机静态ip" class="headerlink" title="Mac的VM中设置虚拟机静态ip"></a>Mac的VM中设置虚拟机静态ip</h2><p>闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。</p>
+<h3 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h3><p>FinalShell 一款国产的mac上可用的shell命令工具<br>VMware Fusion  mac上用来安装虚拟机的工具<br>centos7 的最简版镜像</p>
+<h3 id="设置VMware-Fusion"><a href="#设置VMware-Fusion" class="headerlink" title="设置VMware Fusion"></a>设置VMware Fusion</h3><h4 id="第一步：修改vmware-配置网卡的配置文件"><a href="#第一步：修改vmware-配置网卡的配置文件" class="headerlink" title="第一步：修改vmware 配置网卡的配置文件"></a>第一步：修改vmware 配置网卡的配置文件</h4><p>只更改Vnet8 的网卡</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ vim /Library/Preferences/VMware\ Fusion/networking</span><br><span class="line"></span><br><span class="line">VERSION=1,0</span><br><span class="line">answer VNET_1_DHCP yes</span><br><span class="line">answer VNET_1_DHCP_CFG_HASH EC13F23285B5086AFF5BDFFA85E8DE0338C2AF74</span><br><span class="line">answer VNET_1_HOSTONLY_NETMASK 255.255.255.0</span><br><span class="line">answer VNET_1_HOSTONLY_SUBNET 172.16.208.0</span><br><span class="line">answer VNET_1_VIRTUAL_ADAPTER yes</span><br><span class="line"><span class="comment">#关闭dhcp</span></span><br><span class="line">answer VNET_8_DHCP no</span><br><span class="line">answer VNET_8_DHCP_CFG_HASH 13FB4A1FC14575A20209A2C7C8C2E5EED98C6665</span><br><span class="line"><span class="comment"># 子网掩码</span></span><br><span class="line">answer VNET_8_HOSTONLY_NETMASK 255.255.255.0</span><br><span class="line"><span class="comment">#设置ip段</span></span><br><span class="line">answer VNET_8_HOSTONLY_SUBNET 192.168.100.0</span><br><span class="line">answer VNET_8_NAT yes</span><br><span class="line">answer VNET_8_VIRTUAL_ADAPTER yes</span><br><span class="line"><span class="comment"># vmnet8 的IP</span></span><br><span class="line">answer VNET_8_VIRTUAL_ADAPTER_ADDR 192.168.100.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="第二步：设置网关"><a href="#第二步：设置网关" class="headerlink" title="第二步：设置网关"></a>第二步：设置网关</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置nat.conf 这个文件</span></span><br><span class="line">vim /Library/Preferences/VMware\ Fusion/vmnet8/nat.conf </span><br><span class="line"></span><br><span class="line"><span class="comment">#设定nat网管和子网</span></span><br><span class="line"><span class="comment"># NAT gateway address</span></span><br><span class="line">ip = 192.168.100.2</span><br><span class="line">netmask = 255.255.255.0</span><br></pre></td></tr></table></figure>
+<h4 id="第三步：-重启vmnet8网卡"><a href="#第三步：-重启vmnet8网卡" class="headerlink" title="第三步： 重启vmnet8网卡"></a>第三步： 重启vmnet8网卡</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看网卡状态</span></span><br><span class="line">$ sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --status  </span><br><span class="line"><span class="comment"># 关闭网卡</span></span><br><span class="line">$ sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动网卡</span></span><br><span class="line">$ sudo /Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --start</span><br></pre></td></tr></table></figure>
+<p>～～～～<br>中间省去在vm中创建centos的虚拟机步骤<br>～～～～</p>
+<h4 id="第四步：设置centos网卡"><a href="#第四步：设置centos网卡" class="headerlink" title="第四步：设置centos网卡"></a>第四步：设置centos网卡</h4><h5 id="1、配置网卡"><a href="#1、配置网卡" class="headerlink" title="1、配置网卡"></a>1、配置网卡</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> $ vi /etc/sysconfig/network-scripts/ifcfg-ens33 </span><br><span class="line"></span><br><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line"><span class="comment"># 设置静态的ip，而不是dhcp方式</span></span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line">UUID=74ad3dd0-742d-422b-b165-6f0d0b6e2f6d</span><br><span class="line">DEVICE=ens33</span><br><span class="line"><span class="comment"># 设置网卡开机启动</span></span><br><span class="line">ONBOOT=yes</span><br><span class="line"><span class="comment"># 设置当前centos的ip地址</span></span><br><span class="line">IPADDR=192.168.100.15</span><br><span class="line"><span class="comment"># 设置网关</span></span><br><span class="line">GATEWAY=192.168.100.2</span><br><span class="line"><span class="comment"># 设置子网掩码</span></span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line"><span class="comment">#设置dns</span></span><br><span class="line">DNS1=119.29.29.29</span><br><span class="line">DNS2=182.254.116.116</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="2、重启centos网卡"><a href="#2、重启centos网卡" class="headerlink" title="2、重启centos网卡"></a>2、重启centos网卡</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#重启网卡</span></span><br><span class="line">systemctl restart network </span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网卡</span></span><br><span class="line">ip addr </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="2、测试"><a href="#2、测试" class="headerlink" title="2、测试"></a>2、测试</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ ip addr</span><br><span class="line"></span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span><br><span class="line">    link/ether 00:0c:29:dd:bc:55 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.100.15/24 brd 192.168.100.255 scope global noprefixroute ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::a3c4:b923:6d37:e7aa/64 scope link tentative noprefixroute dadfailed </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::3427:d5be:210e:dce2/64 scope link tentative noprefixroute dadfailed </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::3f6a:22ae:8bdd:e0ac/64 scope link noprefixroute </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>测试发现ens33的ip地址已经变成了我们设置的ip了.</p>
+<p>测试访问外网</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ ping www.baidu.com</span><br><span class="line"></span><br><span class="line">PING www.a.shifen.com (180.101.49.12) 56(84) bytes of data.</span><br><span class="line">64 bytes from 180.101.49.12 (180.101.49.12): icmp_seq=1 ttl=128 time=17.9 ms</span><br><span class="line">64 bytes from 180.101.49.12 (180.101.49.12): icmp_seq=2 ttl=128 time=117 ms</span><br><span class="line">64 bytes from 180.101.49.12 (180.101.49.12): icmp_seq=4 ttl=128 time=26.7 ms</span><br><span class="line">^C</span><br><span class="line">--- www.a.shifen.com ping statistics ---</span><br><span class="line">4 packets transmitted, 3 received, 25% packet loss, time 3004ms</span><br><span class="line">rtt min/avg/max/mdev = 17.996/54.184/117.813/45.134 ms</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>大工告成，开始happy！！！</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/dist/2020/05/24/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/'>
-            Read More
-          </a>
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/dist/2021/01/18/Apache SkyWalking 单机版测试/" title="Apache SkyWalking 单机版测试" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-skywalking-01.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-skywalking-01.png" srcset="data:image/png;base64,666" /><span class="title">Apache SkyWalking 单机版测试</span></a></div></section></div>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/>https://cha1yi.github.io/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+          </div>
         </div>
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T00:19:07+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年1月18日</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/VM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>VM</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/CentOS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CentOS</p></a></div>
 
 
-	
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/&title=Mac的VM中设置虚拟机静态ip - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/&title=Mac的VM中设置虚拟机静态ip - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/&title=Mac的VM中设置虚拟机静态ip - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Mac的VM中设置虚拟机静态ip" data-path="/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：724字</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：3分钟</p>
+    </a>
+  </div>
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/dist/2021/01/18/Apache%20SkyWalking%20%E5%8D%95%E6%9C%BA%E7%89%88%E6%B5%8B%E8%AF%95/'>
+          <p class='title'>Apache SkyWalking 单机版测试<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Apache SkyWalking 单机版测试一、部署SkyWalking学习之前，最好先浏览一下SkyWalking的设计原理：分布式追踪 &amp; APM 系统 SkyWalking 源码...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -454,297 +661,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/dist/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">YiDan の dada</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/dist/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:wuxuan.chai@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/cha1Yi"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/dist/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"
-            id="distcategoriesE4BBA3E7A081E8A784E88C83"
-            ><div class='name'>代码规范</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
-            id="distcategoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/dist/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
-            id="distcategoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" href="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/"
-            id="distcategoriesE8AFA6E7BB86E69599E7A88B"
-            ><div class='name'>详细教程</div><div class='badge'>(1)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip"><span class="toc-number">1.</span> <span class="toc-text">Mac的VM中设置虚拟机静态ip</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">准备过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEVMware-Fusion"><span class="toc-number">1.2.</span> <span class="toc-text">设置VMware Fusion</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E4%BF%AE%E6%94%B9vmware-%E9%85%8D%E7%BD%AE%E7%BD%91%E5%8D%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一步：修改vmware 配置网卡的配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E8%AE%BE%E7%BD%AE%E7%BD%91%E5%85%B3"><span class="toc-number">1.2.2.</span> <span class="toc-text">第二步：设置网关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A-%E9%87%8D%E5%90%AFvmnet8%E7%BD%91%E5%8D%A1"><span class="toc-number">1.2.3.</span> <span class="toc-text">第三步： 重启vmnet8网卡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E8%AE%BE%E7%BD%AEcentos%E7%BD%91%E5%8D%A1"><span class="toc-number">1.2.4.</span> <span class="toc-text">第四步：设置centos网卡</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E9%85%8D%E7%BD%AE%E7%BD%91%E5%8D%A1"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">1、配置网卡</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%87%8D%E5%90%AFcentos%E7%BD%91%E5%8D%A1"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">2、重启centos网卡</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">2、测试</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/dist/tags/Arthas/" style="font-size: 14px; color: #999">Arthas</a> <a href="/dist/tags/CentOS/" style="font-size: 14px; color: #999">CentOS</a> <a href="/dist/tags/Java/" style="font-size: 14px; color: #999">Java</a> <a href="/dist/tags/SQL/" style="font-size: 14px; color: #999">SQL</a> <a href="/dist/tags/SkyWalking/" style="font-size: 14px; color: #999">SkyWalking</a> <a href="/dist/tags/VM/" style="font-size: 14px; color: #999">VM</a> <a href="/dist/tags/maven/" style="font-size: 24px; color: #555">maven</a> <a href="/dist/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 14px; color: #999">代码规范</a> <a href="/dist/tags/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/" style="font-size: 14px; color: #999">系统监控</a> <a href="/dist/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">设计模式</a>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-
-<section class="widget qrcode shadow desktop mobile">
-  
-  <header>
-    
-      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>感谢支持</span>
-    
-  </header>
-
-
-  <div class='content article-entry'>
-    
-      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
-      
-        height='150px'
-      />
-    
-      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
-      
-        height='150px'
-      />
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-<section class="widget shadow desktop">
-  
-  <header>
-    
-      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>9 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2021/01/17'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>29.1k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Mon Jan 18 2021 00:17:36 GMT+0800 (China Standard Time)</div>
-            <div id="last-update-show">2021-01-18 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-01-18 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
 
   
 
 
 </aside>
+
 
 
 		  
@@ -753,14 +691,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Mac的VM中设置虚拟机静态ip";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
@@ -1023,12 +961,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       

@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2021 - YiDan の dada</title>
+  <title>算法的时间与空间复杂度 - YiDan の dada</title>
+  
+    <meta name="keywords" content="算法">
   
 
   
@@ -104,7 +104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -343,7 +343,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div id='cover-backstretch'></div>
           
@@ -379,551 +379,323 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/">
-        SpringBoot测试系统整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        SpringBoot测试系统整理Spring boot 作为当前最流行的java后端开发框架，集成了很多非常有用的东西，今天探索：Springboot test引入依赖：
-12345&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+      <h1 class="title">
+        算法的时间与空间复杂度
+      </h1>
+      <div class='new-meta-box'>
         
           
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/dist/" rel="nofollow">
+    <img no-lazy src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png">
+    <p>wuxuan.chai</p>
+  </a>
+</div>
+
+          
         
-        <time>2021-01-18</time>
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/dist/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    </a>
+  </div>
+
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/Spring/">Spring</a>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年1月22日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="算法的时间与空间复杂度" data-path="/dist/2021/01/22/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h1 id="算法的时间与空间复杂度"><a href="#算法的时间与空间复杂度" class="headerlink" title="算法的时间与空间复杂度"></a>算法的时间与空间复杂度</h1><p>在日常开发过程中，衡量算法的性能，一般都是通过时间复杂度和空间复杂度两个维度去比较，本文就是梳理一下我们是如何计算时间复杂度和空间复杂度的。        </p>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>时间复杂度：指运行当前算法所消耗的时间，我们通常用【时间复杂度】来描述。</p>
+<p>说到时间复杂度，我们第一时间想到的肯定是，算法从执行开始到执行结束所使用的时间。这么想固然是对的，但是仔细品，还是有弊端的。不同的机器运行相同的代码，时间会大不一样，取决于机器的CPU的执行运算的效率。如果机器相同，资源对等的情况下，我们考虑的可能就是代码层面的一些问题就会多一些，此时时间复杂度就是一个重要的评判标准。</p>
+<p>一般时间复杂度分为：O(1)、O(n)、O(mlogn)、O(n<sup>m</sup>)</p>
+<h3 id="O-1"><a href="#O-1" class="headerlink" title="O(1)"></a>O(1)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">o1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    i+=<span class="number">1</span>;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>O(1)的时间复杂度表示，无论代码执行多少行，只要没有循环结构，代码的时间复杂度都为O(1)。如上述代码，他执行的消耗时间和某个变量的增长是没有关系的，时间复杂度始终为O(1)。</p>
+<h3 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">On</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        System.out.println(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>O(n)的时间复杂度表示，当n的变化为10时，循环会执行十次，即时间复杂度时随着n的变化而线性变化的。</p>
+<h3 id="O-log-n"><a href="#O-log-n" class="headerlink" title="O(log n)"></a>O(log n)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">logn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; i) &#123;</span><br><span class="line">        j *= <span class="number">2</span>; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述例子中，每次循环中，j的值都会乘以2(可以认为n)，所以当循环m次后j的值就大于i了，循环就退出了，因此时间复杂度就为 log<sub>n</sub>m，所以复杂度一般简化为log n</p>
+<h3 id="O-nm"><a href="#O-nm" class="headerlink" title="O(nm)"></a>O(n<sup>m</sup>)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i1 = <span class="number">0</span>; i1 &lt; n; i1++) &#123;</span><br><span class="line">        j = i;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在上述中的例子中，嵌套了两层的n循环，他的时间复杂度就为O(n*n), 即为O(n<sup>2</sup>)，如果有m层嵌套，那么时间复杂度为O(n<sup>m</sup>)</p>
+<p>如果上述例子中，如果嵌套的循环时间复杂度为O(m),那么整体时间复杂为O(n*m)。</p>
+<h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h2><p>空间复杂度是对一个算法在运行的过程中占用存储空间的一个度量指标，同时反应占用空间的一个趋势。</p>
+<p>空间复杂度比较常用的有，O(1),O(n),O(n<sup>2</sup>)</p>
+<h3 id="O-1-1"><a href="#O-1-1" class="headerlink" title="O(1)"></a>O(1)</h3><p>如果程序运行所需的临时空间不随着某个变量的变化而变化，那么算法的空间复杂度为一个常量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">++ i;</span><br><span class="line">j ++;</span><br><span class="line"><span class="keyword">int</span> m = j + i;</span><br></pre></td></tr></table></figure>
+<p>如上述的描述，执行所需的空间和i、j、m没有关系，所以他的空间复杂度为O(1)</p>
+<h3 id="O-n-1"><a href="#O-n-1" class="headerlink" title="O(n)"></a>O(n)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int[] a &#x3D; new int[n];</span><br><span class="line">for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">    a[i] &#x3D; i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上述的例子中，数组a的空间和n的值成线性关系，即n有多大，数组就有多长，所以内存空间和n是成线性关系，所以空间复杂度为O(n)</p>
+<h3 id="O-nm-1"><a href="#O-nm-1" class="headerlink" title="O(nm)"></a>O(n<sup>m</sup>)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> ii = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        a[i] = ii;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上述例子中，双层循环中数组的长度和n、以及循环的嵌套层m数有关，所以内存空间和n、m的关系为n<sup>m</sup>,其空间复杂度为：O(n<sup>m</sup>)</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里值是罗列基本的概念，具体的算法复杂度计算大致可以参考这个思路去推断。可能存在误解，后续学习再做改正。</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/'>
-            Read More
-          </a>
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/dist/2021/01/20/GP的百分位数的实现/" title="GreenPlum的百分位数的实现" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20201209172349437.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20201209172349437.png" srcset="data:image/png;base64,666" /><span class="title">GreenPlum的百分位数的实现</span></a><a class="item" href="/dist/2021/01/19/java的位运算/" title="Java的位运算" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210119224924.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210119224924.png" srcset="data:image/png;base64,666" /><span class="title">Java的位运算</span></a></div></section></div>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/22/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/>https://cha1yi.github.io/dist/2021/01/22/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+          </div>
         </div>
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-27T14:10:03+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年1月27日</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Spring%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/">
-        Spring事件驱动模型
-      </a>
-    </h2>
-  
-  <div class='md'>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/%E7%AE%97%E6%B3%95/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>算法</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        一、Spring 事件驱动的简介事件驱动模型，简单理解就是发布-订阅模型，Spring针对这种发布-订阅模型作出了两种解决方案，应用间的发布-订阅模型，可以使用Spring AMQP和 Spring for Apache Kafka，结合Rabbit或者kafka等消息中间件完成。应用内的发布-订阅模型，可以使用Spring 的Application上下文提供的方案解决。这篇文章主要描述Sp...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/22/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/&title=算法的时间与空间复杂度 - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/22/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/&title=算法的时间与空间复杂度 - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/22/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/&title=算法的时间与空间复杂度 - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/Spring/">Spring</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/Spring%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Spring%20Cache%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89CacheManager/">
-        Spring Cache 源码学习，自定义CacheManager
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Spring Cache 源码学习，自定义CacheManager一、学习背景&emsp;&emsp;最近一直在学习Spring boot的框架，因为之前一直接触的都是Spring + Spring mvc + mybatis的ssm框架，对于约定大于配置的这种开发理念还是不太熟悉和上手，所以决定系统学习下Springboot。最近在看项目代码，对代码中Spring cache的一些自定义拓...
-      
-    
+          
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/dist/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+        
+      
         
           
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/Spring/">Spring</a>
-        
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="算法的时间与空间复杂度" data-path="/dist/2021/01/22/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
       </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/Spring%20Cache%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89CacheManager/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/">
-        Mac的VM中设置虚拟机静态ip
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Mac的VM中设置虚拟机静态ip闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。
-准备过程FinalShell 一款国产的mac上可用的shell命令工具VMware Fusion  mac上用来安装虚拟机的工具centos7 的最简版镜像
-设置VMware Fusion第一步：...
-      
-    
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+        
+      
         
           
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Apache%20SkyWalking%20%E5%8D%95%E6%9C%BA%E7%89%88%E6%B5%8B%E8%AF%95/">
-        Apache SkyWalking 单机版测试
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Apache SkyWalking 单机版测试一、部署SkyWalking学习之前，最好先浏览一下SkyWalking的设计原理：分布式追踪 &amp; APM 系统 SkyWalking 源码分析 —— Collector 存储 Trace 数据
-1、下载SkyWalkingSkyWalking官方下载地址
-2、解压tar.gz得到类似的目录：
-3、启动SkyWalkingSkyWalki...
-      
-    
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：993字</p>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/Apache%20SkyWalking%20%E5%8D%95%E6%9C%BA%E7%89%88%E6%B5%8B%E8%AF%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
-        Maven常用命令
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        maven常用命令一、上传包到maven中央仓库命令：
-1mvn deploy:deploy-file -DgroupId=com.aliyun -DartifactId=taobao-sdk-java-auto -Dversion=202011-release -Dpackaging=jar -Dfile=/Users/wuxuan.chai/Downloads/dingtalk-sdk-...
-      
-    
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：3分钟</p>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
         
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">开发总结</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/'>
-            Read More
-          </a>
-        </div>
       
     </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
-        项目版本管理的最佳实践
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        项目版本管理的最佳实践一、Git设置1、添加公钥
-1234567891011121314151617打开 git bash (mac 下直接打开终端即可)#: ssh-keygen -t rsa -C &quot;邮箱&quot;#: cat ~/.ssh/id_rsa.pub会生成：以ssh-rsa 开头的字符串，复制，贴到git公钥管理里面测试是否可以通过公钥，免密拉取上传代码#: ss...
-      
-    
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">开发总结</a>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/'>
-            Read More
-          </a>
-        </div>
+        <a class='prev' href='/dist/2021/02/01/Spring%E7%9A%84Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Spring的Bean的生命周期</p>
+          <p class='content'>Spring的Bean的生命周期一、生命周期流程图Spring bean 的完整生命周期从创建Spring容器开始，直到最终Spring 容器销毁Bean，这其中包含的一些了的关键点（Sprin...</p>
+        </a>
+      
+      
+        <a class='next' href='/dist/2021/01/20/GP%E7%9A%84%E7%99%BE%E5%88%86%E4%BD%8D%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0/'>
+          <p class='title'>GreenPlum的百分位数的实现<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>GreenPlum的百分位数的实现一、计算公式
+二、实现思路计算百分位数1、确定数组
+如下数组：
+
+
+
+3710
+3755
+3850
+3880
+3880
+3890
+3920
+3940
+3950
+...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/17/Arthas%E8%AF%8A%E6%96%AD%E7%A5%9E%E5%99%A8/">
-        Arthas诊断神器
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        一、快速入门1.1、Arthas简介Arthas 是Alibaba开源的Java诊断工具。可以安装在系统所在服务器，也可以远程诊断其他服务器的服务。可以帮助开发人员或者运维人员查找问题，分析性能，bug追踪。
-1.2、Arthas的快速入门下载地址：
-1wget https://alibaba.github.io/arthas/arthas-boot.jar
-应用程序：可以自己启一个java...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/17/Arthas%E8%AF%8A%E6%96%AD%E7%A5%9E%E5%99%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/17/%E9%80%9A%E8%BF%87Jackson%E7%8E%A9%E8%BD%ACJson/">
-        通过Jackson玩转Json
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        一、Jackson 注解示例1.1、简介在本章中，我们将深入探讨Jackson注解。我们将看到如何使用现有的注解，如何创建自定义注解，最后-如何禁用它们。  
-1.2、maven 依赖首先，将jackson-databind依赖项添加到pom.xml：
-1234567891011&lt;dependency&gt;    &lt;groupId&gt;com.fasterxml.jackso...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">详细教程</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/17/%E9%80%9A%E8%BF%87Jackson%E7%8E%A9%E8%BD%ACJson/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/17/SQL%E8%AF%AD%E5%8F%A5%E6%A6%82%E5%BF%B5%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/">
-        SQL语句概念简单整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        一、SQL语言共分为四大类
-数据查询语言DQL
-数据操纵语言DML
-数据定义语言DDL
-数据控制语言DCL。
-
-二、简要描述这四类1、数据查询语言DQL数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块：SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;
-2、数据操纵语言DML数据操纵语言DML...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/17/SQL%E8%AF%AD%E5%8F%A5%E6%A6%82%E5%BF%B5%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/dist/archives/2021/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 3
-        </p>
-        
-          <a class="next" rel="next" href="/dist/archives/2021/page/3/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -931,332 +703,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/dist/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">YiDan の dada</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/dist/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:wuxuan.chai@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/cha1Yi"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/dist/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/dist/categories/Docker/" href="/dist/categories/Docker/"
-            id="distcategoriesDocker"
-            ><div class='name'>Docker</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/Java/" href="/dist/categories/Java/"
-            id="distcategoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/Spring/" href="/dist/categories/Spring/"
-            id="distcategoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(6)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" href="/dist/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"
-            id="distcategoriesE4BBA3E7A081E8A784E88C83"
-            ><div class='name'>代码规范</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/" href="/dist/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/"
-            id="distcategoriesE5BC80E58F91E680BBE7BB93"
-            ><div class='name'>开发总结</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" href="/dist/categories/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"
-            id="distcategoriesE695B0E68DAEE4BB93E5BA93"
-            ><div class='name'>数据仓库</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" href="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"
-            id="distcategoriesE695B0E68DAEE5BA93"
-            ><div class='name'>数据库</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E7%AE%97%E6%B3%95/" href="/dist/categories/%E7%AE%97%E6%B3%95/"
-            id="distcategoriesE7AE97E6B395"
-            ><div class='name'>算法</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" href="/dist/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
-            id="distcategoriesE8AEBEE8AEA1E6A8A1E5BC8F"
-            ><div class='name'>设计模式</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" href="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/"
-            id="distcategoriesE8AFA6E7BB86E69599E7A88B"
-            ><div class='name'>详细教程</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" href="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"
-            id="distcategoriesE9A1B9E79BAEE7AEA1E79086"
-            ><div class='name'>项目管理</div><div class='badge'>(4)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.</span> <span class="toc-text">时间复杂度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#O-1"><span class="toc-number">1.1.</span> <span class="toc-text">O(1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-n"><span class="toc-number">1.2.</span> <span class="toc-text">O(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-log-n"><span class="toc-number">1.3.</span> <span class="toc-text">O(log n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nm"><span class="toc-number">1.4.</span> <span class="toc-text">O(nm)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">2.</span> <span class="toc-text">空间复杂度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#O-1-1"><span class="toc-number">2.1.</span> <span class="toc-text">O(1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-n-1"><span class="toc-number">2.2.</span> <span class="toc-text">O(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-nm-1"><span class="toc-number">2.3.</span> <span class="toc-text">O(nm)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/dist/tags/Arthas/" style="font-size: 10px; color: #999">Arthas</a> <a href="/dist/tags/CentOS/" style="font-size: 14.67px; color: #828282">CentOS</a> <a href="/dist/tags/Java/" style="font-size: 10px; color: #999">Java</a> <a href="/dist/tags/SQL/" style="font-size: 14.67px; color: #828282">SQL</a> <a href="/dist/tags/SkyWalking/" style="font-size: 10px; color: #999">SkyWalking</a> <a href="/dist/tags/Spring/" style="font-size: 24px; color: #555">Spring</a> <a href="/dist/tags/Spring-test/" style="font-size: 10px; color: #999">Spring test</a> <a href="/dist/tags/SpringBoot/" style="font-size: 10px; color: #999">SpringBoot</a> <a href="/dist/tags/SpringCache/" style="font-size: 10px; color: #999">SpringCache</a> <a href="/dist/tags/VM/" style="font-size: 10px; color: #999">VM</a> <a href="/dist/tags/docker/" style="font-size: 10px; color: #999">docker</a> <a href="/dist/tags/kafka/" style="font-size: 10px; color: #999">kafka</a> <a href="/dist/tags/maven/" style="font-size: 14.67px; color: #828282">maven</a> <a href="/dist/tags/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8/" style="font-size: 10px; color: #999">事件驱动</a> <a href="/dist/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px; color: #999">代码规范</a> <a href="/dist/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" style="font-size: 10px; color: #999">数据仓库</a> <a href="/dist/tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.33px; color: #6c6c6c">算法</a> <a href="/dist/tags/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/" style="font-size: 10px; color: #999">系统监控</a> <a href="/dist/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px; color: #999">设计模式</a>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-
-<section class="widget qrcode shadow desktop mobile">
-  
-  <header>
-    
-      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>感谢支持</span>
-    
-  </header>
-
-
-  <div class='content article-entry'>
-    
-      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
-      
-        height='150px'
-      />
-    
-      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
-      
-        height='150px'
-      />
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-
-<section class="widget shadow desktop">
-  
-  <header>
-    
-      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>22 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2021/01/17'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>56.6k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Tue Feb 02 2021 17:04:28 GMT+0800 (China Standard Time)</div>
-            <div id="last-update-show">2021-02-02 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-02-02 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
 
   
 
 
 </aside>
+
 
 
 		  
@@ -1265,14 +733,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="算法的时间与空间复杂度";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
@@ -1539,12 +1007,12 @@ var loadCSS = function( href, before, media, attributes ){
   <div id="rightmenu-wrapper">
     <ul class="list-v rightmenu" id="rightmenu-content">
       <li class='option'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
         <hr id='hr-text'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
         <hr id='hr-href'>
-        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
         <hr id='hr-src'>
       </li>
       

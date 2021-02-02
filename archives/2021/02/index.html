@@ -24,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2021 - YiDan の dada</title>
+  <title>Archive: 2021/2 - YiDan の dada</title>
   
 
   
@@ -383,6 +383,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 		
   <section class="post-list">
     
+      
+        
+          
+        
+          
+        
+      
+    
     
       
         
@@ -394,16 +402,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/">
-        SpringBoot测试系统整理
+      <a href="/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/">
+        Spring的事务方式
       </a>
     </h2>
   
   <div class='md'>
     
       
-        SpringBoot测试系统整理Spring boot 作为当前最流行的java后端开发框架，集成了很多非常有用的东西，今天探索：Springboot test引入依赖：
-12345&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-...
+        Spring的事务管理方式1、编程式事务，在代码中硬编码。（不推荐使用）
+2、声明式事务，在配置文件中配置。（推荐使用）
+声明式事务的种类：1、基于xml的声明式的事务
+12345&lt;!-- 事务管理器 --&gt;  &lt;bean id=&quot;txManager&quot;        class=&quot;org.springframework.jdbc.datasou...
       
     
   </div>
@@ -414,7 +424,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
         
-        <time>2021-01-18</time>
+        <time>2021-02-02</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/dist/categories/Spring/">Spring</a>
@@ -422,7 +432,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/'>
+          <a class='readmore' href='/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/'>
             Read More
           </a>
         </div>
@@ -444,15 +454,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Spring%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/">
-        Spring事件驱动模型
+      <a href="/dist/2021/02/01/Spring%E7%9A%84Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+        Spring的Bean的生命周期
       </a>
     </h2>
   
   <div class='md'>
     
       
-        一、Spring 事件驱动的简介事件驱动模型，简单理解就是发布-订阅模型，Spring针对这种发布-订阅模型作出了两种解决方案，应用间的发布-订阅模型，可以使用Spring AMQP和 Spring for Apache Kafka，结合Rabbit或者kafka等消息中间件完成。应用内的发布-订阅模型，可以使用Spring 的Application上下文提供的方案解决。这篇文章主要描述Sp...
+        Spring的Bean的生命周期一、生命周期流程图Spring bean 的完整生命周期从创建Spring容器开始，直到最终Spring 容器销毁Bean，这其中包含的一些了的关键点（Spring Bean 的生命周期）
+
+在Spring的5.x版本中，通过BeanFactory的类注释，发现他对Spring Bean生命周期做了详细的描述：
+123456789101112131415161...
       
     
   </div>
@@ -463,7 +476,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
           <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
         
-        <time>2021-01-18</time>
+        <time>2021-02-01</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/dist/categories/Spring/">Spring</a>
@@ -471,418 +484,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/dist/2021/01/18/Spring%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Spring%20Cache%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89CacheManager/">
-        Spring Cache 源码学习，自定义CacheManager
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Spring Cache 源码学习，自定义CacheManager一、学习背景&emsp;&emsp;最近一直在学习Spring boot的框架，因为之前一直接触的都是Spring + Spring mvc + mybatis的ssm框架，对于约定大于配置的这种开发理念还是不太熟悉和上手，所以决定系统学习下Springboot。最近在看项目代码，对代码中Spring cache的一些自定义拓...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/Spring/">Spring</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/Spring%20Cache%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89CacheManager/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/">
-        Mac的VM中设置虚拟机静态ip
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Mac的VM中设置虚拟机静态ip闲来无事，想学习下spark相关的知识，于是需要几台服务器，无奈囊中羞涩双十一都买不起一台服务器，只能借助2015款的mac pro帮助虚拟几台服务器来暂时用用。
-准备过程FinalShell 一款国产的mac上可用的shell命令工具VMware Fusion  mac上用来安装虚拟机的工具centos7 的最简版镜像
-设置VMware Fusion第一步：...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/Mac%E7%9A%84VM%E4%B8%AD%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/Apache%20SkyWalking%20%E5%8D%95%E6%9C%BA%E7%89%88%E6%B5%8B%E8%AF%95/">
-        Apache SkyWalking 单机版测试
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Apache SkyWalking 单机版测试一、部署SkyWalking学习之前，最好先浏览一下SkyWalking的设计原理：分布式追踪 &amp; APM 系统 SkyWalking 源码分析 —— Collector 存储 Trace 数据
-1、下载SkyWalkingSkyWalking官方下载地址
-2、解压tar.gz得到类似的目录：
-3、启动SkyWalkingSkyWalki...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/Apache%20SkyWalking%20%E5%8D%95%E6%9C%BA%E7%89%88%E6%B5%8B%E8%AF%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
-        Maven常用命令
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        maven常用命令一、上传包到maven中央仓库命令：
-1mvn deploy:deploy-file -DgroupId=com.aliyun -DartifactId=taobao-sdk-java-auto -Dversion=202011-release -Dpackaging=jar -Dfile=/Users/wuxuan.chai/Downloads/dingtalk-sdk-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">开发总结</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/maven%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
-        项目版本管理的最佳实践
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        项目版本管理的最佳实践一、Git设置1、添加公钥
-1234567891011121314151617打开 git bash (mac 下直接打开终端即可)#: ssh-keygen -t rsa -C &quot;邮箱&quot;#: cat ~/.ssh/id_rsa.pub会生成：以ssh-rsa 开头的字符串，复制，贴到git公钥管理里面测试是否可以通过公钥，免密拉取上传代码#: ss...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">开发总结</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/18/%E9%A1%B9%E7%9B%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/17/Arthas%E8%AF%8A%E6%96%AD%E7%A5%9E%E5%99%A8/">
-        Arthas诊断神器
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        一、快速入门1.1、Arthas简介Arthas 是Alibaba开源的Java诊断工具。可以安装在系统所在服务器，也可以远程诊断其他服务器的服务。可以帮助开发人员或者运维人员查找问题，分析性能，bug追踪。
-1.2、Arthas的快速入门下载地址：
-1wget https://alibaba.github.io/arthas/arthas-boot.jar
-应用程序：可以自己启一个java...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/17/Arthas%E8%AF%8A%E6%96%AD%E7%A5%9E%E5%99%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/17/%E9%80%9A%E8%BF%87Jackson%E7%8E%A9%E8%BD%ACJson/">
-        通过Jackson玩转Json
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        一、Jackson 注解示例1.1、简介在本章中，我们将深入探讨Jackson注解。我们将看到如何使用现有的注解，如何创建自定义注解，最后-如何禁用它们。  
-1.2、maven 依赖首先，将jackson-databind依赖项添加到pom.xml：
-1234567891011&lt;dependency&gt;    &lt;groupId&gt;com.fasterxml.jackso...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">详细教程</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/17/%E9%80%9A%E8%BF%87Jackson%E7%8E%A9%E8%BD%ACJson/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/dist/2021/01/17/SQL%E8%AF%AD%E5%8F%A5%E6%A6%82%E5%BF%B5%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/">
-        SQL语句概念简单整理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        一、SQL语言共分为四大类
-数据查询语言DQL
-数据操纵语言DML
-数据定义语言DDL
-数据控制语言DCL。
-
-二、简要描述这四类1、数据查询语言DQL数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块：SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;
-2、数据操纵语言DML数据操纵语言DML...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/dist/'><img src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'></a>
-        
-        <time>2021-01-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/dist/2021/01/17/SQL%E8%AF%AD%E5%8F%A5%E6%A6%82%E5%BF%B5%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/'>
+          <a class='readmore' href='/dist/2021/02/01/Spring%E7%9A%84Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/'>
             Read More
           </a>
         </div>
@@ -898,27 +500,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
   </section>
   
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/dist/archives/2021/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 3
-        </p>
-        
-          <a class="next" rel="next" href="/dist/archives/2021/page/3/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
     
   
 
@@ -1193,7 +774,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Tue Feb 02 2021 17:04:28 GMT+0800 (China Standard Time)</div>
+            <div id="last-update" style="display: none;">Tue Feb 02 2021 17:04:29 GMT+0800 (China Standard Time)</div>
             <div id="last-update-show">2021-02-02 日</div>
           
         </div>

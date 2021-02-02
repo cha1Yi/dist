@@ -22,9 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Java的位运算 - YiDan の dada</title>
+  <title>Spring的事务方式 - YiDan の dada</title>
   
-    <meta name="keywords" content="算法">
+    <meta name="keywords" content="Spring">
   
 
   
@@ -389,7 +389,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        Java的位运算
+        Spring的事务方式
       </h1>
       <div class='new-meta-box'>
         
@@ -409,7 +409,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/Java/">Java</a>
+      <a class="category-link" href="/dist/categories/Spring/">Spring</a>
     </a>
   </div>
 
@@ -420,7 +420,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年1月19日</p>
+    <p>发布于：2021年2月2日</p>
   </a>
 </div>
 
@@ -431,7 +431,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Java的位运算" data-path="/dist/2021/01/19/java%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97/">
+      <div id="lc-pv" data-title="Spring的事务方式" data-path="/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -449,70 +449,177 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h1 id="Java的位运算"><a href="#Java的位运算" class="headerlink" title="Java的位运算"></a>Java的位运算</h1><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p>位：表示二进制位。是二进制计数系统中用来表示小于2的整数，一般用0或者1表示，是具有相等概率的两种状态的一种，二进制位的位数可以表示一个机器字的字长，一个二进制包含的信息量称之为1bit。</p>
-<p>原码：二进制的定点表示法，即高位为符号位，’0’ 表示为正，’1’ 表示为负，其余位表示数值大小。</p>
-<p>反码：正数的反码与其原码相同；负数的反码是对正数逐位取反，符号位保持为1。</p>
-<p>补码：正数的补码与其原码相同，负数位的补码是在其反码的末位加1。</p>
-<h3 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h3><p>为什么java中的int类型的值取值范围为：-2<sup>31</sup>  ~ 2<sup>31</sup>-1 ？     </p>
-<blockquote>
-<p>Integer占用4byte，1byte占用8bit：<br>最大的正数原码：01111111 11111111 11111111 11111111<br>最小的负数原码：10000000 00000000 00000000 00000000<br>计算机存使用的都是补码：<br>最大的正数的补码：<br>01111111 11111111 11111111 11111111    -&gt; 2<sup>31</sup>-1<br>最大的负数的补码：<br>11111111 11111111 11111111 11111111 +1 -&gt; -2<sup>31</sup>-1 + 1 = -2<sup>31</sup></p>
-</blockquote>
-<h3 id="原码、反码、补码的产生、以及应用"><a href="#原码、反码、补码的产生、以及应用" class="headerlink" title="原码、反码、补码的产生、以及应用"></a>原码、反码、补码的产生、以及应用</h3><p>在自然界中，我们计数一般都是从正数计数，比如、一棵树、两头牛、三只羊….不存在负一棵树、负两头牛、负三只羊…都是我们在生产生活中，加入了统计之后才引入了负的概念。       </p>
-<p>在上面我们了解到，正数的原码、反码、补码都是相同的，而负数的反码是原码的取反，补码是反码+1。是不是觉得反码是针对负数设计的呢？哈哈。。      </p>
-<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210119224924.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210119224924.png" srcset="data:image/png;base64,666" alt="二进制进行加法计算"></p>
-<p>在计算机中如何处理 -7 + 7 = 0的计算呢？ </p>
-<blockquote>
-<p>以4BIT的数为例，高位作为符号位：<br> 如果从原码的角度-&gt;<br> -7： 1111<br> 7：  0111<br> 如果拿原码做加法计算的话： 1 0110 高位舍去-&gt; 0110 = 6   结果很显然错了！<br> 如果从反码的角度-&gt;<br> -7:  1000<br> 7:   0111<br> 如果拿反码做加法计算的话： 1111 = -7   结果很显然也是错的！<br> 如果从补码的角度-&gt;<br> -7:  1001<br> 7:   0111<br> 如果拿补码做加法计算的话： 1 0000   丢到高位的符号位，结果为0  看结果就是这么巧合！！！<br> 综上，补码是做加减法最好的选择。</p>
-</blockquote>
-<p>说到现在，是不是觉得补码就是为了计算而设计的呢？哈哈。。。</p>
-<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><p>关于位运算，这里运用哲学上三个究极问题试图讲解清楚位运算究竟是何方神圣：什么是位运算？位运算的作用？位运算有什么优势？     </p>
-<h3 id="什么是位运算？"><a href="#什么是位运算？" class="headerlink" title="什么是位运算？"></a>什么是位运算？</h3><p>程序中的所有数在计算机内存中都是以二进制的形式储存的。位运算就是直接对整数在内存中的二进制位进行操作。比如，and运算本来是一个逻辑运算符，但整数与整数之间也可以进行and运算。举个例子，6的二进制是110，11的二进制是1011，那么6 and 11的结果就是2，它是二进制对应位进行逻辑运算的结果（0表示False，1表示True，空位都当0处理）。<br>下表列出了位运算符的基本运算:<br>假设：两个4bit的数，高位表示符号位，A=3，B=7<br>bit(A)= 0011  bit(B)= 0111      </p>
+  <h2 id="Spring的事务管理方式"><a href="#Spring的事务管理方式" class="headerlink" title="Spring的事务管理方式"></a>Spring的事务管理方式</h2><p>1、编程式事务，在代码中硬编码。（不推荐使用）</p>
+<p>2、声明式事务，在配置文件中配置。（推荐使用）</p>
+<h3 id="声明式事务的种类："><a href="#声明式事务的种类：" class="headerlink" title="声明式事务的种类："></a>声明式事务的种类：</h3><p>1、基于xml的声明式的事务</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 事务管理器 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;txManager&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>2、基于注解的声明式的事务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Tag <span class="title">add</span><span class="params">(Tag tag)</span> </span>&#123;</span><br><span class="line">   <span class="comment">//TODO 数据库持久化操作</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Spring事务的隔离级别"><a href="#Spring事务的隔离级别" class="headerlink" title="Spring事务的隔离级别"></a>Spring事务的隔离级别</h2><p>查看了下，org.springframework.transaction.TransactionDefinition接口，这个接口定义了spring的事务的隔离属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.transaction;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.lang.Nullable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义与Spring兼容的事务属性的接口。基于类似于EJB CMT属性的传播行为定义。</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 请注意，除非启动实际的新事务，否则不会应用隔离级别和超时设置。由于只有PROPAGATION_REQUIRED、PROPAGATION_REQUIRES_NEW和PROPAGATION_NESTED会导致这种情况，</span></span><br><span class="line"><span class="comment"> * 因此在其他情况下通常不需要指定这些设置。此外，请注意，并非所有事务管理器都支持这些高级特性，因此在给出非默认值时可能抛出相应的异常。</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * read-only标志适用于任何事务上下文，无论是由实际资源事务支持的事务还是在资源级别上进行非事务操作的事务。在后一种情况下，该标志将只应用于应用程序中的托管资源，例如Hibernate会话。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Juergen Hoeller</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> PlatformTransactionManager#getTransaction(TransactionDefinition)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> org.springframework.transaction.support.DefaultTransactionDefinition</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> org.springframework.transaction.interceptor.TransactionAttribute</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 08.05.2003</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TransactionDefinition</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 支持当前事务;如果不存在，则创建一个新的。类似于同名的EJB事务属性。</span></span><br><span class="line"><span class="comment">     * 这通常是事务定义的默认设置，通常定义事务同步范围。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> PROPAGATION_REQUIRED = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 支持当前事务;如果不存在，则以非事务方式执行。类似于同名的EJB事务属性。</span></span><br><span class="line"><span class="comment">     * 注意:对于具有事务同步的事务管理器，PROPAGATION_SUPPORTS与完全没有事务略有不同，因为它定义了同步可能适用的事务范围。</span></span><br><span class="line"><span class="comment">     * 因此，相同的资源(JDBC连接、Hibernate会话等)将在整个指定范围内共享。请注意，确切的行为取决于事务管理器的实际同步配置!</span></span><br><span class="line"><span class="comment">     * 一般情况下，请小心使用PROPAGATION_SUPPORTS!特别地，不要依赖于PROPAGATION_REQUIRED或PROPAGATION_REQUIRES_NEW在PROPAGATION_SUPPORTS范围内(这可能会导致运行时的同步冲突)。</span></span><br><span class="line"><span class="comment">     * 如果这种嵌套是不可避免的，请确保适当地配置事务管理器(通常切换到“在实际事务上同步”)。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.support.AbstractPlatformTransactionManager#setTransactionSynchronization</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.support.AbstractPlatformTransactionManager#SYNCHRONIZATION_ON_ACTUAL_TRANSACTION</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> PROPAGATION_SUPPORTS = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 支持当前事务;如果当前没有事务存在，则抛出异常。类似于同名的EJB事务属性。</span></span><br><span class="line"><span class="comment">     * 注意，PROPAGATION_MANDATORY范围内的事务同步将始终由周围的事务驱动。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> PROPAGATION_MANDATORY = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建一个新事务，挂起当前事务(如果存在的话)。类似于同名的EJB事务属性。</span></span><br><span class="line"><span class="comment">     * 注意:实际的事务挂起并不会在所有事务管理器上开箱即用。这尤其适用于org.springframework.transaction.jta.JtaTransactionManager，</span></span><br><span class="line"><span class="comment">     * 它需要javax.transaction.TransactionManager可用(在标准Java EE中是特定于服务器的)。</span></span><br><span class="line"><span class="comment">     * PROPAGATION_REQUIRES_NEW作用域总是定义自己的事务同步。现有的同步将被挂起并适当恢复。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.jta.JtaTransactionManager#setTransactionManager</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> PROPAGATION_REQUIRES_NEW = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 不支持当前事务;而是总是以非事务的方式执行。类似于同名的EJB事务属性。</span></span><br><span class="line"><span class="comment">     * 注意:实际的事务挂起并不会在所有事务管理器上开箱即用。这尤其适用于org.springframework.transaction.jta.JtaTransactionManager，</span></span><br><span class="line"><span class="comment">     * 它需要javax.transaction.TransactionManager可用(在标准Java EE中是特定于服务器的)。</span></span><br><span class="line"><span class="comment">     * 注意，事务同步在PROPAGATION_NOT_SUPPORTED范围内不可用。现有的同步将被挂起并适当恢复。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.jta.JtaTransactionManager#setTransactionManager</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> PROPAGATION_NOT_SUPPORTED = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 不支持当前事务;如果当前事务存在，则抛出异常。类似于同名的EJB事务属性。</span></span><br><span class="line"><span class="comment">     * 注意，事务同步在PROPAGATION_NEVER范围内不可用。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> PROPAGATION_NEVER = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果当前事务存在，则在嵌套事务中执行，否则行为类似于PROPAGATION_REQUIRED。EJB中没有类似的特性。</span></span><br><span class="line"><span class="comment">     * 注意:嵌套事务的实际创建只能在特定的事务管理器上工作。开箱即用，这只适用于JDBC org.springframework.jdbc.datasource。</span></span><br><span class="line"><span class="comment">     * 使用JDBC 3.0驱动程序时使用DataSourceTransactionManager。一些JTA提供者可能也支持嵌套事务。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.jdbc.datasource.DataSourceTransactionManager</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> PROPAGATION_NESTED = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用基础数据存储的默认隔离级别。</span></span><br><span class="line"><span class="comment">     * 所有其他级别都对应JDBC隔离级别。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> java.sql.Connection</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> ISOLATION_DEFAULT = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指示可能发生脏读、不可重复读和幻像读。</span></span><br><span class="line"><span class="comment">     * 该级别允许一个事务修改的行在该行的任何更改提交之前被另一个事务读取(“脏读”)。</span></span><br><span class="line"><span class="comment">     * 如果任何更改被回滚，则第二个事务将检索无效的行。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> java.sql.Connection#TRANSACTION_READ_UNCOMMITTED</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> ISOLATION_READ_UNCOMMITTED = <span class="number">1</span>;  <span class="comment">// same as java.sql.Connection.TRANSACTION_READ_UNCOMMITTED;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指示阻止脏读;不可重复读取和幻像读取可能会发生。</span></span><br><span class="line"><span class="comment">     * 该级别仅禁止事务读取一行中未提交的更改。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> java.sql.Connection#TRANSACTION_READ_COMMITTED</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> ISOLATION_READ_COMMITTED = <span class="number">2</span>;  <span class="comment">// same as java.sql.Connection.TRANSACTION_READ_COMMITTED;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指示防止脏读和不可重复读;幻读可能会发生。</span></span><br><span class="line"><span class="comment">     * 该级别禁止事务读取未提交更改的行，也禁止这样的情况:一个事务读取一行，第二个事务修改该行，第一个事务重新读取该行，第二次获取不同的值(“不可重复读取”)。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> java.sql.Connection#TRANSACTION_REPEATABLE_READ</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> ISOLATION_REPEATABLE_READ = <span class="number">4</span>;  <span class="comment">// same as java.sql.Connection.TRANSACTION_REPEATABLE_READ;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指示防止脏读、不可重复读和幻像读。</span></span><br><span class="line"><span class="comment">     * 这个水平进一步包括ISOLATION_REPEATABLE_READ的禁令,禁止在一个事务中读取所有行,满足条件,第二个事务插入一行,满足条件,和第一个事务重新读取相同的条件下,获取额外的“幽灵”在第二行阅读。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> java.sql.Connection#TRANSACTION_SERIALIZABLE</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> ISOLATION_SERIALIZABLE = <span class="number">8</span>;  <span class="comment">// same as java.sql.Connection.TRANSACTION_SERIALIZABLE;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用基础事务系统的默认超时，如果不支持超时，则为none。</span></span><br><span class="line"><span class="comment">     * or none if timeouts are not supported.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> TIMEOUT_DEFAULT = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回传播行为。</span></span><br><span class="line"><span class="comment">     * 必须返回该接口上定义的PROPAGATION_XXX常量之一。默认值是PROPAGATION_REQUIRED。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the propagation behavior</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> #PROPAGATION_REQUIRED</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.support.TransactionSynchronizationManager#isActualTransactionActive()</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">getPropagationBehavior</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> PROPAGATION_REQUIRED;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回隔离级别。</span></span><br><span class="line"><span class="comment">     * 必须返回该接口中定义的ISOLATION_XXX常量之一。这些常量被设计为匹配java.sql.Connection上相同常量的值。</span></span><br><span class="line"><span class="comment">     * 专门设计用于与PROPAGATION_REQUIRED或PROPAGATION_REQUIRES_NEW一起使用，因为它只适用于新启动的事务。</span></span><br><span class="line"><span class="comment">     * 如果您希望在参与具有不同隔离级别的现有事务时拒绝隔离级别声明，请考虑将事务管理器上的“validateExistingTransactions”标志切换为“true”。</span></span><br><span class="line"><span class="comment">     * 默认值为ISOLATION_DEFAULT。请注意，不支持自定义隔离级别的事务管理器在给出ISOLATION_DEFAULT以外的任何其他级别时将抛出异常。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the isolation level</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> #ISOLATION_DEFAULT</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.support.AbstractPlatformTransactionManager#setValidateExistingTransaction</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">getIsolationLevel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ISOLATION_DEFAULT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回事务超时。</span></span><br><span class="line"><span class="comment">     * 必须返回秒数，或TIMEOUT_DEFAULT。</span></span><br><span class="line"><span class="comment">     * 专门设计用于与PROPAGATION_REQUIRED或PROPAGATION_REQUIRES_NEW一起使用，因为它只适用于新启动的事务。</span></span><br><span class="line"><span class="comment">     * 请注意，不支持超时的事务管理器在给出TIMEOUT_DEFAULT以外的任何超时时将抛出异常。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the transaction timeout</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">getTimeout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> TIMEOUT_DEFAULT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回是否优化为只读事务。</span></span><br><span class="line"><span class="comment">     * 只读标志适用于任何事务上下文，无论是由实际的资源事务(PROPAGATION_REQUIRED/ PROPAGATION_REQUIRES_NEW)支持，还是在资源级别上进行非事务操作(PROPAGATION_SUPPORTS)。</span></span><br><span class="line"><span class="comment">     * 在后一种情况下，该标志将只应用于应用程序中的托管资源，例如Hibernate会话。</span></span><br><span class="line"><span class="comment">     * 这只是作为实际事务子系统的提示;它不一定会导致写访问尝试失败。不能解释只读提示的事务管理器在请求只读事务时不会抛出异常。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.support.TransactionSynchronization#beforeCommit(boolean)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.support.TransactionSynchronizationManager#isCurrentTransactionReadOnly()</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">boolean</span> <span class="title">isReadOnly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回此事务的名称。可以为空。</span></span><br><span class="line"><span class="comment">     * 这将被用作事务监视器中显示的事务名称(如果适用的话，例如WebLogic的)。</span></span><br><span class="line"><span class="comment">     * 在Spring的声明性事务中，公开的名称将是完全限定的类名+ &quot;。+方法名(默认)。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the name of this transaction (&#123;<span class="doctag">@code</span> null&#125; by default&#125;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.interceptor.TransactionAspectSupport</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionName()</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Static builder methods</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回一个不可修改的TransactionDefinition和默认值。</span></span><br><span class="line"><span class="comment">     * 出于定制的目的，可以使用可修改的org.springframework.transaction.support。DefaultTransactionDefinition代替。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 5.2</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> TransactionDefinition <span class="title">withDefaults</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> StaticTransactionDefinition.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结：</p>
+<p>先简单的回顾下，脏读、幻读与不可重复读的基本概念</p>
+<h4 id="脏读、幻读与不可重复读"><a href="#脏读、幻读与不可重复读" class="headerlink" title="脏读、幻读与不可重复读"></a>脏读、幻读与不可重复读</h4><p><strong>脏读</strong>：指一个事务中访问到了另外一个事务未提交的数据</p>
 <table>
 <thead>
 <tr>
-<th>运算符</th>
-<th>描述</th>
-<th>例子</th>
+<th>会话1</th>
+<th>会话2</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>按位与（&amp;）</td>
-<td>如果相对应位都是1，则结果为1，否则为0</td>
-<td>A&amp;B=3，即 0011</td>
+<td>begin</td>
+<td>begin</td>
 </tr>
 <tr>
-<td>按位或（｜）</td>
-<td>如果相对应位都是0，则结果为0，否则为1</td>
-<td>A|B=7,   即 0111</td>
+<td></td>
+<td>update table set age = 10 where id = 1</td>
 </tr>
 <tr>
-<td>按位异或（^）</td>
-<td>如果相对应位值相同，则结果为0，否则为1</td>
-<td>A^B= 4,  即 0100</td>
+<td>select age from table where Id = 1</td>
+<td></td>
 </tr>
 <tr>
-<td>按位取反（~）</td>
-<td>按位取反运算符翻转操作数的每一位，即0变成1，1变成0</td>
-<td>~A=-4, 即 1100</td>
-</tr>
-<tr>
-<td>左移 （&lt;&lt;）</td>
-<td>按位左移运算符。左操作数按位左移右操作数指定的位数</td>
-<td>A&lt;&lt;2=-4, 即 1100</td>
-</tr>
-<tr>
-<td>右移 （&gt;&gt;）</td>
-<td>按位右移运算符。左操作数按位右移右操作数指定的位数</td>
-<td>B&gt;&gt;2=1, 即0001</td>
+<td>commit</td>
+<td>commit</td>
 </tr>
 </tbody></table>
-<h3 id="位运算的作用？"><a href="#位运算的作用？" class="headerlink" title="位运算的作用？"></a>位运算的作用？</h3><p>位运算其实在我们日常开发过程中经常会忽略掉，因为我们习惯了使用int或者long值进行计算，而忽略了底层的计算逻辑。找一个使用了位运算的代码研究下：copy自java.long.Integer的静态方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 返回一个int值，最多一个1位，位于指定int值的最高(&quot;最左&quot;)1位的位置。如果指定的值在其2的补码二进制表示中没有1位，也就是说，如果它等于0，则返回0。.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> i the value whose highest one bit is to be computed</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> an &#123;<span class="doctag">@code</span> int&#125; value with a single one-bit, in the position</span></span><br><span class="line"><span class="comment"> *     of the highest-order one-bit in the specified value, or zero if</span></span><br><span class="line"><span class="comment"> *     the specified value is itself equal to zero.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.5</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">highestOneBit</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// HD, Figure 3-1</span></span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">1</span>);</span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">2</span>);</span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">4</span>);</span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">8</span>);</span><br><span class="line">    i |= (i &gt;&gt; <span class="number">16</span>);</span><br><span class="line">    <span class="keyword">return</span> i - (i &gt;&gt;&gt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>方法流程：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">highestOneBit</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//输入的i = 17  -&gt;  00000000 00000000 00000000 00010001</span></span><br><span class="line">    <span class="keyword">int</span> left = i &gt;&gt; <span class="number">1</span>; <span class="comment">// 00000000 00000000 00000000 00001000</span></span><br><span class="line">    i = i | left;   <span class="comment">//00000000 00000000 00000000 00011001   1 +8 +16 = 25</span></span><br><span class="line">    left = i &gt;&gt; <span class="number">2</span>; <span class="comment">//00000000 00000000 00000000 0000110</span></span><br><span class="line">    i = i | left; <span class="comment">//00000000 00000000 00000000 00011111  1+2+4+8+16 =31</span></span><br><span class="line">    left = i &gt;&gt; <span class="number">4</span>;<span class="comment">//00000000 00000000 00000000 00000001</span></span><br><span class="line">    i = i | left; <span class="comment">//00000000 00000000 00000000 00011111 31</span></span><br><span class="line">    left = i &gt;&gt; <span class="number">8</span>; <span class="comment">//00000000 00000000 00000000 00000000</span></span><br><span class="line">    i = i | left;  <span class="comment">// 00000000 00000000 00000000 00011111</span></span><br><span class="line">    left = i &gt;&gt; <span class="number">16</span>; <span class="comment">//00000000 00000000 00000000 00000000</span></span><br><span class="line">    i = i | left; <span class="comment">//00000000 00000000 00000000 00011111  1+2+4+8+16 = 31</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> i1 = i &gt;&gt;&gt; <span class="number">1</span>; <span class="comment">//00000000 00000000 00000000 00001111 1+2+4+8=15</span></span><br><span class="line">    <span class="keyword">return</span> i-i1; <span class="comment">// 31 -15 = 16</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过上述代码可以知道，这个过程其实就是一个求最高位的值，比如17的最高位是16，通过不断的右移做或运算，将17的除高位意外的其他位全部填为1，得到最终的i，然后通过i-i&gt;&gt;&gt;1得到高位的值</p>
-<h3 id="位运算有什么优势？"><a href="#位运算有什么优势？" class="headerlink" title="位运算有什么优势？"></a>位运算有什么优势？</h3><p>通过上面的代码，可以看到位运算是很容易解决这种看似非常复杂的逻辑，另一方面如果从数据学计算的角度，我们可能需要引用其他的辅助参数和对象，去对其做计算可能会更加复杂。位运算是计算机的最容易读懂的计算逻辑，所以速度性能是最好的。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>计算机的位运算设计真的是博大精深，我深深受其计算逻辑所折服，通过对二进制位运算的学习，加深了对位运算的印象，可能存在一些错误的理解，欢迎指正，不甚感激。</p>
+<p>会话1和会话2，同时开启事务，在会话1执行查询之前，会话2对id为1的年龄做了修改，导致会话1在查询id为1的年龄为10，其实会话1期望拿到的是会话2更新前的值，如果会话2回滚事务，则会话1拿到的仍是10，这就是脏读</p>
+<p><strong>幻读</strong>：一个事务读取2次，得到的记录条数不一致</p>
+<table>
+<thead>
+<tr>
+<th>会话1</th>
+<th>会话2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>begin</td>
+<td>begin</td>
+</tr>
+<tr>
+<td>select age from table where Id &gt; 2</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>insert into table(id,age)values(5,10)</td>
+</tr>
+<tr>
+<td></td>
+<td>Commit</td>
+</tr>
+<tr>
+<td>select age from table where Id &gt; 2</td>
+<td></td>
+</tr>
+<tr>
+<td>commit</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>会话1事务过程中，会话2插入了一个值，导致两次查询的数据不一致</p>
+<p><strong>不可重复读</strong>：一个事务读取同一条记录2次，得到的结果不一致</p>
+<table>
+<thead>
+<tr>
+<th>会话1</th>
+<th>会话2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>begin</td>
+<td>begin</td>
+</tr>
+<tr>
+<td>select age from table where Id = 1</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>update table set age = 10 where id = 1</td>
+</tr>
+<tr>
+<td></td>
+<td>commit</td>
+</tr>
+<tr>
+<td>select age from table where Id = 1</td>
+<td></td>
+</tr>
+<tr>
+<td>commit</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>会话1事务过程中，会话2更新了一个值，导致两次查询的数据不一致</p>
+<p>回到事务的总结：</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISOLATION_DEFAULT</td>
+<td>使用基础数据存储的默认隔离级别。所有其他级别都对应JDBC隔离级别。Mysql 默认采用的 REPEATABLE_READ隔离级别 Oracle 默认采用的 READ_COMMITTED隔离级别.</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_UNCOMMITTED</td>
+<td>指示可能发生脏读、不可重复读和幻像读。该级别允许一个事务修改的行在该行的任何更改提交之前被另一个事务读取(“脏读”)。如果任何更改被回滚，则第二个事务将检索无效的行。</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_COMMITTED</td>
+<td>指示阻止脏读;不可重复读取和幻像读取可能会发生。该级别仅禁止事务读取一行中未提交的更改。</td>
+</tr>
+<tr>
+<td>ISOLATION_REPEATABLE_READ</td>
+<td>指示防止脏读和不可重复读;幻读可能会发生。该级别禁止事务读取未提交更改的行，也禁止这样的情况:一个事务读取一行，第二个事务修改该行，第一个事务重新读取该行，第二次获取不同的值(“不可重复读取”)。</td>
+</tr>
+<tr>
+<td>ISOLATION_SERIALIZABLE</td>
+<td>指示防止脏读、不可重复读和幻像读。这个水平进一步包括ISOLATION_REPEATABLE_READ的禁令,禁止在一个事务中读取所有行,满足条件,第二个事务插入一行,满足条件,和第一个事务重新读取相同的条件下,获取额外的“幽灵”在第二行阅读。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>事务传播行为</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PROPAGATION_REQUIRED</td>
+<td>支持当前事务;如果不存在，则创建一个新的。类似于同名的EJB事务属性。这通常是事务定义的默认设置，通常定义事务同步范围。</td>
+</tr>
+<tr>
+<td>PROPAGATION_SUPPORTS</td>
+<td>支持当前事务;如果不存在，则以非事务方式执行。类似于同名的EJB事务属性。 注意:对于具有事务同步的事务管理器，PROPAGATION_SUPPORTS与完全没有事务略有不同，因为它定义了同步可能适用的事务范围。 因此，相同的资源(JDBC连接、Hibernate会话等)将在整个指定范围内共享。请注意，确切的行为取决于事务管理器的实际同步配置! 一般情况下，请小心使用PROPAGATION_SUPPORTS!特别地，不要依赖于PROPAGATION_REQUIRED或PROPAGATION_REQUIRES_NEW在PROPAGATION_SUPPORTS范围内(这可能会导致运行时的同步冲突)。 如果这种嵌套是不可避免的，请确保适当地配置事务管理器(通常切换到“在实际事务上同步”)。</td>
+</tr>
+<tr>
+<td>PROPAGATION_MANDATORY</td>
+<td>支持当前事务;如果当前没有事务存在，则抛出异常。类似于同名的EJB事务属性。 注意，PROPAGATION_MANDATORY范围内的事务同步将始终由周围的事务驱动。</td>
+</tr>
+<tr>
+<td>PROPAGATION_REQUIRES_NEW</td>
+<td>不支持当前事务;创建一个新事务，挂起当前事务(如果存在的话)。类似于同名的EJB事务属性。 注意:实际的事务挂起并不会在所有事务管理器上开箱即用。这尤其适用于org.springframework.transaction.jta.JtaTransactionManager， 它需要javax.transaction.TransactionManager可用(在标准Java EE中是特定于服务器的)。 PROPAGATION_REQUIRES_NEW作用域总是定义自己的事务同步。现有的同步将被挂起并适当恢复</td>
+</tr>
+<tr>
+<td>PROPAGATION_NOT_SUPPORTED</td>
+<td>不支持当前事务;而是总是以非事务的方式执行。类似于同名的EJB事务属性。 注意:实际的事务挂起并不会在所有事务管理器上开箱即用。这尤其适用于org.springframework.transaction.jta.JtaTransactionManager， 它需要javax.transaction.TransactionManager可用(在标准Java EE中是特定于服务器的)。 注意，事务同步在PROPAGATION_NOT_SUPPORTED范围内不可用。现有的同步将被挂起并适当恢复。</td>
+</tr>
+<tr>
+<td>PROPAGATION_NEVER</td>
+<td>不支持当前事务;如果当前事务存在，则抛出异常。类似于同名的EJB事务属性。 注意，事务同步在PROPAGATION_NEVER范围内不可用</td>
+</tr>
+<tr>
+<td>PROPAGATION_NESTED</td>
+<td>如果当前事务存在，则在嵌套事务中执行，否则行为类似于PROPAGATION_REQUIRED。EJB中没有类似的特性。 注意:嵌套事务的实际创建只能在特定的事务管理器上工作。开箱即用，这只适用于JDBC org.springframework.jdbc.datasource。 使用JDBC 3.0驱动程序时使用DataSourceTransactionManager。一些JTA提供者可能也支持嵌套事务。</td>
+</tr>
+</tbody></table>
 
   
   
@@ -526,7 +633,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/dist/2021/01/20/GP的百分位数的实现/" title="GreenPlum的百分位数的实现" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20201209172349437.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20201209172349437.png" srcset="data:image/png;base64,666" /><span class="title">GreenPlum的百分位数的实现</span></a><a class="item" href="/dist/2021/01/22/算法的时间与空间复杂度/" title="算法的时间与空间复杂度" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">算法的时间与空间复杂度</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/dist/2021/01/18/SpringBoot测试系统整理/" title="SpringBoot测试系统整理" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">SpringBoot测试系统整理</span></a><a class="item" href="/dist/2021/01/18/Spring事件驱动模型/" title="Spring事件驱动模型" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">Spring事件驱动模型</span></a><a class="item" href="/dist/2021/02/01/Spring的Bean的生命周期/" title="Spring的Bean的生命周期" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210201151643.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210201151643.png" srcset="data:image/png;base64,666" /><span class="title">Spring的Bean的生命周期</span></a><a class="item" href="/dist/2021/01/18/Spring Cache 源码学习，自定义CacheManager/" title="Spring Cache 源码学习，自定义CacheManager" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/cache-aspect.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/cache-aspect.png" srcset="data:image/png;base64,666" /><span class="title">Spring Cache 源码学习，自定义CacheManager</span></a><a class="item" href="/dist/2021/01/18/SpringBoot自定义starter/" title="SpringBoot自定义starter" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">SpringBoot自定义starter</span></a></div></section></div>
       
       
         <div class='copyright'>
@@ -538,7 +645,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               
-                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/01/19/java%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97/>https://cha1yi.github.io/dist/2021/01/19/java%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97/</a></p>
+                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/>https://cha1yi.github.io/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/</a></p>
               
             
           </blockquote>
@@ -565,10 +672,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-22T09:48:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-02T17:02:53+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年1月22日</p>
+    <p>更新于：2021年2月2日</p>
   </a>
 </div>
 
@@ -577,7 +684,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/%E7%AE%97%E6%B3%95/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>算法</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/Spring/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Spring</p></a></div>
 
 
         
@@ -590,7 +697,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/19/java%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97/&title=Java的位运算 - YiDan の dada&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/&title=Spring的事务方式 - YiDan の dada&summary="
           
           >
           
@@ -602,7 +709,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/19/java%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97/&title=Java的位运算 - YiDan の dada&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/&title=Spring的事务方式 - YiDan の dada&summary="
           
           >
           
@@ -614,7 +721,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/19/java%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97/&title=Java的位运算 - YiDan の dada&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/&title=Spring的事务方式 - YiDan の dada&summary="
           
           >
           
@@ -639,7 +746,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='new-meta-item category'>
     <a class='notlink'>
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/dist/categories/Java/">Java</a>
+      <a class="category-link" href="/dist/categories/Spring/">Spring</a>
     </a>
   </div>
 
@@ -651,7 +758,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Java的位运算" data-path="/dist/2021/01/19/java%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97/">
+      <div id="lc-pv" data-title="Spring的事务方式" data-path="/dist/2021/02/02/Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%96%B9%E5%BC%8F/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -667,13 +774,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：1.7k字</p>
+      <p>字数：3.6k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：6分钟</p>
+      <p>时长：13分钟</p>
     </a>
   </div>
 
@@ -690,31 +797,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/dist/2021/01/20/GP%E7%9A%84%E7%99%BE%E5%88%86%E4%BD%8D%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>GreenPlum的百分位数的实现</p>
-          <p class='content'>GreenPlum的百分位数的实现一、计算公式
-二、实现思路计算百分位数1、确定数组
-如下数组：
-
-
-
-3710
-3755
-3850
-3880
-3880
-3890
-3920
-3940
-3950
-...</p>
-        </a>
       
-      
-        <a class='next' href='/dist/2021/01/18/Docker%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/'>
-          <p class='title'>Docker相关命令<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Docker访问mac宿主机器的ip通过域名的访问：
-script1docker.for.mac.host.internal</p>
+        <a class='next' href='/dist/2021/02/01/Spring%E7%9A%84Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/'>
+          <p class='title'>Spring的Bean的生命周期<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Spring的Bean的生命周期一、生命周期流程图Spring bean 的完整生命周期从创建Spring容器开始，直到最终Spring 容器销毁Bean，这其中包含的一些了的关键点（Sprin...</p>
         </a>
       
     </div>
@@ -757,7 +843,7 @@ script1docker.for.mac.host.internal</p>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Practice"><span class="toc-number">1.1.</span> <span class="toc-text">Practice</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E7%9A%84%E4%BA%A7%E7%94%9F%E3%80%81%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">原码、反码、补码的产生、以及应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">2.</span> <span class="toc-text">位运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">什么是位运算？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">位运算的作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">位运算有什么优势？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">Spring的事务管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E7%A7%8D%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">声明式事务的种类：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">Spring事务的隔离级别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%8F%E8%AF%BB%E3%80%81%E5%B9%BB%E8%AF%BB%E4%B8%8E%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="toc-number">2.0.1.</span> <span class="toc-text">脏读、幻读与不可重复读</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
@@ -776,7 +862,7 @@ script1docker.for.mac.host.internal</p>
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Java的位运算";
+  pdata.postTitle="Spring的事务方式";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 

@@ -22,9 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>SpringBoot测试系统整理 - YiDan の dada</title>
+  <title>SpringBoot单元测试整理 - YiDan の dada</title>
   
-    <meta name="keywords" content="Spring,Spring test">
+    <meta name="keywords" content="Spring">
   
 
   
@@ -389,7 +389,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        SpringBoot测试系统整理
+        SpringBoot单元测试整理
       </h1>
       <div class='new-meta-box'>
         
@@ -431,7 +431,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="SpringBoot测试系统整理" data-path="/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/">
+      <div id="lc-pv" data-title="SpringBoot单元测试整理" data-path="/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -449,7 +449,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h1 id="SpringBoot测试系统整理"><a href="#SpringBoot测试系统整理" class="headerlink" title="SpringBoot测试系统整理"></a>SpringBoot测试系统整理</h1><p>Spring boot 作为当前最流行的java后端开发框架，集成了很多非常有用的东西，今天探索：Springboot test<br>引入依赖：</p>
+  <h1 id="SpringBoot单元测试整理"><a href="#SpringBoot单元测试整理" class="headerlink" title="SpringBoot单元测试整理"></a>SpringBoot单元测试整理</h1><p>Spring boot 作为当前最流行的java后端开发框架，集成了很多非常有用的东西，今天探索：Springboot test<br>引入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="一、测试方式的整理"><a href="#一、测试方式的整理" class="headerlink" title="一、测试方式的整理"></a>一、测试方式的整理</h2><h3 id="1-1、单元测试"><a href="#1-1、单元测试" class="headerlink" title="1.1、单元测试"></a>1.1、单元测试</h3><p>在维基百科中的解释：</p>
 <blockquote>
@@ -494,7 +494,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/dist/2021/01/18/Spring事件驱动模型/" title="Spring事件驱动模型" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">Spring事件驱动模型</span></a><a class="item" href="/dist/2021/02/01/Spring的Bean的生命周期/" title="Spring的Bean的生命周期" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210201151643.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210201151643.png" srcset="data:image/png;base64,666" /><span class="title">Spring的Bean的生命周期</span></a><a class="item" href="/dist/2021/02/02/Spring的事务方式/" title="Spring的事务方式" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">Spring的事务方式</span></a><a class="item" href="/dist/2021/01/18/Spring Cache 源码学习，自定义CacheManager/" title="Spring Cache 源码学习，自定义CacheManager" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/cache-aspect.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/cache-aspect.png" srcset="data:image/png;base64,666" /><span class="title">Spring Cache 源码学习，自定义CacheManager</span></a><a class="item" href="/dist/2021/01/18/SpringBoot自定义starter/" title="SpringBoot自定义starter" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">SpringBoot自定义starter</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/dist/2021/01/18/SpringBoot自定义starter/" title="SpringBoot自定义starter" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">SpringBoot自定义starter</span></a><a class="item" href="/dist/2021/01/18/Spring事件驱动模型/" title="Spring事件驱动模型" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">Spring事件驱动模型</span></a><a class="item" href="/dist/2021/02/01/Spring的Bean的生命周期/" title="Spring的Bean的生命周期" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210201151643.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/20210201151643.png" srcset="data:image/png;base64,666" /><span class="title">Spring的Bean的生命周期</span></a><a class="item" href="/dist/2021/02/02/Spring的事务方式/" title="Spring的事务方式" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">Spring的事务方式</span></a><a class="item" href="/dist/2021/01/18/Spring Cache 源码学习，自定义CacheManager/" title="Spring Cache 源码学习，自定义CacheManager" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/cache-aspect.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/cache-aspect.png" srcset="data:image/png;base64,666" /><span class="title">Spring Cache 源码学习，自定义CacheManager</span></a></div></section></div>
       
       
         <div class='copyright'>
@@ -533,10 +533,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T09:56:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-22T09:41:42+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年1月18日</p>
+    <p>更新于：2021年2月22日</p>
   </a>
 </div>
 
@@ -545,7 +545,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/Spring/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Spring</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/Spring-test/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Spring test</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/Spring/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Spring</p></a></div>
 
 
         
@@ -558,7 +558,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/&title=SpringBoot测试系统整理 - YiDan の dada&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/&title=SpringBoot单元测试整理 - YiDan の dada&summary="
           
           >
           
@@ -570,7 +570,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/&title=SpringBoot测试系统整理 - YiDan の dada&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/&title=SpringBoot单元测试整理 - YiDan の dada&summary="
           
           >
           
@@ -582,7 +582,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/&title=SpringBoot测试系统整理 - YiDan の dada&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/&title=SpringBoot单元测试整理 - YiDan の dada&summary="
           
           >
           
@@ -619,7 +619,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="SpringBoot测试系统整理" data-path="/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/">
+      <div id="lc-pv" data-title="SpringBoot单元测试整理" data-path="/dist/2021/01/18/SpringBoot%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -728,7 +728,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="SpringBoot测试系统整理";
+  pdata.postTitle="SpringBoot单元测试整理";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
@@ -782,7 +782,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
     
       
-        <div><p>博客內容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div>
       
     
@@ -794,11 +794,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
     
       
-        本站使用
+        Use
         <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
-        作為主題，總訪問量為
+        as theme, total visits
           <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-          次
+          times
         
       
     

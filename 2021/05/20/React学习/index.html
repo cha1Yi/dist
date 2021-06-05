@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="cn_Zh">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/dist/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>Reator学习笔记 - YiDan の dada</title>
+  
+    <meta name="keywords" content="React">
+  
+
+  
+    <meta name="description" content="Here's something encrypted, password is required to continue reading.">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/dist/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/dist/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/dist/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/dist/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/
+                  
+                  
+                  
+                    id="dist"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/categories/
+                  
+                  
+                  
+                    id="distcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/tags/
+                  
+                  
+                  
+                    id="disttags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/archives/
+                  
+                  
+                  
+                    id="distarchives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/about/
+                  
+                  
+                  
+                    id="distabout"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/
+                  
+                  
+                  
+                    id="dist"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/categories/
+                  
+                  
+                  
+                    id="distcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/tags/
+                  
+                  
+                  
+                    id="disttags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/archives/
+                  
+                  
+                  
+                    id="distarchives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/about/
+                  
+                  
+                  
+                    id="distabout"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+      <img no-lazy class='logo' src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'/>
+    
+    
+      <p class="title">YiDan の dada</p>
+    
+    
+      <p class="subtitle">一起code代码</p>
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Reator学习笔记
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/dist/" rel="nofollow">
+    <img no-lazy src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png">
+    <p>wuxuan.chai</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/dist/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年5月20日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Reator学习笔记" data-path="/dist/2021/05/20/React%E5%AD%A6%E4%B9%A0/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="这是一个无效的密码。请检查后再试。" data-whm="这些解密的内容无法验证，但你仍然可以看一看。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="10b6bfc3eacfea546a5f51341a0686d12ee910a7454f67afc8f2459494514465">5cdf8beebdf0f40ed800f8d20ce7a4800332f4d4d82882c378d2eebe3877a6c3a3b9b70d4ae5336267d8b0770b929abd35dfde224f457d740f8c21a786c3f65736cf359835ddb0e1d7a4e2d639a33e1afa3dc35258b57e5eb8311681f25d31f44082306d83dd77b03f3ee65b76c12034ae36c8aeb8884b3f84830542997550576bcf0ca006310feea5375912b5c2173d81d15ae995581965f1e06ae0935c7c2d66c14d1618f4e95c5a8e976e0fde322facdfb5df25c7cf9decbcf65fc9012f392ce8f3aee5e5f795edd63ef16434c958ec54552ff13dd672ad9600795da2e8aa2723fe00c51e898290cdb960e5473356004f836b5e4933bc3cd9f0984f1f55b4a8b32743c37cf855bf65d5c78a488e3af494c206cc9ae1241c42e6c364e14411255bffee86108d6b37748e6f574fb713a416687f6845fdced1a9cfb58a03c498e31f422e792437539492ff797a2e9ebde49e57c442e80cb2ca055f417be781df7ed196d20961eb910e44c7e4cf4384841c5f184c5360fbc3934729bf1789c3c686196444d98d88ac973f3328a774e478c9da30b83dee0581ab31f56109acdb2313e60d7d89a8659cf8cfd2201e0369e388f4ede00f2ccc959e4869cacc3b850d4596beca853950bf563dc9445f437e56fd296aba5f0119a4405457d47ef52099d0ecf00f96ee4a1f699eda8b39183cdc3521f565e50b1646f18f4c974b46d704797731347d5be150a074554f7390be2ca87c4a1d553453a1b3dd7d4b342f44755668e3b92a98704c62424314fd751a23b664ab1b61db110a7ecdca1a3e974a4f5d7d3bcd32254030e328b6ef065328c63392a14e161221e275e19e6f38734ecc6070d4c4dbd6ea08e9b3e7e267b4724eca77c7171169e9960736764c5b825b8239b5071ead99cb186ce09a5fcaa6eb6e88c86cfe04dcb42c2748f5ba60cb0554803a0b1fed3ead49a83245e696ee32651ae2e01b7ec6e436917be3b1606850d42f4ef22764d80dd44196668aae5d4f2e1d04660e62102c310dc83cee2b9f48e3f0a8a9a95db60b198b33379719a2452b468b99e97608431a8be2fe4cd50b75f217b903e56ca065b47553b35973ec1c591e0f799974a999ee3a81a319b0260e00a13920bdc5c5307fe7b40dc224103a6a012a69da1ff344160e1b4a06d000f78b1edb0660375af059d6c62e62d6f2f22fee93867d18257feadcbe5c9248905c7d9f882f39d539620aed3e36dd1239ad05621847cf1651b540356fe5a064107911befa27fcacf430d735ecae07759220cd665625f8e95b99c57a807c14bc22885220285427bfa4c6647691a96b7edffdfc364e03f459bf1aaebdc2d8d3ebcfa6240d15c59556690265957b81b8237e6076249fc913b452072ccfabc6a0cf543f1b300e06e084294acb2afd81eaf232a927f953db1090d1598277e2a434e5f0d730aa38fd126e679349f09a4282fda01c2e0d032c47a5dae3dc725300bfd2dfe0b039474a41d0f68bdfdd0fe680b3c380ec8534f36f9fd7c34a41cce4da27ab94cdd3ecdabeeff935177dc7ca2c37ec5c6d0f7aadc3b2e7d2c7b32104807b3ed8226a78fe2fb80b9149a6e59b63f75e73665317b5de932911ca3390ca8a5119fc169e8f3ef74e18d3464466ac8642438dc72e1c11fcbe208c9432d68685b0736c2c560a79c6286b3bd00920845418cdf6a45fa6f65f53a6c4e3925e714ecf859084e13a170aed48b0879edc8128fe8fa5d66f0b7b5e94ee054e78495611f038edf3b9bd716822ff6bab31d17e3605e015ce9cf63a4c908eb923670e1458910a1d586fde0fda4e2d659090a33bd0ce45e630fbbce09cc8caf27d86db5caa4d6c5ab105955701791a507428d32ab5db86c1eee90d99d1d78e58467e1b01c9b89df50eede7e0fbd0f9dba3f94e706d9bffdf5d8c20716a3ab67937a3c5a28795866a1609725b23bfa2ca4f8e8c0dc9603c3753bb11cefb3af13b53f12e9397cc41dd35e7c8a022191e61a3655e00e4af6bc43b26524f219cec1d9dfea63cce07032665892fca2d80274dda6d55f9e7872a298c3e4426cdd98863b25043ec309b0b053a43a7a111c439d71b8036a35a50a1ee69074a6a0a1eb97023099046038157c153fb33ab23b1d2381406bbe5ae721ecbd38281f66065064ac8b655d60f5d2f369a10c6e43e9693b11b7a69126f9fdf3f8853f9e6bb0fd23c1a934b6f61f170b1414e00e49b83b13aa463eeee876c91b36078ff3a4b58fce46861b67f46344b6e10228a5003f73119a006e3a0adb7332c63472694fc670e5823f5cbc5046d06d40de803a906caa7a3c648914b9ae2beb442ede4e77df5383598b0466e5d0ecea51290299eb67feea798ac5cee73f18865cc19022aab9ec058fcb934477b54078cca1be31dc43e5a37531333deeefa209b1ae31481d27a0bdf2295cc780b38c1d0ac43f55ce4cc3efc3a5deddd6427e2de2411cc36c2cd4eda4932b7f8474e2a24c896c8bcc6209e4a24850f98b294776041889a639f0fc16cd63d5f6e454cd8a37884f4cb5b8a7056b710be6e2e49957268c39fe7ca930256f10312e19ea51969de5dfb2076c0629def8acf65a31b682859242b7058f46e1387a772050f17d85337fc52d89dc643a13f9eda3b58021b4ee1653969829560964deb19b3820280e2f2f21cffe586ec4af42ca1590e749cca47e551ca4969fea8ebf6ecb9ba13819e18004851da349d7ecb04b726a2b56cdffb06c3d88fe9ab7badad1ffb781b3d4aa2a73bcda6185f0aab192b7619e5740e0b453df463e26ec563377b606b30274f06cbf1ce8ff3933ccdd17716223178e115d80b95f9bb0c37aedbc5feb75f07e2b4e39dc3743966eec1d45b06c12c972fdcbdb362736c0d5e8eb3d7bc18960f8c60a656534d755f56c46365fc922b9f5882d3ee64e9204261709c4743af15b3b899b7a4a1b898bafd5d42b1c6176048e1af8b0f93eef09527efc77a3298cb3711ff930f7128a5a16e49dc1f002baf9f5cc0d1a53ff7d5e5f6210b5393fbfcc1df0753757910f7909525e6ed4adb8cc84404edfed6eeccf64121569b5db41d9ce6b51d36cb24a1f5a6e1b7f7611cf9eeba0f9692b3f372583d2cc965dadf0d83b529b0932ccf5b23121fecfd5f8ded794abc457363c068656bab5619f0d1a9c0a7dff2c280cbbbd32fa68278a8626527913f76d18dbc61239edbc8e4746e0112ceddcf5f4626afa361085e127c37b21ffd51ed9fe917dc5b2422f08ee315a5c63664be1e7b17f859c263e45b3f722d80faecbf9b2b7d30d34787718edcc8b3531b1724363b0677b800f8c760a98b8f20143ea6a142352d8d26ac40c807a6dc10b885e0f2efe53def8c7a9811654eb10ce40f81fb19b46e6f5e47ed4e6296c30c855a99d9896bfeca4e189fad39efd09fb9ecfdcccb6f6d38f4a8d1cae91ecc1992279152badee94046afda5e34821a427e8291d44065b59808f40bb7565d245fdebdd6609fb4c66dea5f0258ae8f5d75adee8f15e4d855f84352886f8e036c80d8b23ff159d454d753a4c56217ebacd1fb5924a05f8126d80d0b90d548abb8513b10dd3fcb224302094f3c3c391adae8f47c86d56507331bfe8e9ee397d7d2b78ce41f74356d743c2ae8566944d8f98cc243d053f72845ecbf55f6166d4ee07a103053d621c754a09252ca3d1f02a665a8c79abb76e47e316256a9f5e67ce700b094d919ae1955fe563bd9b320dc792a4ddcc58aa213f7366fc572a572b06547ce88f7ffdae989761b723cfe8ac2bd22d4d3b5da9e5bf72d01ef70891c170a23facd31f9c99b16b6da1cccf8a87cd544f795c891211855d117be89579a15ad1aeee6bfefe7b4771cfa83d017a3238e541e9651c026e9f85175c09e4d8de7af86f08d183bd395cb6a941aa56e8d01c55a6522e5733855812a941963325fd27679fef01282f20187488de8f13e8f71c8607d9ba868f98ba296b285ebcba4925e4ed889543305d69d6b8e5da08105517cfc702572194bae50d9cbd54aed8361758482f863ccac5bb80a29038acd3ba205c4dd78e426493ef13d1eb77338589e513bacc3c0b80dd44e216f363533537ba350938d1a9306ff555c3d406b5ca3793c35937f9cec6842e81671b15d9ba5700aa63c0779d053c07db4a2d9f7042b8af82087546b314ec7da0b05c41b73f45829278a2fcd262d9b962568850b96cb40c8a34aa2e3229c062762d43d4bacdc6facb48616e016793736799ea54b7a20ff55099b0f071760b9d699e6a21c41a76ccb1054655116a7758982be9da7f6e373c16ded717c7e26b5c26301c18dc99a8fcca2d5477a0fc135c40727ede84bbef63f6a476854a4dc7115288e121334545c4f2ce444e734367e6b44f609144c85c431a04eeb3f4ce98a10511c852d99dcdf5c292b08bb6bff292d1ecb241a8db77a10ce19fb691f31e95c47758540ee72a6388ce9ee1dcfb346a717173289551e05f14d742af1619932f74690106a08abb597cece216ddf21e298ff36bc08e895781e628981a1e1294f303d9ec09d990d28234da76aaa834ab418f9197b54a158b9e0157316245209f33bae11ec43f17fd8ffa7ce60a2e42c7b00de17ce41541098f313a361ac395b36c8bec917d61f43ff986f9deb26cceed13ff0421c3ba797524b931617c0c80f897429ecaefced5f145b6256912f4eefdccce0db6ae22f40366c6eca7395bf471ded5f4ca2566dbc12b44679b66194297e9f2e1ce4ddc3615e2db6e05779bc116b1d8815a3500031cb5adb4619d1ef18bb7ced9f507f95df88459bd72bf42c669a4d993700ef67ede2cb2db490dc83438b05f479dd7b404baed61c62590fe5220d09995d3a4db061b4fc2839b935a9914bb40ec3424e97d732843a23048186eae38c6bc47dc552f21dfcf6b3c85d213cd88ef1a6ba87325ab3fe280136a5609af1ddc979f17142fda54229e6e53a90fad8fe375fe9dd62f573ae4434818ac6c97550ae011b2cccea3dfbc87616bb837d0d20fd290a38a083cfb4ba407cb54903e87cbf77b4b405674f3b7dd7eaabdfe051a76e20fa558487ef9896509afd3444a65eba46b4eac32bcd48e2ee0e2dcea91654e96c999031e54eb69d742c05f55d053f9a3c72cd465d3b8af7b742c2354039124d1f44a22890804d796de08cbb4ddf1c050233b167f3ddfd3e010b9b3344ebb915f16de0628ec94ebc389f1f4c7ee116b01e13ab8e85b853fcf7123a5e5642eab04770de127f46c047636ecc5b0d2dda49681af96def3c2355d3fdfef8033d05a70f6f55da96049f66968502282e2d123348472ed07321d552e3f7f66000b25021f947e11b242294cab5310fa3b2d2d1a7b9ffa7ef5f4b50f6e73b61bc8e3f77765653af01fa01059c3543a96ef182613c7cdf9eb9a0319dd0a1d7a9d9fa912eb1eb3059b808f9ac795f394bdd273585c826c406271528d17415e8c58251a4d10b5e2ca410c29340956861a5605fc36d66d74bcacf1094fcbb049f5ec6e27305413773f09caa3f7ebe988798fe70ff98d25aa0da86d531805986315084ed5f2db81fd0ddebf98457fe6a935a7e7950c2df5b37f7a8ee718697cccf2ff48c3a465622f3df2a783863600207f87efc49838e5613006c68ecf4c5d529709288164a0b33b7a3f46668c5f733ce8b06426ed22afe2582612cb700c72cfd714b2e298370ef42320de4a8e33de27f6ff0b4fadf633722d73b0af4c12b5cdfb77ee711ddcba12e6b4c0d545f58927c920374e35857d0901d86abc09c2b42262bee0444b583b673af12531cd17b7978664ae818e55fe855cfb409aef8879d9f32217940775a78cc2bb2e1d1395a131344d6d3e65a80006e4baadab8c607f78b7cc9568a161254a8c2fad378b352c3e8921b5fc345bcfee6dd7af43e63d308c675d13484947658459ae788160cc93da9b557c37c03df1d9a12c88cbfba11953217c65f9dd7ca1d50912dc6e5f7b9213031da1f97d2f1260b0ad848575657950f483d4e5809f988232142b7a84e0514b6ef71ea7a36329d42a80ce3dfab50298c2b6d6a7a0a9be7dc1c83e7b37646e8c4e709bd6d51f03fe0c15cbdd2615833a56326c9609a279fd718f7a379f58385dae93e86ed6733dc4e88bba726bb977cab9d7eec127b26e0c7d9c3b7aeca4d7f6655977e71d7913b82fc45a7834ccaf4fba2914896b14a101d558edb808532536c752d17540ca6db3864db18672034fc286595d1efe798a0a9a3b231713c1d0e352205646885d5adeb155e051555e0876ec99ace681a341b69512b17c62c349ff7a5152d509752c59fd948790e20e5daf375ddb513c32b6ed84f71d02601e2ad81be828c0a8987ec89e65b19a7d9431503ca5197d8ba414ea4a8db3b9d37cbe0b9582d842ccbc4f5d3f2188c5d3ab8d9dab953d43320497849e14f76e02b448a0b4aa5d6732f457c34a24d912bad94bdcb1969b5e0babc4caaf736fdf6bd2d38c1b8cab56fbe2f3fcb0da4db0d42b42d7c3e37e197f85208634feaf21cca84967bd009c1c43de0abc8e3451fd6290baf90fe791d3089ea773bbf1fe7a06f0bbbe6cdfd7f80ab911b121153de6337b2d9a2efee361d42af1563641d5dc70ac931e809db000b65b8840c3de8f0902bd19644def7752c41d116dff584e93fa81d6dec50305b000180f25e608ae2c30ffe6c14e87da28cf94bb96a954da79068c17011a063eac50d85890354c0d18aed0a9222a60e7365af4f539b282a0648df97f829d068eee85360a4de9ce5c726d73d775a513f6e9b1b12e6c5da391353fd038ee6b6558f41ef5c00cc627e654ef541c47a63d385ab0ad9f235ace471d611ac337f43bbefb5909331b624d0a0391fb055588e6a43194009c539cbf5343e2cd1b8a1616bd15b21852af30f9aa577d08ee2b42295de0a12c716b21631f83bde27273ad41ed7f87944e8115591445b06a4f17a998685625ab1fafbd77cb3d97cb66ef3a0cab835d505e2ea85c8fb0e32ecc10455b19a3327a4a1db67e9d0c6853604cf23d4fa6a36d43e19da27cca879fd5aad826bf1ec52fffce2ef785c460c3d93d52e97885e672f3f02be752d7d7bf394622ec1b77e5fa6f31fb79fd1c713576fdff7c4335eda583aeb5c0f0e4f64c4239bbba88e54ed6d4918f8b530792bea4e57c027ee3d6fd2f2ed1a819c773739c91178f5f35dd78de0c845033ee21923542ca20946bda8d7538ed4032d490c526c24cf863db717af0ca8fef84b8086f1e49a7c18bb9338be5f3fa88a5272095eeb3b9f352c1a4b9e716d127f277ab31151383d9cbdd7197075578f9cf63d9c8504af5c23b347f7bac5a973238f637b99514444e2e1c79645615f214dc22047a1e184e2cd8db4990c324f6dc793b051bf499f5688b3ad570e18a462bc938de12a06493c26c1b922738e0884534fb23cc3ddd3a87554cbf64fd4b544a6a16cf7a9dee2e977efe73eab7cbf0de6e4f5adf1490d09fe6b137ff03500f3f32d3b5e03f0da33a73c4c189776ad97ef28c53afdeb7a47b8d0f8bb574edd4158bb12711b785b417ad9aed3fb47a798b8861e1e7621e4eefb27bda0b808f334011a80f5af127491ccf4077a783409f670de7c262037313569d30c55511d66b9bbf95e169096d51b0f46584e891747c2f0bc752b342d2ff0102d0b8f426aa9d878342120a53f4294bdc8284ceebbe9f0045b20951f6e1b95ad4964cf616a997c51fde822a76e921db1cd027e4344a2c26a569c01d909c24b63b3b2677b07b91017a5106eeee124f0a9a3d6d2519d7a4ec38e9b6643ffddcf9b4d2b6bb2c540a4e5f3194568210b53968de9e74eaded35b6b6791fe4b4ce5c53be45abbc5079c982f4e8cdbcc550d84ff10d4095b6a39ac62b4892d67076587c41e377a3497e61dc15218abfe7b636ddf4b99f281f426cf4695fe6b03cc6f605f14aabc3b4789b22fc61e0bc75b64cee6ef29d3c3500bcf418743610dd7b42186752e1cd398300976218857276316ee570ec25208300b18e7448fe92c12481e31c0bedfc25f464c2fa55837758d39f64bcad27666702528a4bce5ba5db9ede1b144dfdc2b60b8b20e7c3f0e9b8077bf989fe4b289737e1173f186c11f3571b58ce61a46209f8560e6be97388770905cf94dbfe1fce7d1ea73eaa0b992b780ccaf7deae0dda9232d23db826601d7f3618b0b7ded86a07d4a64491a9078fc93a5b9c321a446aae0ab5b850997a8ecc7576d17ff2059b8facf8df50000111b61e81c49acf9bc6c262a82527ed42d2e2d205c35ee95ae316ef86564d2224626e6ebd0a6235b248a3288e2c79f8e8a26897194af5d63ccf5a48b3f8431dbacd7410ed574b955ab33f05ff5605422797a2368e6eea69ebd03538d33d2d59ab360e454bdfcd301ef65f30fd00089906b41bc030d4cd1c26bb493b5ede5af7be7cb4d3f584b253f30883e2f39c35add0767776e3ea05e971492211ca845809352699750ea34c02c16ff1905f229a91386f6b7e9e024698e0e21546a1856ef66157b2175262cdb25c12fc2b2b31949dc87c06da678fc749a473d6c757369f7968e5733f35e62d05c5a82d1ddee95db393ff3ff2cb32f0c27f5622542f2bb84ee1a7379da795e004396a7a27191a311b32c2243d5a609dfe5af9664ba888a33944d8922f49bac8f8f5fbfe5aa575b19821371dab27bec28d22dfcb13d2a1eae65f61b6784dc79096201bd98c1ac9cdbc30c070a41b1f8bc98681ab7a97a10564d5f96a7f94d479d450784b0e212b98e069c5ae5b5b2089bf8f3ec385f436173074fd3fe89d8ca6f49313abd032e13b962d165899b8ade53b38e1ddfdda3f881efd414927f0c40fc237386a1469826769ee290f60ec45259e6ef099a912174928e1729312bf5d0064927367fc4ba3984857a5d6b0c195bfb7bc4419b6e25fa3c51e7dd60da10b5a2489aed3ba5769183bdb9993446f632454c78c2398d175586e42a9c85964b4b750a0cd83f9eae02837b3121eeca14408d533d890c545c5d4bb20ad9fc01a0ca2b97843b7bd717d719584d8d36738ec9bdad2d88a39101e0c7ad2c7df436fba8ee798473c8b133edf2722c576c3286af14c15abcd267e55b9be8500baba887e57f6876cfe01754e0428e031b69c79decf10445a00bc9089e3a72d0a4718c9984c1d11cf49343e597247bb3aa65982d8c3383fc0d4215e4dd8ff49ffcc7014961fe0107811f9cef5a411e20e0f78d453addbb95d9c75e03ed66d1a408940498c5e26c96d1a057bc5c5016c5cbfac519118c2d22aa5628a1dca7a136076a80f1d35f4a99b1323c134ae883d135d1c47b1ee75af008175de80bf1eede84ae7f981781fbbddbed381d13c314ff675231df02f96051d4db6c77315275de750a7b8659fe2af219ae06dbf6fb6239f9f2dca892fe30a6eace3514ab2b9967152d2f567012f8759c95b8229f800d44e920bfba84426680f14d941b4909306918a26e93ab0f7454720d34cb0a3d20a9211d61f8216708e5d6523252e014b4906131a380ebe1568c41e157bde6b267f5f3d4148302b29aed3838b6369e6f28809453c6e56941f4477680b63672d8f30aa18c0d1170f287b68f914ccf56ae0c0e2456314bbd2cef5b1aa78829c5299c48f280a7c9d52cfd4c2c7907ca22b4955cd7a92bd573fd421bfdea7a1d83ff86ae7c4f422c29a344e19ac99095e025e75115f94cd6b2dfa04ff079dda62950ae0a33914ea06d3e413f579f171df3b8a8f9a64ea812a6fd4c685d6a04de3f82aa924cc53934d48e8d9c8c8a48560e3e682f3fe30b828b22075ff456e5035d54476f4ffad4552e51c1d816034b026168e439192bc0226e261431d67efbe927454f6c151260b9a82b89dce2eb6898727f1966aa21c5083484d57a158c47ffe1ac866dc2cfa192815a4d3b0819d3b287f8e3e1fbb541055ac398cfb64ca283139945679e9dce2caaebe3c6d5d3e17a5d36ce8c6069984b85b8b0612053825ae60ee73a11e2145f6799d019fa6c94889ac8d4301788d72eeda5cb12fc7761888524591da5d78b84a20c85a6b1f1b80e6d802135282618c202885aac1dc56c764798a97cf2a209d9dc10c18586411a8659cd3a5735559bf5575c7f31b8d9a0421aee74e114321f59a241083f280b6c63aca7f72b6a1470a3f4f49083c05c7f2bc1cb79c2f4e6cf857064080934107c35bec685d3f5f2c04a5d9ba41dc2a6c5ad1da7c8746d46ae3d1bcf5b0faf05d94c254009378b7cc3cf2c7c499b3a14adbecd8d65ce130aa63144d32f373c872efbc1930880c9fa5cd834353fb336289d13de1523ce02bfaf93d774ec04f95e05fcac3c2246553bc46492a14f8412b93c9b415e806150e0c7ca0ec9a4b92fad440f946fbfde800c1d5c8546b07ea139c41f6e4488c74ad2d39b5c6ea34d9d1a0bfe88a946d7ea394ed00feb7aa7cab76881b0fc3c808b205a28f642c43faeae3832fa95a284f3a824db04d5c5dba27cb72ca7dc4ba29d52e8dc58aa2e160ef453df8e03a4e8977c75682ed2777cee8988a6786ab68a2a0c796c3dfe90069e512dbfe6ff2f5f56e4211469867402f93e5b983764c008989071c872e1f4dc81cad4547ec5b71c1a83fd680d40b85ed4ed99810cf4dd3206b6ed8187beef40b06b167eb8ad67023e253732b321757809a8744e91357c6d012d8701d9fc0673164b92e83f3402d7024764cffa3be5b9450854bb5fe00360a88157c39c492d1c6615ed0e175a3319ae78ee66eefe6cfe604b9ed95c53a957cd066c9d3275c6e76970d1932330444f8ef7a8855ec4b20589ea79333b1f3606f4e2769d29065e30e4e032c027541913c74906b7df5a42f9957450b62b2fb85fbf165c4b5b2aaf549c437661704c17aee954d17f7ef6d8abd32d4240cd0e4cea39ac73493f7b92a7ec78afa0869d65ccf74920a80eca956cedb3beca66f282afb4c455cbe638df28b640f4df341b477f7fc1786cd60e6a69ec000d1dc250da6c641ccd35330bf8360e2c10a401fe2bcf66602711888d6dbf2d5e0898cf262d8a9ef1dc6d4bfa3aef3bb819e4a7f472a9769262c24cff8cfe073b5941b7bf923a823f9ad4a1e861be08c4c6a0889be379ab3b713fdd20f0632070b48e14a94ffeb379da6fc2b20ef1640abb13a3d0bb541771b5dcac1f2ffef00e716975e49b3a601dab524335ae51c71d51be3605a12637c3cb827d2962274add91e45c232048ec1587546f366c8a94b6ecb7a5125fd9129371860d60758d9ce38c62d62887e8089ea2eda487314b79640cc5273f03a42dddcdec1f16d2f6cda7b230c9ed195b87befbf497d10cb175bb8a0eb5f9a02d40ac25f65e4e6aeff3fa9363aeee4160cadb918f08d80ac963231fe22fd9a2a06011231c966d0653d795daa3b51b49a863c73d6827949d765f2f7e813f9e5e4af45b1dca36f01a3d74cbd2ed7b077a344bd73152cae6e25e3a55feb712139410438df08724a3865feeaec4169b6345698baffccb2a8a76d2802a1cc255200dd5491da74b50ad30d16ad36acdb332c05db76bed79b8f9852c82bce98b4d513db2099263aae3460cd4d78e96fed48f7586e62</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">Hey, password is required here.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script src="/dist/lib/hbe.js"></script><link href="/dist/css/hbe.style.css" rel="stylesheet" type="text/css">
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/05/20/React%E5%AD%A6%E4%B9%A0/>https://cha1yi.github.io/dist/2021/05/20/React%E5%AD%A6%E4%B9%A0/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+          </div>
+        </div>
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-05T22:51:59+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月5日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/React/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>React</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/05/20/React%E5%AD%A6%E4%B9%A0/&title=Reator学习笔记 - YiDan の dada&summary=Here's something encrypted, password is required to continue reading."
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/05/20/React%E5%AD%A6%E4%B9%A0/&title=Reator学习笔记 - YiDan の dada&summary=Here's something encrypted, password is required to continue reading."
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/05/20/React%E5%AD%A6%E4%B9%A0/&title=Reator学习笔记 - YiDan の dada&summary=Here's something encrypted, password is required to continue reading."
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+        
+          
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/dist/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </a>
+  </div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Reator学习笔记" data-path="/dist/2021/05/20/React%E5%AD%A6%E4%B9%A0/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：6字</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：1分钟</p>
+    </a>
+  </div>
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/dist/2021/05/21/greenplum%E5%AD%A6%E4%B9%A0/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Greenplum学习</p>
+          <p class='content'>copy123456789101112131415161718192021222324252627COPY table [(column [, ...])] FROM &#123;&#39;fi...</p>
+        </a>
+      
+      
+        <a class='next' href='/dist/2021/05/20/nmon%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%91%E6%8E%A7/'>
+          <p class='title'>Nmon服务器监控工具<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>安装1234567891011121314151617181920# 新建一个nmon文件夹mkdir nmon# 解压tar xvfz nmon16e_mpginc.tar.gz# 改名mv ...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" style="display:none" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">React是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%81%E5%BC%80%E5%8F%91%E7%9A%84%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">谁开发的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">为什么学？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">React的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0React%E4%B9%8B%E5%89%8D%E4%BD%A0%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84JavaScript%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">5.</span> <span class="toc-text">学习React之前你要掌握的JavaScript基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">6.</span> <span class="toc-text">关于虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsx%E8%A7%84%E5%88%99"><span class="toc-number">7.</span> <span class="toc-text">jsx规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E8%AF%AD%E5%8F%A5%EF%BC%88%E4%BB%A3%E7%A0%81%EF%BC%89%E5%92%8Cjs%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.</span> <span class="toc-text">js语句（代码）和js表达式 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%BB%84%E4%BB%B6%E3%80%81%E6%A8%A1%E5%9D%97%E5%8C%96%E4%B8%8E%E7%BB%84%E4%BB%B6%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">9.</span> <span class="toc-text">模块与组件、模块化与组件化的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%BB%84%E4%BB%B6"><span class="toc-number">9.1.</span> <span class="toc-text">模块与组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E5%92%8C%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="toc-number">9.2.</span> <span class="toc-text">模块化和组件化</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Reator学习笔记";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='true'
+      volume='0.7'
+      loop='all'
+      order='random'
+      fixed='true'
+      list-max-height='320px'
+      server='netease'
+      type='search'
+      id='刘德华,beyond,许嵩'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/dist/">Copyright © 2017-2020 YiDan</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $('#cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+  
+  
+
+  <div id="rightmenu-wrapper">
+    <ul class="list-v rightmenu" id="rightmenu-content">
+      <li class='option'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <hr id='hr-text'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <hr id='hr-href'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <hr id='hr-src'>
+      </li>
+      
+        <li class='navigation'>
+          <a class='nav icon-only fix-cursor-default' onclick='history.back()'><i class='fa fa-arrow-left fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='history.forward()'><i class='fa fa-arrow-right fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='window.location.reload()'><i class='fa fa-redo fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' href='/'><i class='fa fa-home fa-fw'></i></a>
+        </li>
+      
+      <hr>
+      
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/faqs/
+        
+        
+        
+        
+          id="https:volantisjsorgfaqs"
+        >
+        <i class='fa fa-question fa-fw'></i> 常见问题
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/examples/
+        
+        
+        
+        
+          id="https:volantisjsorgexamples"
+        >
+        <i class='fa fa-rss fa-fw'></i> 示例博客
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/contributors/
+        
+        
+        
+        
+          id="https:volantisjsorgcontributors"
+        >
+        <i class='fa fa-fan fa-spin fa-fw'></i> 加入社区
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://github.com/volantis-x/volantis-docs/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xvolantis-docs"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 本站源码
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://github.com/volantis-x/hexo-theme-volantis/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xhexo-theme-volantis"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 主题源码
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' 
+        
+        
+        
+          onclick="document.execCommand('print')"
+        
+        >
+        <i class='fa fa-print fa-fw'></i> 打印页面
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          <li class='music name'>
+            <p class='nav music-title fix-cursor-default'></p>
+          </li>
+          <li class='music ctrl'>
+            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
+            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
+            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
+          </li>
+          <li class='music volume'>
+            <a class='nav volume'>
+              <div class="aplayer-volume-bar-wrap">
+                <div class="aplayer-volume-bar fix-cursor-pointer">
+                  <div class="aplayer-volume"></div>
+                  <i class='left fa fa-volume-off fa-fw'></i>
+                  <i class='right fa fa-volume-up fa-fw'></i>
+                </div>
+              </div>
+            </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+  <script>
+    window.document.oncontextmenu = function (event) {
+      if (event.ctrlKey) return true;
+      if (/Android|webOS|BlackBerry/i.test(navigator.userAgent)) return true;
+      return popMenu(event);
+    };
+    document.addEventListener("click", function (event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      mymenu.style.display = "none";
+    });
+    function popMenu(event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      var menuContent = document.getElementById('rightmenu-content');
+      var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      var screenHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      mymenu.style.left = event.clientX + "px"; // 获取鼠标位置
+      mymenu.style.top = event.clientY + "px";
+      mymenu.style.display = 'block';
+      if (event.clientX * 2 > screenWidth) {
+        menuContent.classList.add('left');
+      } else {
+        menuContent.classList.remove('left');
+      }
+      if (event.clientY * 2 > screenHeight) {
+        menuContent.classList.add('top');
+      } else {
+        menuContent.classList.remove('top');
+      }
+
+      let hrText = document.getElementById('hr-text');
+      let hrSrc = document.getElementById('hr-src');
+      let hrHref = document.getElementById('hr-href');
+
+      // 选中图片
+      let copySrc = document.getElementById('menu-copy-src');
+      if (copySrc != undefined) {
+        if (event.target.currentSrc) {
+          copySrc.style.display = 'block';
+          copySrc.addEventListener("click", function (e) {
+            copyString(event.target.currentSrc);
+          },{once: true});
+          hrSrc.style.display = 'block';
+        } else {
+          copySrc.style.display = 'none';
+          hrSrc.style.display = 'none';
+        }
+      }
+
+      // 选中按钮
+      // 判断是不是按钮
+      let href = '';
+      if (event.path) {
+        for (i = 0; i < event.path.length; i++) {
+          if (event.path[i].href != undefined && event.path[i].href.length > 0) {
+            href = event.path[i].href;
+          }
+        }
+      }
+
+      let copyText = document.getElementById('menu-copy-text');
+      copyText.style.display = 'none';
+      hrText.style.display = 'none';
+      if (href.length == 0) {
+        // 选中文本
+        if (window.getSelection().toString()) {
+          if ('true' == 'true') {
+            copyText.style.display = 'block';
+            hrText.style.display = 'block';
+          }
+        }
+      }
+
+      // 在新标签页打开
+      let openHref = document.getElementById('menu-open-href');
+      if (openHref != undefined) {
+        if (href.length > 0) {
+          openHref.style.display = 'block';
+          openHref.addEventListener("click", function (e) {
+            window.open(href);
+          },{once: true});
+          hrHref.style.display = 'block';
+        } else {
+          openHref.style.display = 'none';
+          hrHref.style.display = 'none';
+        }
+      }
+      // 复制链接
+      let copyHref = document.getElementById('menu-copy-href');
+      if (copyHref != undefined) {
+        if (href.length > 0) {
+          copyHref.style.display = 'block';
+          copyHref.addEventListener("click", function (e) {
+            copyString(href);
+          },{once: true});
+        } else {
+          copyHref.style.display = 'none';
+        }
+      }
+
+      // 有音乐播放器
+      if ('true' == true && ('home,help,examples,contributors,hr,source_docs,source_theme,hr,print,hr,music'||[]).includes('music')) {
+        // 如果有aplayer，初始化一下
+      	try {
+      		checkAPlayer();
+          updateTitle();
+      	} catch (error) {
+      		console.log(error);
+      	}
+      }
+
+      return false; // 该行代码确保系统自带的右键菜单不会被调出
+    }
+    function hideMenu() {
+      document.getElementById('rightmenu-wrapper').style.display = 'none';
+    }
+    function copyString(str) {
+      const input = document.createElement('input');
+      input.setAttribute('readonly', 'readonly');
+      document.body.appendChild(input);
+      input.setAttribute('value', str);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+    document.execCommand('click');
+  </script>
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+   <script type="text/javascript">
+  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
+  function pjax_scrollrebeal() {
+    ScrollReveal().reveal('.l_main .reveal', {
+      distance: '32px',
+      duration: '800',
+      interval: '20',
+      scale: '1',
+      easing: 'ease-out'
+    });
+  }
+  $(function () {
+  var checkScrollReveal = setInterval(function () {
+    if ($("#safearea").css("display")!="block") return
+    if (typeof ScrollReveal=="undefined") return
+    clearInterval(checkScrollReveal)
+	pjax_scrollrebeal();
+  }, 100)
+  });
+</script>
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '刘德华,beyond,许嵩';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.LoadMetingJS=0
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return
+    clearInterval(checkAPlayer)
+	if (!window.volantis.LoadMetingJS&&!window.MetingJSElement){
+	  window.LoadMetingJS=1
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js")
+	  }
+  }, 2500)
+
+  
+    loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/aplayer.min.js');
+  
+
+</script>
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"js":"https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js","path":null,"placeholder":"快来评论吧~","appId":"6MBfTRTreIjI43OIcl2uaFA4-gzGzoHsz","appKey":"MbiTl1r1hhLHsbrOPheXMUK2","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":true,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  pjax_comment=pjax_valine;
+</script>
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/dist/" || "/").endsWith('/') ? ("/dist/" || "/") : ("/dist//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://cha1yi.github.io/dist' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://cha1yi.github.io/dist' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://cha1yi.github.io/dist' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+function bindToggleButton() {
+	var btn=$("#wrapper .toggle-mode-btn");
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+document.addEventListener("pjax:success", bindToggleButton);
+
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      
+      $("#wrapper .toggle-mode-btn").unbind('click');
+      
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+		  Pjax_backstretch()
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        if (typeof IssuesAPI == "undefined") {
+          loadIssuesJS();
+        }
+        
+          pjax_initCopyCode();
+        
+		
+          try{pjax_comment();} catch (e) {}
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>

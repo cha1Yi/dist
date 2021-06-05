@@ -460,6 +460,66 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>到此node2的authorized_keys包含node1和node2的公钥<br>重复此操作，即可实现node1和node2的免密访问  </p>
 <p>测试:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh node2</span><br><span class="line">Last login: Fri Nov 13 16:01:17 2020 from node1</span><br></pre></td></tr></table></figure>
+<h3 id="五、查看系统资源"><a href="#五、查看系统资源" class="headerlink" title="五、查看系统资源"></a>五、查看系统资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看操作系统内核信息</span></span><br><span class="line">[root@sdw1 third]# uname -a</span><br><span class="line">Linux sdw1 3.10.0-957.el7.x8664 #1 SMP Thu Nov 8 23:39:32 UTC 2018 x8664 x8664 x8664 GNU/Linux</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看CPU型号</span></span><br><span class="line">[root@sdw1 third]# cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br><span class="line">     20  Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz</span><br><span class="line">     </span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存总量</span></span><br><span class="line">[root@sdw1 third]# grep MemTotal /proc/meminfo</span><br><span class="line">MemTotal:       32346828 kB</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看磁盘空间大小</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> df -h</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看当前文件夹所有文件大小</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> du -sh</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看指定文件夹大小</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> du -h /data</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看指定文件夹下所有文件的大小</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> du -h /data/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看指定文件大小</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> du -h data.log查看目录挂载点</span></span><br><span class="line">df /data加上-kh以g单位显示</span><br><span class="line">df /data -kh</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="python启动一个下载服务"><a href="#python启动一个下载服务" class="headerlink" title="python启动一个下载服务"></a>python启动一个下载服务</h1><p>1.把Desktop目录当成根目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Desktop</span><br></pre></td></tr></table></figure>
+
+<p>2.python2启动下载服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 -m SimpleHttpServer</span><br></pre></td></tr></table></figure>
+<p>3.python3启动下载服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210521160143926.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210521160143926.png" srcset="data:image/png;base64,666" alt="image-20210521160143926"></p>
+<p>4.浏览器访问<a target="_blank" rel="noopener" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210521160201980.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210521160201980.png" srcset="data:image/png;base64,666" alt="image-20210521160201980"></p>
+<h2 id="python3安装"><a href="#python3安装" class="headerlink" title="python3安装"></a>python3安装</h2><p>centos的yum库是没有python3的，有网络的时候可以通过添加<code>epel-release</code>再通过yum安装：</p>
+<ol>
+<li><p>下载epel：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></li>
+<li><p>安装python3：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y python36</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure></li>
+<li><p>验证</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 --version</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Python 3.6.8</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h1 id="查看IO"><a href="#查看IO" class="headerlink" title="查看IO"></a>查看IO</h1><p>为了方便各位和自己今后遇到此类问题能尽快解决，我这里将查看<a target="_blank" rel="noopener" href="http://linux.chinaitlab.com/">linux</a>服务器硬盘IO访问负荷的方法同大家一起分享：</p>
+<h2 id="top命令查看"><a href="#top命令查看" class="headerlink" title="top命令查看"></a>top命令查看</h2><p>​        top - 16:15:05 up 6 days, 6:25, 2 users, load average: 1.45, 1.77, 2.14</p>
+<p>　　Tasks: 147 total,  1 running, 146 sleeping,  0 stopped,  0 zombie</p>
+<p>　　Cpu(s): 0.2% us, 0.2% sy, 0.0% ni, 86.9% id, 12.6% wa, 0.0% hi, 0.0% si</p>
+<p>　　Mem:  4037872k total, 4003648k used,  34224k free,   5512k buffers</p>
+<p>　　Swap: 7164948k total,  629192k used, 6535756k free, 3511184k cached</p>
+<p>　　查看12.6% wa</p>
+<p>　　IO等待所占用的CPU时间的百分比,高过30%时IO压力高</p>
+<h2 id="用iostat-x-1-10"><a href="#用iostat-x-1-10" class="headerlink" title="用iostat -x 1 10"></a>用iostat -x 1 10</h2><p>　　如果 iostat 没有，要 yum install sysstat</p>
+<p>　　avg-cpu: %user  %nice  %sys %iowait  %idle</p>
+<p>　　0.00    0.00   0.25  33.46  66.29</p>
+<p>　　Device:  rrqm/s wrqm/s  r/s  w/s   rsec/s  wsec/s  rkB/s  wkB/s avgrq-sz avgqu-sz  await svctm %util</p>
+<p>　　sda     0.00  0.00   0.00  0.00  0.00  0.00     0.00   0.00   0.00      0.00  0.00  0.00  0.00</p>
+<p>　　sdb     0.00  1122 17.00 9.00 192.00 9216.00  96.00 4608.00  123.79  137.23 1033.43 13.17 100.10</p>
+<p>　　sdc     0.00  0.00   0.00  0.00   0.00   0.00   0.00   0.00   0.00       0.00  0.00   0.00  0.00</p>
+<p>　　查看%util 100.10 %idle 66.29</p>
+<p>　　如果 %util 接近 100%，说明产生的I/O请求太多，I/O系统已经满负荷，该磁盘可能存在瓶颈。</p>
+<p>　　idle小于70% IO压力就较大了,一般读取速度有较多的wait.</p>
+<p>　　同时可以结合vmstat 查看查看b参数(等待资源的进程数)</p>
+<h2 id="vmstat-1"><a href="#vmstat-1" class="headerlink" title="vmstat -1"></a>vmstat -1</h2><p>　　如果你想对硬盘做一个IO负荷的压力<a target="_blank" rel="noopener" href="http://softtest.chinaitlab.com/">测试</a>可以用如下命令</p>
+<p>　　time dd if=/dev/zero bs=1M count=2048 of=direct_2G</p>
+<p>　　此命令为在当前目录下新建一个2G的文件</p>
+<p>　　我们在新建文件夹的同时来<a target="_blank" rel="noopener" href="http://softtest.chinaitlab.com/">测试</a>IO的负荷情况</p>
+<p>　　再通过如下脚本查看高峰的进程io情况</p>
+<p>　　monitor_io_stats.sh</p>
+<p>　　#!/bin/sh</p>
+<p>　　/etc/init.d/syslog stop</p>
+<p>　　echo 1 &gt; /proc/sys/vm/block_dump</p>
+<p>　　sleep 60</p>
+<p>　　dmesg | awk ‘/(READ|WRITE|dirtied)/ {process[$1]++} END {for (x in process) \</p>
+<p>　　print process[x],x}’ |sort -nr |awk ‘{print $2 “ “ $1}’ | \</p>
+<p>　　head -n 10</p>
+<p>　　echo 0 &gt; /proc/sys/vm/block_dump</p>
+<p>　　/etc/init.d/syslog start</p>
+<p>　　或者用iodump.pl脚本</p>
+
   
   
     
@@ -511,10 +571,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-22T09:45:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-27T19:00:13+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年2月22日</p>
+    <p>更新于：2021年5月27日</p>
   </a>
 </div>
 
@@ -613,13 +673,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：301字</p>
+      <p>字数：1.1k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：5分钟</p>
     </a>
   </div>
 
@@ -687,7 +747,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS7%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">CentOS7常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4copy%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">1、服务器之间copy文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">2、防火墙相关操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS%E4%B9%8B%E9%97%B4%E8%AE%BE%E7%BD%AE%E5%85%8D%E5%AF%86%E8%AE%BF%E9%97%AE"><span class="toc-number">2.</span> <span class="toc-text">CentOS之间设置免密访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5"><span class="toc-number">2.1.</span> <span class="toc-text">一、准备阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BE%E7%BD%AEhosts"><span class="toc-number">2.2.</span> <span class="toc-text">二、设置hosts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%AF%8F%E5%8F%B0%E6%9C%BA%E5%99%A8%E8%AE%BE%E7%BD%AEhostname%EF%BC%88%E4%B8%BB%E6%9C%BA%E5%90%8D%E7%A7%B0%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">三、每台机器设置hostname（主机名称）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BB%99%E6%AF%8F%E5%8F%B0%E6%9C%BA%E5%99%A8%E7%94%9F%E6%88%90ssh%E5%AF%86%E9%92%A5"><span class="toc-number">2.4.</span> <span class="toc-text">四、给每台机器生成ssh密钥</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS7%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">CentOS7常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4copy%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">1、服务器之间copy文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%98%B2%E7%81%AB%E5%A2%99%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">2、防火墙相关操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS%E4%B9%8B%E9%97%B4%E8%AE%BE%E7%BD%AE%E5%85%8D%E5%AF%86%E8%AE%BF%E9%97%AE"><span class="toc-number">2.</span> <span class="toc-text">CentOS之间设置免密访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5"><span class="toc-number">2.1.</span> <span class="toc-text">一、准备阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BE%E7%BD%AEhosts"><span class="toc-number">2.2.</span> <span class="toc-text">二、设置hosts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%AF%8F%E5%8F%B0%E6%9C%BA%E5%99%A8%E8%AE%BE%E7%BD%AEhostname%EF%BC%88%E4%B8%BB%E6%9C%BA%E5%90%8D%E7%A7%B0%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">三、每台机器设置hostname（主机名称）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BB%99%E6%AF%8F%E5%8F%B0%E6%9C%BA%E5%99%A8%E7%94%9F%E6%88%90ssh%E5%AF%86%E9%92%A5"><span class="toc-number">2.4.</span> <span class="toc-text">四、给每台机器生成ssh密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90"><span class="toc-number">2.5.</span> <span class="toc-text">五、查看系统资源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python3%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">python3安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#top%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B"><span class="toc-number">4.</span> <span class="toc-text">top命令查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8iostat-x-1-10"><span class="toc-number">5.</span> <span class="toc-text">用iostat -x 1 10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vmstat-1"><span class="toc-number">6.</span> <span class="toc-text">vmstat -1</span></a></li></ol>
     </div>
   </section>
 

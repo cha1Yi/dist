@@ -73,6 +73,31 @@
     
     
     <entry>
+      <title>Mac使用prometheus</title>
+      <link href="/dist/2021/05/27/Mac%E4%BD%BF%E7%94%A8prometheus/"/>
+      <url>/dist/2021/05/27/Mac%E4%BD%BF%E7%94%A8prometheus/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装prometheus"><a href="#安装prometheus" class="headerlink" title="安装prometheus"></a>安装prometheus</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ brew install prometheus</span><br><span class="line"></span><br><span class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/prometheus-2.25.2.big_sur.bottle.tar.gz</span><br><span class="line">==&gt; Downloading from https://d29vzk4ow07wi7.cloudfront.net/3ebbcb9f2988c8663d54b7582c8934656c6f1c6f80e43b8a9071d74298bc5d90?response-content-disposition=attachment%3Bfilename%3D%22prometheus-2.25.2.big_su</span><br><span class="line"><span class="comment">######################################################################## 100.0%</span></span><br><span class="line">==&gt; Pouring prometheus-2.25.2.big_sur.bottle.tar.gz</span><br><span class="line">==&gt; Caveats</span><br><span class="line">When run from `brew services`, `prometheus` is run from</span><br><span class="line">`prometheus_brew_services` and uses the flags <span class="keyword">in</span>:</span><br><span class="line">   /usr/<span class="built_in">local</span>/etc/prometheus.args</span><br><span class="line"></span><br><span class="line">To have launchd start prometheus now and restart at login:</span><br><span class="line">  brew services start prometheus</span><br><span class="line">Or, <span class="keyword">if</span> you don<span class="string">&#x27;t want/need a background service you can just run:</span></span><br><span class="line"><span class="string">  prometheus --config.file=/usr/local/etc/prometheus.yml</span></span><br><span class="line"><span class="string">==&gt; Summary</span></span><br><span class="line"><span class="string">🍺  /usr/local/Cellar/prometheus/2.25.2: 21 files, 156.4MB</span></span><br><span class="line"><span class="string">==&gt; `brew cleanup` has not been run in 30 days, running now...</span></span><br><span class="line"><span class="string">Pruned 0 symbolic links and 54 directories from /usr/local</span></span><br></pre></td></tr></table></figure><p>启动：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prometheus --web.listen-address=<span class="string">&quot;0.0.0.0:9040&quot;</span> --config.file=/usr/<span class="built_in">local</span>/etc/prometheus.yml</span><br></pre></td></tr></table></figure><h1 id="安装brew-install-grafana"><a href="#安装brew-install-grafana" class="headerlink" title="安装brew install grafana"></a>安装brew install grafana</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ brew install grafana</span><br><span class="line">==&gt; Downloading https://homebrew.bintray.com/bottles/grafana-7.5.1.big_sur.bottle.tar.gz</span><br><span class="line">==&gt; Downloading from https://d29vzk4ow07wi7.cloudfront.net/9aa51026c2292a6e18d2a678396f35508404cd79e06e5fcc797bd3431c039b40?response-content-disposition=attachment%3Bfilename%3D%22grafana-7.5.1.big_sur.bo</span><br><span class="line"><span class="comment">######################################################################## 100.0%</span></span><br><span class="line">==&gt; Pouring grafana-7.5.1.big_sur.bottle.tar.gz</span><br><span class="line">==&gt; Caveats</span><br><span class="line">To have launchd start grafana now and restart at login:</span><br><span class="line">  brew services start grafana</span><br><span class="line">Or, <span class="keyword">if</span> you don<span class="string">&#x27;t want/need a background service you can just run:</span></span><br><span class="line"><span class="string">  grafana-server --config=/usr/local/etc/grafana/grafana.ini --homepath /usr/local/share/grafana --packaging=brew cfg:default.paths.logs=/usr/local/var/log/grafana cfg:default.paths.data=/usr/local/var/lib/grafana cfg:default.paths.plugins=/usr/local/var/lib/grafana/plugins</span></span><br><span class="line"><span class="string">==&gt; Summary</span></span><br><span class="line"><span class="string">🍺  /usr/local/Cellar/grafana/7.5.1: 2,663 files, 179.5MB</span></span><br></pre></td></tr></table></figure><p>浏览器访问<a href="http://localhost:3000就可以看到Grafana页面">http://localhost:3000就可以看到Grafana页面</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 运维 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Greenplum学习</title>
       <link href="/dist/2021/05/21/greenplum%E5%AD%A6%E4%B9%A0/"/>
       <url>/dist/2021/05/21/greenplum%E5%AD%A6%E4%B9%A0/</url>

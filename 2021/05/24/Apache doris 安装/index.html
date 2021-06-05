@@ -1,0 +1,2200 @@
+<!DOCTYPE html>
+<html lang="cn_Zh">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/dist/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>Apache doris安装 - YiDan の dada</title>
+  
+    <meta name="keywords" content="数据库">
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/dist/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/dist/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/dist/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/dist/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/
+                  
+                  
+                  
+                    id="dist"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/categories/
+                  
+                  
+                  
+                    id="distcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/tags/
+                  
+                  
+                  
+                    id="disttags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/archives/
+                  
+                  
+                  
+                    id="distarchives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/about/
+                  
+                  
+                  
+                    id="distabout"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/
+                  
+                  
+                  
+                    id="dist"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/categories/
+                  
+                  
+                  
+                    id="distcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/tags/
+                  
+                  
+                  
+                    id="disttags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/archives/
+                  
+                  
+                  
+                    id="distarchives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/dist/about/
+                  
+                  
+                  
+                    id="distabout"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+      <img no-lazy class='logo' src='https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png'/>
+    
+    
+      <p class="title">YiDan の dada</p>
+    
+    
+      <p class="subtitle">一起code代码</p>
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Apache doris安装
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/dist/" rel="nofollow">
+    <img no-lazy src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/logo.png">
+    <p>wuxuan.chai</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 24, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Apache doris安装" data-path="/dist/2021/05/24/Apache%20doris%20%E5%AE%89%E8%A3%85/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="Apache-Doris-简单介绍"><a href="#Apache-Doris-简单介绍" class="headerlink" title="Apache Doris 简单介绍"></a>Apache Doris 简单介绍</h2><p>YouTube介绍<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=0c2bt8gd6W8">https://www.youtube.com/watch?v=0c2bt8gd6W8</a></p>
+<h2 id="Apache-Doris编译"><a href="#Apache-Doris编译" class="headerlink" title="Apache Doris编译"></a>Apache Doris编译</h2><p>由于Apache Doris没有提供安装包，只有通过官方提供的SourceCode编译才能够进行接下来的安装，所以在本地Mac执行了编译过程，官方推荐使用Docker环境进行编译，官方提供了具有编译的环境的docker镜像，不推荐使用centos自行编译，坑很多，本人踩过后，然以失败告终。so</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull apachedoris/doris-dev:build-env-1.2</span><br><span class="line">$ docker run -it -v /Users/wuxuan.chai/.m2:/root/.m2 -v /Users/wuxuan.chai/Documents/application/doris/:/root/incubator-doris-DORIS-0.13.0-release/ apachedoris/doris-dev:build-env-1.2</span><br><span class="line">$ <span class="built_in">cd</span> incubator-doris-DORIS-0.13.0-release &amp; wget https://www.apache.org/dyn/closer.cgi?path=/incubator/doris/0.13.0-incubating/apache-doris-0.13.0-incubating-src.tar.gz</span><br><span class="line">$ tar -zxvf apache-doris-0.13.0-incubating-src.tar.gz</span><br><span class="line"><span class="comment"># 安装java环境 PE依赖java,配置java环境变量$JAVA_HOME (必须要有jdk，因为后面编译fe的时候是通过maven编译，没有jdk，编译报错)</span></span><br><span class="line">$ yum install java-1.8.0-openjdk.x86_64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行编译Apache Doris脚本</span></span><br><span class="line">$ <span class="built_in">cd</span> incubator-doris-0.13.0-rc03</span><br><span class="line">$ sh build.sh</span><br></pre></td></tr></table></figure>
+<p>耐心等待。。。。大概需要一个半小时。。。。</p>
+<p>编译过程中maven依赖下载的时候会出错，需要改fe项目的pom文件</p>
+<p>具体操作见：<a target="_blank" rel="noopener" href="https://github.com/apache/incubator-doris/pull/4769/files#diff-ac3be7b9da003e43f78a9a5782e8a2967b476b2a63deb57faab013b2de12810c">https://github.com/apache/incubator-doris/pull/4769/files#diff-ac3be7b9da003e43f78a9a5782e8a2967b476b2a63deb57faab013b2de12810c</a></p>
+<p>这里将编译后的output文件夹上传到各个集群机器</p>
+<h2 id="机器准备"><a href="#机器准备" class="headerlink" title="机器准备"></a>机器准备</h2><table>
+<thead>
+<tr>
+<th align="center">机器ip</th>
+<th align="center">CPU</th>
+<th align="center">内存</th>
+<th align="center">磁盘</th>
+<th align="center">安装服务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10.200.50.71</td>
+<td align="center">8</td>
+<td align="center">16G</td>
+<td align="center">450G</td>
+<td align="center">BE-01</td>
+</tr>
+<tr>
+<td align="center">10.200.50.72</td>
+<td align="center">8</td>
+<td align="center">16G</td>
+<td align="center">100G</td>
+<td align="center">BE-02</td>
+</tr>
+<tr>
+<td align="center">10.200.50.73</td>
+<td align="center">8</td>
+<td align="center">16G</td>
+<td align="center">480G</td>
+<td align="center">BE-03</td>
+</tr>
+<tr>
+<td align="center">10.200.50.74</td>
+<td align="center">8</td>
+<td align="center">8G</td>
+<td align="center">100G</td>
+<td align="center">FE</td>
+</tr>
+</tbody></table>
+<h3 id="fe安装"><a href="#fe安装" class="headerlink" title="fe安装"></a>fe安装</h3><p>1、安装jdk &gt;1.8，添加环境变量</p>
+<p>2、将output中的fe包copy到适当目录，并做如下初始化操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/etc &amp;&amp; copy -r ~/output/pe .</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> doris-meta 是默认的数据存储位置，可在<span class="variable">$&#123;DORIS_HOME&#125;</span>/conf/fe.conf 中设置</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/etc/pe/ &amp;&amp; mkidr doris-meta</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置DORIS_HOME环境变量</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat /etc/profile <span class="built_in">export</span> DORIS_HOME=/usr/etc/pe &amp;&amp; <span class="built_in">source</span> /etc/profile</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动doris-fe</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sh /usr/etc/fe/bin/start_fe.sh --daemon</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止doris-fe</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sh /usr/etc/fe/bin/stop_fe.sh</span></span><br></pre></td></tr></table></figure>
+<p>测试fe是否启动成功：</p>
+<p>访问：</p>
+<p><a target="_blank" rel="noopener" href="http://10.200.50.74:8030/api/bootstrap">http://fe_ip:fe_http_port/api/bootstrap</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;replayedJournalId&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;queryPort&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;rpcPort&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;status&quot;</span>: <span class="string">&quot;OK&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;msg&quot;</span>: <span class="string">&quot;Success&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="be安装"><a href="#be安装" class="headerlink" title="be安装"></a>be安装</h3><p>设置be的数据存储位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/etc &amp;&amp; copy -r ~/output/pe .</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> storage是数据存储的位置，可在<span class="variable">$&#123;DORIS_HOME&#125;</span>/conf/be.conf 中设置</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/etc/be &amp;&amp; mkdir storage</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置DORIS_HOME环境变量</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat /etc/profile <span class="built_in">export</span> DORIS_HOME=/usr/etc/be &amp;&amp; <span class="built_in">source</span> /etc/profile</span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>安装be端的mysql-client</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -ivh https:&#x2F;&#x2F;repo.mysql.com&#x2F;&#x2F;mysql57-community-release-el7-11.noarch.rpm</span><br><span class="line">$ yum install mysql-community-client.x86_64 -y</span><br></pre></td></tr></table></figure>
+<p>be端通过mysql-client进入fe端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># port 为 pe&#x2F;config&#x2F;fe.conf 中的 query_port &#x3D; 9030 </span><br><span class="line">$ mysql -h 10.200.50.74 -P 9030 -uroot</span><br></pre></td></tr></table></figure>
+<p>添加be服务到fe：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 添加be</span><br><span class="line">$ ALTER SYSTEM ADD BACKEND &quot;10.200.50.71:9050&quot;;</span><br><span class="line"># 删除be：</span><br><span class="line">$ ALTER SYSTEM dropp BACKEND &quot;10.200.0.51:9050&quot;;</span><br></pre></td></tr></table></figure>
+<p>启动be：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;usr&#x2F;etc&#x2F;be&#x2F;bin &amp;&amp; sh start_be.sh --daemon</span><br></pre></td></tr></table></figure>
+<p>查看be是否启动成功</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://10.200.50.74:8030/backend"> http://fe_ip:fe_http_port/backend</a></p>
+<p>查看当前安装的be的心跳是否被fe监听到</p>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210525101555447.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210525101555447.png" srcset="data:image/png;base64,666" alt="image-20210525101555447"></p>
+<p>也可以访问be端的监控页面查看：</p>
+<p>访问：<a target="_blank" rel="noopener" href="http://10.200.50.71:8040/">http://be-ip:webserver_port</a></p>
+<p><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210525101856889.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210525101856889.png" srcset="data:image/png;base64,666" alt="image-20210525101856889"></p>
+<p>到此一个简单的Doris集群部署完成，其中包括一个fe节点和三个be节点，因为我不用从hdfs导入数据，所以没有部署fs_broker,如有需要在做介绍。</p>
+<h2 id="Doris使用"><a href="#Doris使用" class="headerlink" title="Doris使用"></a>Doris使用</h2><p>因为Doris是一个基于Mysql标准协议的MPP架构数据引擎，所以操作起来和TiDB、Mysql都一样。没有额外的学习成本。</p>
+<p>进入fe服务，安装mysql-client（见be安装步骤）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在fe可以这么写</span></span><br><span class="line">$ mysql -h 127.0.0.1 -P 9030 </span><br><span class="line"><span class="comment"># 在别的机器，如果当前机器安装了mysql-client之后</span></span><br><span class="line">$ mysql -h 10.200.50.74 (fe机器Ip) -P 9030 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE wi;</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br><span class="line">use wi;</span><br></pre></td></tr></table></figure>
+<p>建表操作</p>
+<p>可以通过mysql-client 执行help create table查看建表的规范</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help <span class="keyword">create</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="建测试表"><a href="#建测试表" class="headerlink" title="建测试表"></a>建测试表</h3><p>建立一个名字为 table1 的逻辑表。分桶列为 siteid，桶数为 10。</p>
+<p>这个表的 schema 如下：</p>
+<ul>
+<li>siteid：类型是INT（4字节）, 默认值为10</li>
+<li>citycode：类型是SMALLINT（2字节）</li>
+<li>username：类型是VARCHAR, 最大长度为32, 默认值为空字符串</li>
+<li>pv：类型是BIGINT（8字节）, 默认值是0; 这是一个指标列, Doris内部会对指标列做聚合操作, 这个列的聚合方法是求和（SUM）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table1</span><br><span class="line">(</span><br><span class="line">    siteid <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;10&#x27;</span>,</span><br><span class="line">    citycode <span class="type">SMALLINT</span>,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    pv <span class="type">BIGINT</span> SUM <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line">)</span><br><span class="line">AGGREGATE KEY(siteid, citycode, username)</span><br><span class="line">DISTRIBUTED <span class="keyword">BY</span> HASH(siteid) BUCKETS <span class="number">10</span></span><br><span class="line">PROPERTIES(&quot;replication_num&quot; <span class="operator">=</span> &quot;1&quot;);</span><br></pre></td></tr></table></figure>
+<h4 id="复合分区"><a href="#复合分区" class="headerlink" title="复合分区"></a>复合分区</h4><p>建立一个名字为 table2 的逻辑表。</p>
+<p>这个表的 schema 如下：</p>
+<ul>
+<li>event_day：类型是DATE，无默认值</li>
+<li>siteid：类型是INT（4字节）, 默认值为10</li>
+<li>citycode：类型是SMALLINT（2字节）</li>
+<li>username：类型是VARCHAR, 最大长度为32, 默认值为空字符串</li>
+<li>pv：类型是BIGINT（8字节）, 默认值是0; 这是一个指标列, Doris 内部会对指标列做聚合操作, 这个列的聚合方法是求和（SUM）</li>
+</ul>
+<p>我们使用 event_day 列作为分区列，建立3个分区: p201706, p201707, p201708</p>
+<ul>
+<li>p201706：范围为 [最小值, 2017-07-01)</li>
+<li>p201707：范围为 [2017-07-01, 2017-08-01)</li>
+<li>p201708：范围为 [2017-08-01, 2017-09-01)</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table2</span><br><span class="line">(</span><br><span class="line">    event_day <span class="type">DATE</span>,</span><br><span class="line">    siteid <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;10&#x27;</span>,</span><br><span class="line">    citycode <span class="type">SMALLINT</span>,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    pv <span class="type">BIGINT</span> SUM <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line">)</span><br><span class="line">AGGREGATE KEY(event_day, siteid, citycode, username)</span><br><span class="line"><span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span>(event_day)</span><br><span class="line">(</span><br><span class="line">    <span class="keyword">PARTITION</span> p201706 <span class="keyword">VALUES</span> LESS THAN (<span class="string">&#x27;2017-07-01&#x27;</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p201707 <span class="keyword">VALUES</span> LESS THAN (<span class="string">&#x27;2017-08-01&#x27;</span>),</span><br><span class="line">    <span class="keyword">PARTITION</span> p201708 <span class="keyword">VALUES</span> LESS THAN (<span class="string">&#x27;2017-09-01&#x27;</span>)</span><br><span class="line">)</span><br><span class="line">DISTRIBUTED <span class="keyword">BY</span> HASH(siteid) BUCKETS <span class="number">10</span></span><br><span class="line">PROPERTIES(&quot;replication_num&quot; <span class="operator">=</span> &quot;1&quot;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意事项：</p>
+<ol>
+<li>上述表通过设置 replication_num 建的都是单副本的表，Doris建议用户采用默认的 3 副本设置，以保证高可用。</li>
+<li>可以对复合分区表动态的增删分区。详见 <code>HELP ALTER TABLE</code> 中 Partition 相关部分。</li>
+<li>数据导入可以导入指定的 Partition。详见 <code>HELP LOAD</code>。</li>
+<li>可以动态修改表的 Schema。</li>
+<li>可以对 Table 增加上卷表（Rollup）以提高查询性能，这部分可以参见高级使用指南关于 Rollup 的描述。</li>
+<li>表的列的Null属性默认为true，会对查询性能有一定的影响。</li>
+</ol>
+</blockquote>
+<h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><p>以10.1.1.31机器中的bi_test_crs_0505的asset_record为例</p>
+<p>将此表作为Doris的mysql外部表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> asset_reocrd_mysql (</span><br><span class="line">	`id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;主键UUID&#x27;</span>,</span><br><span class="line">  `card_no` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;卡号（用于会员），打印小票（用于普通顾客）&#x27;</span>,</span><br><span class="line">  `flow_type` tinyint(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;流水类型: 1-卡资产流水  2: 托管单流水&#x27;</span>,</span><br><span class="line">  `merchant_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;商户ID&#x27;</span>,</span><br><span class="line">  `merchant_name` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;商户名称&#x27;</span>,</span><br><span class="line">  `shop_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;门店ID&#x27;</span>,</span><br><span class="line">  `shop_code` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;门店编码&#x27;</span>,</span><br><span class="line">  `shop_name` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;门店名称&#x27;</span>,</span><br><span class="line">  `member_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员ID&#x27;</span>,</span><br><span class="line">  `member_name` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员姓名&#x27;</span>,</span><br><span class="line">  `id_number` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员身份证&#x27;</span>,</span><br><span class="line">  `mobile_number` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员手机号&#x27;</span>,</span><br><span class="line">  `member_level` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员等级&#x27;</span>,</span><br><span class="line">  `member_level_name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员等级名称&#x27;</span>,</span><br><span class="line">  `member_type` tinyint(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员类别 0-会员 1-非会员&#x27;</span>,</span><br><span class="line">  `ref_member_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;引用会员ID&#x27;</span>,</span><br><span class="line">  `biz_code` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;业务编码&#x27;</span>,</span><br><span class="line">  `amount` <span class="type">decimal</span>(<span class="number">15</span>,<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;数额&#x27;</span>,</span><br><span class="line">  `amount2` <span class="type">decimal</span>(<span class="number">15</span>,<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;数额2&#x27;</span>,</span><br><span class="line">  `asset_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;资产ID&#x27;</span>,</span><br><span class="line">  `asset_type` tinyint(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;资产类型：0查游戏币，1查彩票，2查银票卡，3查游戏券， 4押金&#x27;</span>,</span><br><span class="line">  `change_flag` tinyint(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;资产变化：0: 增加可用资产, 1: 减少可用资产, 2：增加冻结资产, 3：减少冻结资产&#x27;</span>,</span><br><span class="line">  `order_code` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;订单编码&#x27;</span>,</span><br><span class="line">  `param1` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;参数1&#x27;</span>,</span><br><span class="line">  `param2` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;参数2&#x27;</span>,</span><br><span class="line">  `param3` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;参数3&#x27;</span>,</span><br><span class="line">  `parent_asset_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;主资产id&#x27;</span>,</span><br><span class="line">  `create_time` datetime <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">  `creator_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人ID&#x27;</span>,</span><br><span class="line">  `creator_name` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人名称&#x27;</span>,</span><br><span class="line">  `create_pos_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建机台ID&#x27;</span>,</span><br><span class="line">  `create_pos_name` <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建机台名称&#x27;</span>,</span><br><span class="line">  `cashier_type` tinyint(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;收银台类型：0.收银台,1.兑奖台,2.一体机,3.取币机,4.存币机&#x27;</span>,</span><br><span class="line">  `machine_category_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台分类ID&#x27;</span>,</span><br><span class="line">  `machine_category_name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台分类名称&#x27;</span>,</span><br><span class="line">  `machine_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台类型ID&#x27;</span>,</span><br><span class="line">  `machine_name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台类型名称&#x27;</span>,</span><br><span class="line">  `machine_instance_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台实例ID&#x27;</span>,</span><br><span class="line">  `machine_instance_name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台实例名称&#x27;</span>,</span><br><span class="line">  `machine_instance_slot_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;投币口ID&#x27;</span>,</span><br><span class="line">  `device_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;刷卡器ID&#x27;</span>,</span><br><span class="line">  `device_name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;刷卡器名称&#x27;</span>,</span><br><span class="line">  `record_status` tinyint(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;流水状态：0:正常,1:异常&#x27;</span>,</span><br><span class="line">  `record_seq` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;同一操作产生的多条流水的流水序号&#x27;</span>,</span><br><span class="line">  `remark` <span class="type">varchar</span>(<span class="number">5000</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;备注&#x27;</span>,</span><br><span class="line">  `machine_instance_slot_no` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台投币口序号&#x27;</span>,</span><br><span class="line">  `source_type` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;数据来源：0-saas,1-迁移&#x27;</span>,</span><br><span class="line">  `ref_asset_id` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;关联ID&#x27;</span>,</span><br><span class="line">  `ref_asset_type` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;关联类型 (1 SVIP赠送)&#x27;</span>,</span><br><span class="line">  `business_model` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台营业模式&#x27;</span>,</span><br><span class="line">  `item_drop_type` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;物品掉落类型 none:无 coin:游戏币 lottery:飞豆 gift:礼品&#x27;</span></span><br><span class="line">)</span><br><span class="line">ENGINE<span class="operator">=</span>mysql</span><br><span class="line">COMMENT <span class="string">&#x27;会员流水mysql外部表&#x27;</span></span><br><span class="line">PROPERTIES(</span><br><span class="line">		&quot;host&quot; <span class="operator">=</span> &quot;10.1.1.31&quot;,</span><br><span class="line">    &quot;port&quot; <span class="operator">=</span> &quot;4001&quot;,</span><br><span class="line">    &quot;user&quot; <span class="operator">=</span> &quot;test_allen&quot;,</span><br><span class="line">    &quot;password&quot; <span class="operator">=</span> &quot;allen@97541&quot;,</span><br><span class="line">    &quot;database&quot; <span class="operator">=</span> &quot;bi_test_crs_0505&quot;,</span><br><span class="line">    &quot;table&quot; <span class="operator">=</span> &quot;asset_record&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>创建OLAP引擎表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> wi.p_asset_record (</span><br><span class="line">	`id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;主键UUID&#x27;</span>,</span><br><span class="line">	`member_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员ID&#x27;</span>,</span><br><span class="line">	`card_no` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;卡号（用于会员），打印小票（用于普通顾客）&#x27;</span>,</span><br><span class="line">	`order_code` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;订单编码&#x27;</span>,</span><br><span class="line">	`shop_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;门店ID&#x27;</span>,</span><br><span class="line">	`ref_member_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;引用会员ID&#x27;</span>,</span><br><span class="line">	`create_time` datetime <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">	`flow_type` TINYINT ( <span class="number">4</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;流水类型: 1-卡资产流水  2: 托管单流水&#x27;</span>,</span><br><span class="line">	`merchant_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;商户ID&#x27;</span>,</span><br><span class="line">	`merchant_name` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;商户名称&#x27;</span>,</span><br><span class="line">	`shop_code` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;门店编码&#x27;</span>,</span><br><span class="line">	`shop_name` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;门店名称&#x27;</span>,</span><br><span class="line">	`member_name` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员姓名&#x27;</span>,</span><br><span class="line">	`id_number` <span class="type">VARCHAR</span> ( <span class="number">100</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员身份证&#x27;</span>,</span><br><span class="line">	`mobile_number` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员手机号&#x27;</span>,</span><br><span class="line">	`member_level` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员等级&#x27;</span>,</span><br><span class="line">	`member_level_name` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员等级名称&#x27;</span>,</span><br><span class="line">	`member_type` TINYINT ( <span class="number">4</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;会员类别 0-会员 1-非会员&#x27;</span>,</span><br><span class="line">	`biz_code` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;业务编码&#x27;</span>,</span><br><span class="line">	`amount` <span class="type">DECIMAL</span> ( <span class="number">15</span>, <span class="number">2</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;数额&#x27;</span>,</span><br><span class="line">	`amount2` <span class="type">DECIMAL</span> ( <span class="number">15</span>, <span class="number">2</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;数额2&#x27;</span>,</span><br><span class="line">	`asset_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;资产ID&#x27;</span>,</span><br><span class="line">	`asset_type` TINYINT ( <span class="number">4</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;资产类型：0查游戏币，1查彩票，2查银票卡，3查游戏券， 4押金&#x27;</span>,</span><br><span class="line">	`change_flag` TINYINT ( <span class="number">4</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;资产变化：0: 增加可用资产, 1: 减少可用资产, 2：增加冻结资产, 3：减少冻结资产&#x27;</span>,</span><br><span class="line">	`param1` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;参数1&#x27;</span>,</span><br><span class="line">	`param2` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;参数2&#x27;</span>,</span><br><span class="line">	`param3` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;参数3&#x27;</span>,</span><br><span class="line">	`parent_asset_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;主资产id&#x27;</span>,</span><br><span class="line">	`creator_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人ID&#x27;</span>,</span><br><span class="line">	`creator_name` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人名称&#x27;</span>,</span><br><span class="line">	`create_pos_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建机台ID&#x27;</span>,</span><br><span class="line">	`create_pos_name` <span class="type">VARCHAR</span> ( <span class="number">200</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建机台名称&#x27;</span>,</span><br><span class="line">	`cashier_type` TINYINT ( <span class="number">4</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;收银台类型：0.收银台,1.兑奖台,2.一体机,3.取币机,4.存币机&#x27;</span>,</span><br><span class="line">	`machine_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台类型ID&#x27;</span>,</span><br><span class="line">	`machine_category_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台分类ID&#x27;</span>,</span><br><span class="line">	`machine_category_name` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台分类名称&#x27;</span>,</span><br><span class="line">	`machine_name` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台类型名称&#x27;</span>,</span><br><span class="line">	`machine_instance_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台实例ID&#x27;</span>,</span><br><span class="line">	`machine_instance_name` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台实例名称&#x27;</span>,</span><br><span class="line">	`machine_instance_slot_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;投币口ID&#x27;</span>,</span><br><span class="line">	`device_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;刷卡器ID&#x27;</span>,</span><br><span class="line">	`device_name` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;刷卡器名称&#x27;</span>,</span><br><span class="line">	`record_status` TINYINT ( <span class="number">4</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;流水状态：0:正常,1:异常&#x27;</span>,</span><br><span class="line">	`record_seq` <span class="type">INT</span> ( <span class="number">11</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;同一操作产生的多条流水的流水序号&#x27;</span>,</span><br><span class="line">	`remark` <span class="type">VARCHAR</span> ( <span class="number">5000</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;备注&#x27;</span>,</span><br><span class="line">	`machine_instance_slot_no` <span class="type">INT</span> ( <span class="number">11</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台投币口序号&#x27;</span>,</span><br><span class="line">	`source_type` <span class="type">INT</span> ( <span class="number">11</span> ) <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;数据来源：0-saas,1-迁移&#x27;</span>,</span><br><span class="line">	`ref_asset_id` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;关联ID&#x27;</span>,</span><br><span class="line">	`ref_asset_type` <span class="type">INT</span> ( <span class="number">11</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;关联类型 (1 SVIP赠送)&#x27;</span>,</span><br><span class="line">	`business_model` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;机台营业模式&#x27;</span>,</span><br><span class="line">	`item_drop_type` <span class="type">VARCHAR</span> ( <span class="number">50</span> ) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;物品掉落类型 none:无 coin:游戏币 lottery:飞豆 gift:礼品&#x27;</span> ,</span><br><span class="line">  INDEX `idx_asset_record_2`(`member_id`) <span class="keyword">using</span> BITMAP COMMENT <span class="string">&#x27;member_id&#x27;</span>,</span><br><span class="line">	INDEX `idx_asset_record_3` (`card_no`) <span class="keyword">using</span> BITMAP COMMENT <span class="string">&#x27;member_id&#x27;</span>,</span><br><span class="line">	INDEX `idx_asset_record_4` (`order_code`) <span class="keyword">using</span> BITMAP COMMENT <span class="string">&#x27;member_id&#x27;</span>,</span><br><span class="line">	INDEX `idx_asset_record_6` (`ref_member_id`) <span class="keyword">using</span> BITMAP COMMENT <span class="string">&#x27;member_id&#x27;</span>,</span><br><span class="line">	INDEX `idx_asset_record_7` (`create_time`)	<span class="keyword">using</span> BITMAP COMMENT <span class="string">&#x27;member_id&#x27;</span>,</span><br><span class="line">	) </span><br><span class="line">	ENGINE <span class="operator">=</span> olap </span><br><span class="line">	<span class="keyword">UNIQUE</span> KEY ( `id`, `member_id`, `card_no`, `order_code`, `shop_id`, `ref_member_id`, `create_time` )</span><br><span class="line">  <span class="keyword">rollup</span> ((`shop_id`,`create_time`))</span><br><span class="line">	<span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span> ( `create_time` ) (</span><br><span class="line">	<span class="keyword">PARTITION</span> `p201701`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201702`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201703`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201704`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201705`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201706`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201707`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201708`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201709`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201710`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201711`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2017-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201712`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201801`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201802`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201803`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201804`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201805`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201806`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201807`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201808`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201809`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201810`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201811`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2018-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201812`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201901`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201902`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201903`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201904`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201905`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201906`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201907`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201908`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201909`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201910`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201911`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2019-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p201912`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202001`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202002`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202003`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202004`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202005`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202006`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202007`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202008`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202009`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202010`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202011`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2020-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202012`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202101`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202102`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202103`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202104`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202105`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202106`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202107`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202108`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202109`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202110`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202111`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2021-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202112`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202201`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202202`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202203`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202204`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202205`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202206`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202207`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202208`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202209`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202210`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202211`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2022-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202212`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202301`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202302`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202303`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202304`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202305`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202306`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202307`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202308`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202309`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202310`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202311`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2023-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202312`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202401`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202402`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202403`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202404`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202405`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202406`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202407`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202408`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202409`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202410`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202411`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2024-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202412`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-01-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202501`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-02-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202502`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-03-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202503`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-04-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202504`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-05-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202505`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-06-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202506`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-07-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202507`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-08-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202508`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-09-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202509`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-10-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202510`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-11-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202511`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2025-12-01 00:00:00&quot; ),</span><br><span class="line">		<span class="keyword">PARTITION</span> `p202512`</span><br><span class="line">	<span class="keyword">VALUES</span></span><br><span class="line">		LESS THAN ( &quot;2026-01-01 00:00:00&quot; )</span><br><span class="line">	) </span><br><span class="line">DISTRIBUTED <span class="keyword">BY</span> HASH ( `id`, `member_id`, `card_no`, `order_code`, `shop_id`, `ref_member_id` ) BUCKETS <span class="number">32</span> </span><br><span class="line">PROPERTIES ( &quot;replication_num&quot; <span class="operator">=</span> &quot;1&quot;, &quot;storage_type&quot; <span class="operator">=</span> &quot;column&quot; );</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：</p>
+<p>Doris的建表非常的严格：</p>
+<p>1、主键必须写在所有字段的前面</p>
+<p>2、分区键必须是主键</p>
+<p>3、分区键不支持表达式且没有MAXVALUE、MINVALUE这种方式的边界分区（后面测试会测试下，如果插入分区值大于分区条件的场景，确认下是否报错）</p>
+<p>4、分区键的值format很严格，date和datetime不是一类，必须写全</p>
+</blockquote>
+<h3 id="insert-query"><a href="#insert-query" class="headerlink" title="insert query"></a>insert query</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> asset_record <span class="keyword">with</span> LABEL label1  <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> asset_record_mysql limit <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 必须指定label</span></span><br></pre></td></tr></table></figure>
+<h3 id="CSV-导入数据"><a href="#CSV-导入数据" class="headerlink" title="CSV 导入数据"></a>CSV 导入数据</h3><p><a target="_blank" rel="noopener" href="https://doris.apache.org/master/zh-CN/administrator-guide/load-data/stream-load-manual.html#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86">参考文档</a></p>
+<p>Stream load命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --location-trusted -u root -T asset_record_2021-05-01.csv  -XPUT http://10.200.50.74:8030/api/wi/asset_record/_stream_load</span><br></pre></td></tr></table></figure>
+<p>为了导入便利，借助ck的mysql引擎，做了愚下操作,不用Doris的mysql外部表的原因，性能不稳定。所以写了如下的shell：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">begin_date=<span class="string">&quot;20170306&quot;</span></span><br><span class="line"><span class="comment">#end_date=&quot;20210507&quot;</span></span><br><span class="line">end_date=<span class="string">&quot;20210507&quot;</span></span><br><span class="line"><span class="keyword">while</span> [ <span class="string">&quot;<span class="variable">$begin_date</span>&quot;</span> -le <span class="string">&quot;<span class="variable">$end_date</span>&quot;</span> ];</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    year=<span class="variable">$&#123;begin_date:0:4&#125;</span></span><br><span class="line">    month=$(date -d <span class="string">&quot;<span class="variable">$begin_date</span>&quot;</span> +%m)</span><br><span class="line">    day=$(date -d <span class="string">&quot;<span class="variable">$begin_date</span>&quot;</span> +%d)</span><br><span class="line">    current_date=<span class="variable">$year</span>-<span class="variable">$month</span>-<span class="variable">$day</span></span><br><span class="line">    begin_date=$(date -d <span class="string">&quot;<span class="variable">$&#123;begin_date&#125;</span>+1days&quot;</span> +%Y%m%d)</span><br><span class="line">    n_year=<span class="variable">$&#123;begin_date:0:4&#125;</span></span><br><span class="line">    n_month=$(date -d <span class="string">&quot;<span class="variable">$begin_date</span>&quot;</span> +%m)</span><br><span class="line">    n_day=$(date -d <span class="string">&quot;<span class="variable">$begin_date</span>&quot;</span> +%d)</span><br><span class="line">    next_date=<span class="variable">$n_year</span>-<span class="variable">$n_month</span>-<span class="variable">$n_day</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;开始导出：<span class="variable">$current_date</span> 数据&gt;&gt;&gt;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 打印导出命令，供参考</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;开始执行：clickhouse-client  -d mysql_database_31 --query \&quot;select id,member_id,card_no,order_code,shop_id,ref_member_id,create_time,flow_type,merchant_id,merchant_name,shop_code,shop_name,member_name,id_number,mobile_number,member_level,member_level_name,member_type,biz_code,amount,amount2,asset_id,asset_type,change_flag,param1,param2,param3,parent_asset_id,creator_id,creator_name,create_pos_id,create_pos_name,cashier_type,machine_id,machine_category_id,machine_category_name,machine_name,machine_instance_id,machine_instance_name,machine_instance_slot_id,device_id,device_name,record_status,record_seq,remark,machine_instance_slot_no,source_type,ref_asset_id,ref_asset_type,business_model,item_drop_type from asset_record where create_time&gt;= &#x27;<span class="variable">$current_date</span>&#x27; and create_time&lt;&#x27;<span class="variable">$next_date</span>&#x27;\&quot; &gt; /home/shoppingmall/asset_record/asset_record_<span class="variable">$current_date</span>.csv&quot;</span></span><br><span class="line">    <span class="comment"># clickhouse 导出数据</span></span><br><span class="line">    clickhouse-client -d  mysql_database_31 --query <span class="string">&quot;select id,member_id,card_no,order_code,shop_id,ref_member_id,create_time,flow_type,merchant_id,merchant_name,shop_code,shop_name,member_name,id_number,mobile_number,member_level,member_level_name,member_type,biz_code,amount,amount2,asset_id,asset_type,change_flag,param1,param2,param3,parent_asset_id,creator_id,creator_name,create_pos_id,create_pos_name,cashier_type,machine_id,machine_category_id,machine_category_name,machine_name,machine_instance_id,machine_instance_name,machine_instance_slot_id,device_id,device_name,record_status,record_seq,remark,machine_instance_slot_no,source_type,ref_asset_id,ref_asset_type,business_model,item_drop_type from asset_record where create_time &gt;= &#x27;<span class="variable">$current_date</span>&#x27; and create_time&lt;&#x27;<span class="variable">$next_date</span>&#x27;&quot;</span> &gt; /home/shoppingmall/asset_record/asset_record_<span class="variable">$current_date</span>.csv </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Strem Load 导入数据到doris</span></span><br><span class="line">    curl --location-trusted -u root: -T /home/shoppingmall/asset_record/asset_record_<span class="variable">$current_date</span>.csv  -XPUT http://10.200.50.74:8030/api/wi/asset_record/_stream_load</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 删除csv文件</span></span><br><span class="line">    rm -rf /home/shoppingmall/asset_record/asset_record_<span class="variable">$current_date</span>.csv</span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;结束：<span class="variable">$current_date</span> 数据导出&lt;&lt;&lt;&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="查询场景测试"><a href="#查询场景测试" class="headerlink" title="查询场景测试"></a>查询场景测试</h2><p>所有测试场景的过滤条件不变，日期粒度：天、月、三个月、六个月，租户id=dwj，shop_id动态传入</p>
+<h3 id="点查场景"><a href="#点查场景" class="headerlink" title="点查场景"></a>点查场景</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- dwj一家店铺一天的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-02-06 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-02-06 23:59:59&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 单查：0.66s-3.2s</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺一月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-02-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-02-28 23:59:59&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 单查：1.18s-14s</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺三个月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-01-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-03-31 23:59:59&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 单查：69s-30s</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺六个月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2020-10-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span></span><br><span class="line"><span class="string">&#x27;2021-03-31 23:59:59&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 单查：1min43s - 24.19 sec</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="聚合场景"><a href="#聚合场景" class="headerlink" title="聚合场景"></a>聚合场景</h3><h4 id="一个度量"><a href="#一个度量" class="headerlink" title="一个度量"></a>一个度量</h4><h5 id="一个维度"><a href="#一个维度" class="headerlink" title="一个维度"></a>一个维度</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- dwj一家店铺一天的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-02-06 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-02-06 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id,create_time <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺一月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-02-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-02-28 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id,create_time <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺三个月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-01-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-03-31 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id,create_time <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺六个月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2020-10-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-03-31 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id,create_time <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="二个维度"><a href="#二个维度" class="headerlink" title="二个维度"></a>二个维度</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- dwj一家店铺一天的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-02-06 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-02-06 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺一月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-02-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-02-28 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id <span class="keyword">order</span> <span class="keyword">by</span>  <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺三个月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2021-01-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-03-31 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- dwj一家店铺六个月的流水分页（20）</span></span><br><span class="line"><span class="keyword">select</span> shop_id,<span class="built_in">sum</span>(amount) <span class="keyword">from</span> asset_record <span class="keyword">where</span> merchant_id <span class="operator">=</span> <span class="string">&#x27;dwj&#x27;</span> <span class="keyword">and</span> shop_id <span class="operator">=</span> ? <span class="keyword">and</span> create_time <span class="operator">&gt;=</span> <span class="string">&#x27;2020-10-01 00:00:00&#x27;</span> <span class="keyword">and</span> create_time <span class="operator">&lt;=</span><span class="string">&#x27;2021-03-31 23:59:59&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> shop_id <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">desc</span> limit <span class="number">0</span>,<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="三个维度"><a href="#三个维度" class="headerlink" title="三个维度"></a>三个维度</h5><h5 id="四个维度"><a href="#四个维度" class="headerlink" title="四个维度"></a>四个维度</h5><h4 id="两个度量"><a href="#两个度量" class="headerlink" title="两个度量"></a>两个度量</h4><h3 id="关联查询场景"><a href="#关联查询场景" class="headerlink" title="关联查询场景"></a>关联查询场景</h3><h2 id="运维相关"><a href="#运维相关" class="headerlink" title="运维相关"></a>运维相关</h2><h3 id="升级fe"><a href="#升级fe" class="headerlink" title="升级fe"></a>升级fe</h3><p>停掉fe服务 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sh <span class="variable">$&#123;DORIS_HOME&#125;</span>/bin/stop_fe.sh</span></span><br></pre></td></tr></table></figure>
+<p>copy 之前fe目录中的doris-meta、conf(若配置文件有变更，除外)文件，迁移至心的fe包中，适当情况下对老的fe包进行备份</p>
+<p>启动fe服务即可，如果保留之前的日志文件，copy旧的log目录到新的fe目录下</p>
+<h3 id="升级be"><a href="#升级be" class="headerlink" title="升级be"></a>升级be</h3><p>停掉be服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh <span class="variable">$&#123;DORIS_HOME&#125;</span>/bin/stop_be.sh</span><br></pre></td></tr></table></figure>
+<p>copy 之前be目录中的storage、conf(若配置文件有变更，除外)文件，迁移至心的be包中，适当情况下对老的be包进行备份</p>
+<p>启动be服务即可，如果保留之前的日志文件，copy旧的log目录到新的be目录下</p>
+<h2 id="问题集合："><a href="#问题集合：" class="headerlink" title="问题集合："></a>问题集合：</h2><p>1、建表语句中日期字段无法指定当前时间作为默认值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`created` DATETIME REPLACE <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> comment &quot;创建时间&quot;</span><br></pre></td></tr></table></figure>
+<p>推荐在insert的时候now()函数代替</p>
+<p>其他的类型的默认值，有单引号 <code>&#39;&#39;</code>包起来，不然会报错</p>
+<p>2、创建mysql外部表出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR 1064 (HY000): errCode &#x3D; 2, detailMessage &#x3D; Don&#39;t support MySQL table, you should rebuild Doris with WITH_MYSQL option ON</span><br></pre></td></tr></table></figure>
+<p>说明在编译Doris时没有指定WITH_MYSQL=1，</p>
+<p>重新编译Doris</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ WITH_MYSQL=1 sh build.sh</span><br></pre></td></tr></table></figure>
+<p>重新更新be服务</p>
+<p>3、合理设置storage_page_cache_limit，默认20G</p>
+<p>防止查询将内存打满，导致服务器kill掉be的进程，我目前为了稳妥设置的是，服务器内存的一半。</p>
+<p>4、索引</p>
+<p>只支持bitmap索引，一个索引字段只能为一个字段，不能创建联合索引</p>
+<p>rollup必须包含所有的联合主键字段</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="/dist/2021/05/11/Clickhouse安装/" title="ClickHouse安装" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210517171738287.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210517171738287.png" srcset="data:image/png;base64,666" /><span class="title">ClickHouse安装</span></a><a class="item" href="/dist/2021/05/13/Clickhouse性能测试/" title="ClickHouse性能测试" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210520163650258.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210520163650258.png" srcset="data:image/png;base64,666" /><span class="title">ClickHouse性能测试</span></a><a class="item" href="/dist/2021/05/14/Clickhouse配置文件/" title="ClickHouse配置文件" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,666" /><span class="title">ClickHouse配置文件</span></a><a class="item" href="/dist/2021/05/28/DorisDB测试/" title="DorisDB安装" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210531110126690.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20210531110126690.png" srcset="data:image/png;base64,666" /><span class="title">DorisDB安装</span></a><a class="item" href="/dist/2021/01/20/GP的百分位数的实现/" title="GreenPlum的百分位数的实现" rel="bookmark "><img src="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20201209172349437.png" class="lazyload" data-srcset="https://chai-wuxuan.oss-cn-shanghai.aliyuncs.com/img/image-20201209172349437.png" srcset="data:image/png;base64,666" /><span class="title">GreenPlum的百分位数的实现</span></a></div></section></div>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://cha1yi.github.io/dist/2021/05/24/Apache%20doris%20%E5%AE%89%E8%A3%85/>https://cha1yi.github.io/dist/2021/05/24/Apache%20doris%20%E5%AE%89%E8%A3%85/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+              <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'>
+            
+          </div>
+        </div>
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-05T23:01:18+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jun 5, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/dist/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cha1yi.github.io/dist/2021/05/24/Apache%20doris%20%E5%AE%89%E8%A3%85/&title=Apache doris安装 - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cha1yi.github.io/dist/2021/05/24/Apache%20doris%20%E5%AE%89%E8%A3%85/&title=Apache doris安装 - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cha1yi.github.io/dist/2021/05/24/Apache%20doris%20%E5%AE%89%E8%A3%85/&title=Apache doris安装 - YiDan の dada&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+        
+          
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/dist/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    </a>
+  </div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Apache doris安装" data-path="/dist/2021/05/24/Apache%20doris%20%E5%AE%89%E8%A3%85/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>6.4k words</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>33 min</p>
+    </a>
+  </div>
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/dist/2021/05/27/Mac%E4%BD%BF%E7%94%A8prometheus/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Mac使用prometheus</p>
+          <p class='content'>安装prometheus12345678910111213141516171819$ brew install prometheus==&gt; Downloading https://home...</p>
+        </a>
+      
+      
+        <a class='next' href='/dist/2021/05/21/greenplum%E5%AD%A6%E4%B9%A0/'>
+          <p class='title'>Greenplum学习<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>copy123456789101112131415161718192021222324252627COPY table [(column [, ...])] FROM &#123;&#39;fi...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Doris-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">Apache Doris 简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Doris%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">Apache Doris编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">机器准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fe%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.</span> <span class="toc-text">fe安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#be%E5%AE%89%E8%A3%85"><span class="toc-number">3.2.</span> <span class="toc-text">be安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Doris%E4%BD%BF%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">Doris使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E6%B5%8B%E8%AF%95%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text">建测试表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E5%88%86%E5%8C%BA"><span class="toc-number">4.1.1.</span> <span class="toc-text">复合分区</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">5.</span> <span class="toc-text">导入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#insert-query"><span class="toc-number">5.1.</span> <span class="toc-text">insert query</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSV-%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">5.2.</span> <span class="toc-text">CSV 导入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%9C%BA%E6%99%AF%E6%B5%8B%E8%AF%95"><span class="toc-number">6.</span> <span class="toc-text">查询场景测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E6%9F%A5%E5%9C%BA%E6%99%AF"><span class="toc-number">6.1.</span> <span class="toc-text">点查场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%9C%BA%E6%99%AF"><span class="toc-number">6.2.</span> <span class="toc-text">聚合场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%BA%A6%E9%87%8F"><span class="toc-number">6.2.1.</span> <span class="toc-text">一个度量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="toc-number">6.2.1.1.</span> <span class="toc-text">一个维度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="toc-number">6.2.1.2.</span> <span class="toc-text">二个维度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="toc-number">6.2.1.3.</span> <span class="toc-text">三个维度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="toc-number">6.2.1.4.</span> <span class="toc-text">四个维度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%BA%A6%E9%87%8F"><span class="toc-number">6.2.2.</span> <span class="toc-text">两个度量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E5%9C%BA%E6%99%AF"><span class="toc-number">6.3.</span> <span class="toc-text">关联查询场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3"><span class="toc-number">7.</span> <span class="toc-text">运维相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7fe"><span class="toc-number">7.1.</span> <span class="toc-text">升级fe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7be"><span class="toc-number">7.2.</span> <span class="toc-text">升级be</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">问题集合：</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Apache doris安装";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='true'
+      volume='0.7'
+      loop='all'
+      order='random'
+      fixed='true'
+      list-max-height='320px'
+      server='netease'
+      type='search'
+      id='刘德华,beyond,许嵩'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
+        as theme, total visits
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          times
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/dist/">Copyright © 2017-2020 YiDan</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css", window.volantis.loadcss);
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $('#cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+  
+  
+
+  <div id="rightmenu-wrapper">
+    <ul class="list-v rightmenu" id="rightmenu-content">
+      <li class='option'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>Copy Text</a>
+        <hr id='hr-text'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>Copy Link</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>Open Link in New Tab</a>
+        <hr id='hr-href'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>Copy Image Link</a>
+        <hr id='hr-src'>
+      </li>
+      
+        <li class='navigation'>
+          <a class='nav icon-only fix-cursor-default' onclick='history.back()'><i class='fa fa-arrow-left fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='history.forward()'><i class='fa fa-arrow-right fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='window.location.reload()'><i class='fa fa-redo fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' href='/'><i class='fa fa-home fa-fw'></i></a>
+        </li>
+      
+      <hr>
+      
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/faqs/
+        
+        
+        
+        
+          id="https:volantisjsorgfaqs"
+        >
+        <i class='fa fa-question fa-fw'></i> 常见问题
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/examples/
+        
+        
+        
+        
+          id="https:volantisjsorgexamples"
+        >
+        <i class='fa fa-rss fa-fw'></i> 示例博客
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://volantis.js.org/contributors/
+        
+        
+        
+        
+          id="https:volantisjsorgcontributors"
+        >
+        <i class='fa fa-fan fa-spin fa-fw'></i> 加入社区
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://github.com/volantis-x/volantis-docs/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xvolantis-docs"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 本站源码
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' href=https://github.com/volantis-x/hexo-theme-volantis/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xhexo-theme-volantis"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 主题源码
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default' 
+        
+        
+        
+          onclick="document.execCommand('print')"
+        
+        >
+        <i class='fa fa-print fa-fw'></i> 打印页面
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          <li class='music name'>
+            <p class='nav music-title fix-cursor-default'></p>
+          </li>
+          <li class='music ctrl'>
+            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
+            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
+            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
+          </li>
+          <li class='music volume'>
+            <a class='nav volume'>
+              <div class="aplayer-volume-bar-wrap">
+                <div class="aplayer-volume-bar fix-cursor-pointer">
+                  <div class="aplayer-volume"></div>
+                  <i class='left fa fa-volume-off fa-fw'></i>
+                  <i class='right fa fa-volume-up fa-fw'></i>
+                </div>
+              </div>
+            </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+  <script>
+    window.document.oncontextmenu = function (event) {
+      if (event.ctrlKey) return true;
+      if (/Android|webOS|BlackBerry/i.test(navigator.userAgent)) return true;
+      return popMenu(event);
+    };
+    document.addEventListener("click", function (event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      mymenu.style.display = "none";
+    });
+    function popMenu(event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      var menuContent = document.getElementById('rightmenu-content');
+      var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      var screenHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      mymenu.style.left = event.clientX + "px"; // 获取鼠标位置
+      mymenu.style.top = event.clientY + "px";
+      mymenu.style.display = 'block';
+      if (event.clientX * 2 > screenWidth) {
+        menuContent.classList.add('left');
+      } else {
+        menuContent.classList.remove('left');
+      }
+      if (event.clientY * 2 > screenHeight) {
+        menuContent.classList.add('top');
+      } else {
+        menuContent.classList.remove('top');
+      }
+
+      let hrText = document.getElementById('hr-text');
+      let hrSrc = document.getElementById('hr-src');
+      let hrHref = document.getElementById('hr-href');
+
+      // 选中图片
+      let copySrc = document.getElementById('menu-copy-src');
+      if (copySrc != undefined) {
+        if (event.target.currentSrc) {
+          copySrc.style.display = 'block';
+          copySrc.addEventListener("click", function (e) {
+            copyString(event.target.currentSrc);
+          },{once: true});
+          hrSrc.style.display = 'block';
+        } else {
+          copySrc.style.display = 'none';
+          hrSrc.style.display = 'none';
+        }
+      }
+
+      // 选中按钮
+      // 判断是不是按钮
+      let href = '';
+      if (event.path) {
+        for (i = 0; i < event.path.length; i++) {
+          if (event.path[i].href != undefined && event.path[i].href.length > 0) {
+            href = event.path[i].href;
+          }
+        }
+      }
+
+      let copyText = document.getElementById('menu-copy-text');
+      copyText.style.display = 'none';
+      hrText.style.display = 'none';
+      if (href.length == 0) {
+        // 选中文本
+        if (window.getSelection().toString()) {
+          if ('true' == 'true') {
+            copyText.style.display = 'block';
+            hrText.style.display = 'block';
+          }
+        }
+      }
+
+      // 在新标签页打开
+      let openHref = document.getElementById('menu-open-href');
+      if (openHref != undefined) {
+        if (href.length > 0) {
+          openHref.style.display = 'block';
+          openHref.addEventListener("click", function (e) {
+            window.open(href);
+          },{once: true});
+          hrHref.style.display = 'block';
+        } else {
+          openHref.style.display = 'none';
+          hrHref.style.display = 'none';
+        }
+      }
+      // 复制链接
+      let copyHref = document.getElementById('menu-copy-href');
+      if (copyHref != undefined) {
+        if (href.length > 0) {
+          copyHref.style.display = 'block';
+          copyHref.addEventListener("click", function (e) {
+            copyString(href);
+          },{once: true});
+        } else {
+          copyHref.style.display = 'none';
+        }
+      }
+
+      // 有音乐播放器
+      if ('true' == true && ('home,help,examples,contributors,hr,source_docs,source_theme,hr,print,hr,music'||[]).includes('music')) {
+        // 如果有aplayer，初始化一下
+      	try {
+      		checkAPlayer();
+          updateTitle();
+      	} catch (error) {
+      		console.log(error);
+      	}
+      }
+
+      return false; // 该行代码确保系统自带的右键菜单不会被调出
+    }
+    function hideMenu() {
+      document.getElementById('rightmenu-wrapper').style.display = 'none';
+    }
+    function copyString(str) {
+      const input = document.createElement('input');
+      input.setAttribute('readonly', 'readonly');
+      document.body.appendChild(input);
+      input.setAttribute('value', str);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+    document.execCommand('click');
+  </script>
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+   <script type="text/javascript">
+  loadScript("https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js")
+  function pjax_scrollrebeal() {
+    ScrollReveal().reveal('.l_main .reveal', {
+      distance: '32px',
+      duration: '800',
+      interval: '20',
+      scale: '1',
+      easing: 'ease-out'
+    });
+  }
+  $(function () {
+  var checkScrollReveal = setInterval(function () {
+    if ($("#safearea").css("display")!="block") return
+    if (typeof ScrollReveal=="undefined") return
+    clearInterval(checkScrollReveal)
+	pjax_scrollrebeal();
+  }, 100)
+  });
+</script>
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '刘德华,beyond,许嵩';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.LoadMetingJS=0
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return
+    clearInterval(checkAPlayer)
+	if (!window.volantis.LoadMetingJS&&!window.MetingJSElement){
+	  window.LoadMetingJS=1
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js")
+	  }
+  }, 2500)
+
+  
+    loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/aplayer.min.js');
+  
+
+</script>
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"js":"https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js","path":null,"placeholder":"快来评论吧~","appId":"6MBfTRTreIjI43OIcl2uaFA4-gzGzoHsz","appKey":"MbiTl1r1hhLHsbrOPheXMUK2","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":true,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  pjax_comment=pjax_valine;
+</script>
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/dist/" || "/").endsWith('/') ? ("/dist/" || "/") : ("/dist//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://cha1yi.github.io/dist' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://cha1yi.github.io/dist' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://cha1yi.github.io/dist' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+function bindToggleButton() {
+	var btn=$("#wrapper .toggle-mode-btn");
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+document.addEventListener("pjax:success", bindToggleButton);
+
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      
+      $("#wrapper .toggle-mode-btn").unbind('click');
+      
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+		  Pjax_backstretch()
+        
+        
+        
+          pjax_scrollrebeal();
+        
+        if (typeof IssuesAPI == "undefined") {
+          loadIssuesJS();
+        }
+        
+          pjax_initCopyCode();
+        
+		
+          try{pjax_comment();} catch (e) {}
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>
